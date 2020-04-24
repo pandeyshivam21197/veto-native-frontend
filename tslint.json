@@ -28,5 +28,5 @@
     "ordered-imports": false,
     "jsx-no-multiline-js": false
   },
-  "jsRules": true,
+  "jsRules": true
 }

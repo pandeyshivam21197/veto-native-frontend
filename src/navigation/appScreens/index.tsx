@@ -1,7 +1,7 @@
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import HomeStack from "@navigation/appScreens/home";
-import React from "react";
-import RoutesNames from "@navigation/routes";
+import HomeStack from '@navigation/appScreens/home';
+import React from 'react';
+import RoutesNames from '@navigation/routes';
 
 const Tab = createMaterialBottomTabNavigator();
 

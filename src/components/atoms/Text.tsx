@@ -1,5 +1,5 @@
-import {StyleProp, View, ViewStyle} from 'react-native';
-import * as React from "react";
+import {StyleProp, View, ViewStyle, Text as RNText} from 'react-native';
+import * as React from 'react';
 
 interface IText {
     style: StyleProp<ViewStyle>;
@@ -8,7 +8,7 @@ interface IText {
 export const Text = (props: IText) => {
     return (
         <View>
-
+            <RNText>This is a Text</RNText>
         </View>
     )
 }

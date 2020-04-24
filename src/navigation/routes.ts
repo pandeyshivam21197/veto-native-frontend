@@ -21,9 +21,9 @@ const bootStrapScreens = {
 };
 
 export const RoutesNames = {
-    //bootstrap Routes
+    // bootstrap Routes
     ...bootStrapScreens,
-    //stack Routes
+    // stack Routes
     ...stacks,
     // app routes
     ...appScreens,

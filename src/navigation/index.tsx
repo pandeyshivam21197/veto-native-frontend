@@ -1,8 +1,8 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from "@react-navigation/stack";
-import React from "react";
-import appTabs from "@navigation/appScreens";
-import RoutesNames from "@navigation/routes";
+import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
+import appTabs from '@navigation/appScreens';
+import RoutesNames from '@navigation/routes';
 
 
 const Stack = createStackNavigator();

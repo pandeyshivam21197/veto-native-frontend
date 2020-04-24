@@ -1,5 +1,5 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import React from "react";
+import React from 'react';
 
 const Stack = createStackNavigator();
 
