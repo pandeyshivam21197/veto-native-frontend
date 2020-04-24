@@ -1,27 +1,25 @@
-import * as React from 'react'
-import {Platform, StatusBar, StyleSheet, View} from 'react-native';
+import React from 'react'
+import {StatusBar, StyleSheet, View} from 'react-native';
+import 'react-native-gesture-handler';
+import AppNavigation from "@navigation/index";
+import {Provider} from "react-redux";
+import {createStore} from 'redux';
+import {StoreProviderService} from "@services/StoreProviderService";
+import rootReducer from "@modules/reducers";
 
-const instructions = Platform.select({
-    ios: 'Press Cmd+R to reload,\n' +
-        'Cmd+D or shake for dev menu',
-    android: 'Double tap R on your keyboard to reload,\n' +
-        'Shake or press menu button for dev menu',
+StoreProviderService.init(() => {
+    return createStore(rootReducer);
 });
 
-export interface Props {
-}
-
-export interface State {
-}
-
-export class App extends React.Component<Props, State> {
+export class App extends React.PureComponent {
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar/>
-                // TODO: add navigation
-                // TODO: add store
-            </View>
+            <Provider store={StoreProviderService.getStore()}>
+                <View style={styles.container}>
+                    <StatusBar/>
+                    <AppNavigation/>
+                </View>
+            </Provider>
         );
     }
 }
