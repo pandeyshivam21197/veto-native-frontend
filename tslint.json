@@ -29,9 +29,4 @@
     "jsx-no-multiline-js": false
   },
   "jsRules": true,
-  "linterOptions": {
-    "exclude": [
-      "storybook/storyLoader.js"
-    ]
-  }
 }
