@@ -8,6 +8,12 @@ const instructions = Platform.select({
         'Shake or press menu button for dev menu',
 });
 
+export interface Props {
+}
+
+export interface State {
+}
+
 export class App extends React.Component<Props, State> {
     render() {
         return (
