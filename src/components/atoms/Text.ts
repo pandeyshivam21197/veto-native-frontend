@@ -4,6 +4,6 @@ interface IText {
     style: StyleProp<ViewStyle>;
 }
 
-const Text = (props: IText) => {
+export const Text = (props: IText) => {
 
 }
