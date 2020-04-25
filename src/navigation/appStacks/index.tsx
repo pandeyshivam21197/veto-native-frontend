@@ -3,45 +3,78 @@ import HomeStack from '@navigation/appStacks/homeStack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
 import RoutesNames from '@navigation/routes';
+import {View} from "react-native";
 
 const Tab = createMaterialBottomTabNavigator();
 
 const getTabOptions = (stackName: string) => {
     let iconName: string = 'home';
+    let backgroundColor = 'white';
+    let label = '';
+    let activeColor = 'white';
+    let inactiveColor = 'grey';
+    console.log(stackName, 'stackName!!');
 
-    switch(stackName) {
+    switch (stackName) {
+        case RoutesNames.HomeStack:
+            label = 'Home';
+            backgroundColor = 'orange';
+            break;
         case RoutesNames.DonationStack:
             iconName = 'donation';
+            backgroundColor = 'blue';
+            label = 'Donation';
             break;
         case RoutesNames.DistributorStack:
             iconName = 'donation';
+            backgroundColor = 'red';
+            label = 'Distributor';
             break;
         case RoutesNames.AccountStack:
-            iconName = 'donation';
+            iconName = 'account';
+            backgroundColor = 'green';
+            label = 'Account';
             break;
+        default:
+            iconName = 'home';
+    }
+
+    return {
+        tabBarLabel: label,
+        tabBarColor: backgroundColor,
+        tabBarIcon: ({color}: { color: string }) => {
+            return (<MaterialCommunityIcons name="home" color={color} size={26}/>)
+        },
+        activeColor: activeColor,
+        inactiveColor: inactiveColor,
     }
 }
 
 const AppTabs = () => (
     <Tab.Navigator
         initialRouteName={RoutesNames.HomeScreen}
-        activeColor='red' inactiveColor="grey"
-        barStyle={{backgroundColor: 'yellow'}}
+        shifting={true}
     >
         <Tab.Screen
             name={RoutesNames.HomeStack}
             component={HomeStack}
             options={getTabOptions(RoutesNames.HomeStack)}
-            options={{
-                tabBarLabel: 'Home',
-                tabBarIcon: ({color}) => (
-                    <MaterialCommunityIcons name="home" color={color} size={26}/>
-                ),
-            }}
         />
-        <Tab.Screen name={RoutesNames.DonationScreen} component={HomeStack} options={{title: 'Donation'}}/>
-        <Tab.Screen name={RoutesNames.DistributorScreen} component={HomeStack} options={{title: 'Distributor'}}/>
-        <Tab.Screen name={RoutesNames.AccountScreen} component={HomeStack} options={{title: 'Account'}}/>
+        <Tab.Screen
+            name={RoutesNames.DonationStack}
+            component={HomeStack}
+            options={getTabOptions(RoutesNames.DonationStack)}
+        />
+        <Tab.Screen
+            name={RoutesNames.DistributorStack}
+            component={HomeStack}
+            options={getTabOptions(RoutesNames.DistributorStack)}
+        />
+        <Tab.Screen
+            name={RoutesNames.AccountStack}
+            component={HomeStack}
+            options={getTabOptions(RoutesNames.AccountStack)}
+        />
     </Tab.Navigator>
 );
 
