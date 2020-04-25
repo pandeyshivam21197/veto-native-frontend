@@ -31,5 +31,5 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["coverage", "node_modules", "storybook/storyLoader.js"]
+  "exclude": ["node_modules"]
 }

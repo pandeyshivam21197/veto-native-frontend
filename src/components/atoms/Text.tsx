@@ -7,9 +7,10 @@ interface IText {
 }
 
 export const Text = (props: IText) => {
+    const {children} = props;
     return (
         <View>
-            <RNText>children</RNText>
+            <RNText>{children}</RNText>
         </View>
     )
 }

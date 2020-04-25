@@ -1,8 +1,8 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import appTabs from '@navigation/appScreens';
-import RoutesNames from '@navigation/routes';
+import AppRootStack from '@navigation/appRootStack';
+import BootstrapStack from '@navigation/bootstrapStack';
 
 
 const Stack = createStackNavigator();
@@ -12,19 +12,11 @@ const AppNavigation = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                {/*<Stack.Screen name="Splash" component={SplashScreen}/>*/}
-                {isAuth ? (
-                    <>
-                        <Stack.Screen name={RoutesNames.AppStack} component={appTabs}/>
-                    </>
-                ) : (
-                    <>
-                        {/*<Stack.Screen name="SignIn" component={SignInScreen}/>*/}
-                        {/*<Stack.Screen name="SignUp" component={SignUpScreen}/>*/}
-                        {/*<Stack.Screen name="OnBoarding" component={OnBoardingScreen}/>*/}
-                    </>
-
-                )
+                {/*<Stack.Screen name="Splash" component={HomeScreen} options={{ title: 'Splash' }}/>*/}
+                {isAuth ?
+                    <Stack.Screen name="RootStack" component={AppRootStack} options={{headerShown: false}}/>
+                    :
+                    < Stack.Screen name="Bootstrap" component={BootstrapStack} options={{headerShown: false}}/>
                 }
             </Stack.Navigator>
         </NavigationContainer>
