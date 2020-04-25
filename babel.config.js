@@ -5,11 +5,15 @@ module.exports = {
     ['module-resolver', {
       extensions: ['.tsx','.ts', 'js', '.ios.js', '.android.js', '.json'],
       'alias': {
-        '@navigation': './src/navigation',
-        '@services': './src/services',
+        '@assets': './src/assets',
         '@components': './src/components',
         '@modules': './src/modules',
+        '@navigation': './src/navigation',
+        '@network': './src/network',
         '@screens': './src/screens',
+        '@services': './src/services',
+        '@styles': './src/styles',
+        '@utils': './src/utils',
       },
     }],
   ],

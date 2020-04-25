@@ -3,7 +3,7 @@ const stacks = {
     HomeStack: 'HomeStack',
     DonationStack: 'DonationStack',
     DistributorStack: 'DistributorStack',
-    AccountSStack: 'AccountSStack',
+    AccountStack: 'AccountSStack',
 };
 
 const appScreens = {
