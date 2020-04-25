@@ -3,7 +3,6 @@ import HomeStack from '@navigation/appStacks/homeStack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from 'react';
 import RoutesNames from '@navigation/routes';
-import {View} from "react-native";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -11,9 +10,8 @@ const getTabOptions = (stackName: string) => {
     let iconName: string = 'home';
     let backgroundColor = 'white';
     let label = '';
-    let activeColor = 'white';
-    let inactiveColor = 'grey';
-    console.log(stackName, 'stackName!!');
+    const activeColor = 'white';
+    const inactiveColor = 'grey';
 
     switch (stackName) {
         case RoutesNames.HomeStack:
@@ -43,10 +41,10 @@ const getTabOptions = (stackName: string) => {
         tabBarLabel: label,
         tabBarColor: backgroundColor,
         tabBarIcon: ({color}: { color: string }) => {
-            return (<MaterialCommunityIcons name="home" color={color} size={26}/>)
+            return (<MaterialCommunityIcons name={iconName} color={color} size={26}/>)
         },
-        activeColor: activeColor,
-        inactiveColor: inactiveColor,
+        activeColor,
+        inactiveColor,
     }
 }
 
