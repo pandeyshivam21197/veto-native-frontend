@@ -43,8 +43,8 @@ const getTabOptions = (stackName: string) => {
         tabBarIcon: ({color}: { color: string }) => {
             return (<MaterialCommunityIcons name={iconName} color={color} size={26}/>)
         },
-        activeColor,
-        inactiveColor,
+        activeColor: activeColor,
+        inactiveColor: inactiveColor,
     }
 }
 
