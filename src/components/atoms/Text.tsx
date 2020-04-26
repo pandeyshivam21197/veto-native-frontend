@@ -1,17 +1,21 @@
-import {StyleProp, ViewStyle, Text as RNText, StyleSheet, TextStyle} from 'react-native';
+import {StyleProp, ViewStyle, Text as RNText, StyleSheet, TextStyle, TextProps} from 'react-native';
 import * as React from 'react';
 
-interface IFontWeight {
+export interface IFontWeight {
     fontWeight: 'regular' | 'medium' | 'bold';
 }
 
-interface IFontSize {
-    fontSize: 'small' | 'medium' | 'large';
-}
+export type TextType = 'text' | 'label';
 
-interface IText extends IFontWeight, IFontSize {
+export type FontSize = 'small' | 'medium' | 'large';
+
+export type FontWeight = 'regular' | 'medium' | 'bold';
+
+interface IText extends IFontWeight, TextProps {
     containerStyle?: StyleProp<ViewStyle>;
     children: string | React.ReactNode;
+    fontSize: FontSize;
+    fontWeight: FontWeight;
 }
 
 export const Text = (props: IText) => {
