@@ -1,8 +1,8 @@
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import Icon from '@components/atoms/Icon';
 import HomeStack from '@navigation/appStacks/homeStack';
-import React from 'react';
 import RoutesNames from '@navigation/routes';
-import Icon from "@components/atoms/Icon";
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import React from 'react';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -43,8 +43,8 @@ const getTabOptions = (stackName: string) => {
         tabBarIcon: ({color}: { color: string }) => {
             return (<Icon name={iconName} color={color} size={26}/>)
         },
-        activeColor: activeColor,
-        inactiveColor: inactiveColor,
+        activeColor,
+        inactiveColor,
     }
 }
 

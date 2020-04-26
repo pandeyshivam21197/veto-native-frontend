@@ -1,7 +1,7 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
-import {IApiConfig} from '@network/interfaces';
 import {DEFAULT_API_TIMEOUT, HttpMethod} from '@network/Constants';
+import {IApiConfig} from '@network/interfaces';
 import {LocalStorage, LocalStorageKeys} from '@utils/LoacalStorage';
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 
 class ApiClient {
     private readonly baseUrl: string;

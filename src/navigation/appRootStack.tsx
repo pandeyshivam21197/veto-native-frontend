@@ -1,7 +1,7 @@
+import AppTabs from '@navigation/appStacks';
+import RoutesNames from '@navigation/routes';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import RoutesNames from '@navigation/routes';
-import AppTabs from '@navigation/appStacks';
 
 const Stack = createStackNavigator();
 

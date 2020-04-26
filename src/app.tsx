@@ -1,11 +1,11 @@
+import rootReducer from '@modules/reducers';
+import AppNavigation from '@navigation/index';
+import {StoreProviderService} from '@services/StoreProviderService';
 import React from 'react'
 import {StatusBar, StyleSheet, View} from 'react-native';
 import 'react-native-gesture-handler';
-import AppNavigation from '@navigation/index';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import {StoreProviderService} from '@services/StoreProviderService';
-import rootReducer from '@modules/reducers';
 
 StoreProviderService.init(() => {
     return createStore(rootReducer);

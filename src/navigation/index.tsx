@@ -1,8 +1,8 @@
+import AppRootStack from '@navigation/appRootStack';
+import BootstrapStack from '@navigation/bootstrapStack';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import AppRootStack from '@navigation/appRootStack';
-import BootstrapStack from '@navigation/bootstrapStack';
 
 
 const Stack = createStackNavigator();

@@ -1,5 +1,5 @@
-import {StyleProp, ViewStyle, Text as RNText, StyleSheet, TextStyle, TextProps} from 'react-native';
 import * as React from 'react';
+import {StyleProp, StyleSheet, Text as RNText, TextProps, TextStyle, ViewStyle} from 'react-native';
 
 export interface IFontWeight {
     fontWeight: 'regular' | 'medium' | 'bold';
@@ -19,15 +19,15 @@ interface IText extends IFontWeight, TextProps {
 }
 
 export const Text = (props: IText) => {
-    const {children, fontSize = 'small', fontWeight = 'small', containerStyle={}} = props;
-    const style: TextStyle = styles(fontSize, fontWeight).text;
+    const {children, fontSize = 'small', fontWeight = 'regular', containerStyle={}} = props;
+    const style: TextStyle = getStyles(fontWeight, fontSize).text;
 
     return (<RNText style={[style, containerStyle]}>{children}</RNText>)
 };
 
 export const Label = (props: IText) => {
-    const {children, fontSize = 'small', fontWeight = 'small', containerStyle={}} = props;
-    const style: TextStyle = styles(fontSize, fontWeight).label;
+    const {children, fontSize = 'small', fontWeight = 'regular', containerStyle={}} = props;
+    const style: TextStyle = getStyles(fontWeight, fontSize).label;
 
     return (<RNText style={[style, containerStyle]}>{children}</RNText>)
 };
@@ -81,11 +81,11 @@ const getTextStyle = (fontWeight: string, fontSize: string, isLabel = false): { 
     };
 };
 
-const styles = (fontWeight: string, fontSize: string) => (StyleSheet.create({
+const getStyles = (fontWeight: string, fontSize: string) => (StyleSheet.create({
     text: {
         ...getTextStyle(fontWeight, fontSize),
     },
     label: {
         ...getTextStyle(fontWeight, fontSize, true),
-    }
+    },
 }));

@@ -1,6 +1,6 @@
+import React from 'react';
+import {StyleProp, ViewStyle} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import React from "react";
-import {StyleProp, ViewStyle} from "react-native";
 
 interface IIcon {
     name: string;

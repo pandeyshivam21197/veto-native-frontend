@@ -1,23 +1,23 @@
+import Icon from '@components/atoms/Icon';
+import {FontSize, FontWeight, Label, Text, TextType} from '@components/atoms/Text';
+import {theme} from '@styles/theme';
+import {PlatformUtils} from '@utils/PlatformUtil';
+import {StyleUtils} from '@utils/StyleUtils';
+import {debounce} from 'lodash';
 import React, {ReactElement} from 'react';
 import {
     GestureResponderEvent,
     Image,
     ImageSourcePropType,
+    ImageStyle,
     StyleProp,
     StyleSheet,
-    ImageStyle,
+    TextStyle,
     TouchableNativeFeedback,
     TouchableOpacity,
-    TextStyle,
     View,
     ViewStyle,
 } from 'react-native';
-import {debounce} from 'lodash';
-import {PlatformUtils} from '@utils/PlatformUtil';
-import {StyleUtils} from '@utils/StyleUtils';
-import {theme} from '@styles/theme';
-import {Label, Text, FontSize, FontWeight, TextType} from '@components/atoms/Text';
-import Icon from "@components/atoms/Icon";
 
 
 export type ButtonType = 'filled' | 'ghost' | 'rounded' | 'link';
@@ -78,7 +78,7 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
         }
 
         const debouncePress = () => {
-            return onPress ? onPress() : () => {};
+            return onPress ? onPress() : () => null;
         };
 
         const touchableProps = PlatformUtils.isAndroid()
