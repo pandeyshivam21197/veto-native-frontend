@@ -1,6 +1,7 @@
 import React from 'react';
 import {FlatList, Image, StyleProp, ViewStyle} from 'react-native';
-import Video from 'react-native-video';
+import Video, {OnBufferData} from 'react-native-video';
+import ProgressBar from "@components/atoms/ProgressBar";
 
 export interface IThumbnail {
     url: string;
@@ -33,6 +34,17 @@ const ThumbnailList = (props: IThumbnailList): React.ReactElement => {
     );
 };
 
+const onBuffer = (data: OnBufferData): React.ReactNode => {
+    if (!data.isBuffering) {
+        return null;
+    }
+    return <ProgressBar type={'circle'} barProps={{indeterminate: true}}/>
+}
+
+const onVideoError = () => {
+    // TODO: show retry button or something
+}
+
 const renderThumbnail = ({item}: { item: IThumbnail }): React.ReactElement => {
     const {url, type} = item;
     const {IMAGE} = thumbnailType;
@@ -42,7 +54,7 @@ const renderThumbnail = ({item}: { item: IThumbnail }): React.ReactElement => {
             {isImage ?
                 <Image source={{uri: url}}/>
                 :
-                <Video source={{uri: url}}/>}
+                <Video source={{uri: url}} onBuffer={onBuffer} controls={true} onError={onVideoError}/>}
         </React.Fragment>
     )
 };
