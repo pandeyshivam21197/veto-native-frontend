@@ -14,11 +14,13 @@
     "lint:fix": "tslint --project tsconfig.json --fix"
   },
   "dependencies": {
+    "@react-native-community/art": "^1.2.0",
     "@react-native-community/async-storage": "^1.9.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/material-bottom-tabs": "^5.1.9",
     "@react-navigation/native": "^5.1.6",
     "@react-navigation/stack": "^5.2.13",
+    "add": "^2.0.6",
     "axios": "^0.19.2",
     "lodash": "^4.17.15",
     "react": "16.11.0",
@@ -30,8 +32,10 @@
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.6.0",
     "react-native-vector-icons": "^6.6.0",
+    "react-native-video": "^4.4.5",
     "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -43,6 +47,7 @@
     "@types/react": "^16.9.34",
     "@types/react-native": "^0.62.3",
     "@types/react-native-vector-icons": "^6.4.5",
+    "@types/react-native-video": "^5.0.1",
     "@types/react-navigation": "^3.4.0",
     "@types/react-redux": "^7.1.7",
     "babel-plugin-module-resolver": "^4.0.0",

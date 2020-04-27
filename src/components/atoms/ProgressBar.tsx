@@ -17,10 +17,17 @@ interface IProgressBar {
 
 const ProgressBar = (props: IProgressBar) => {
     const {type, barProps} = props;
+    const {showsText, progress} = barProps as CirclePropTypes;
+    let newProps = {...barProps};
+    if (showsText && progress) {
+        const formatText = () => {
+            return `${progress * 100} %`;
+        };
+        newProps = {...barProps, formatText};
+    }
     const BarTag = getBarTag(type);
-
     // @ts-ignore
-    return (<BarTag {...barProps}/>)
+    return (<BarTag {...newProps} />)
 }
 
 const getBarTag = (type: string) => {

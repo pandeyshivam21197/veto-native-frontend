@@ -1,72 +1,33 @@
-import Icon from '@components/atoms/Icon';
 import {Text} from '@components/atoms/Text';
-import {theme} from '@styles/theme';
+import EntityList, {IEntity} from '@components/molecules/EntityList';
+import StatusHeader, {campaignStatus} from '@components/molecules/StatusHeader';
+import ThumbnailList, {IThumbnail} from '@components/molecules/ThumbnailList';
 import * as React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleProp, View, ViewStyle} from 'react-native';
 
-type campaignStatus = 'Completed' | 'Availed' | 'Initiated';
 
-interface IThumbnail {
-    url: string;
-    type: string;
-}
-
-interface IEntity {
-    title: string;
-    requestedAmount: number;
-    availedAmount: number;
-    currentPrice: string;
-    status: string;
-    // add total status progress bar data. which we will calculate.
-}
-
-interface ICard {
+export interface ICard {
     title: string;
     subTitle?: string;
     status: campaignStatus;
     entities?: IEntity[];
     description?: string;
     thumbnails?: IThumbnail[]
+    containerStyle?: StyleProp<ViewStyle>;
 }
 
-export const Card = (props: ICard) => {
-    const {title, subTitle, status, entities, description, thumbnails} = props;
+const Card = (props: ICard): React.ReactElement => {
+    const {title, subTitle, status, entities, description, thumbnails, containerStyle = {}} = props;
+    // TODO: add total progress bar
     return (
-        <View>
-            <View style={styles.cardHeader}>
-                <React.Fragment>
-                    <Text>{title}</Text>
-                    {subTitle && <Text>{subTitle}</Text>}
-                </React.Fragment>
-                <Icon name={'status'} color={getStatusColor(status)}/>
-            </View>
-            {entities &&
-            <View/>
-                // TODO: add entities list
-            }
-            {thumbnails &&
-            <View/>
-                // TODO: render thumbnails
-            }
+        <View style={containerStyle}>
+            <StatusHeader title={title} status={status} subTitle={subTitle}/>
+            {entities && <EntityList data={entities}/>}
+            {thumbnails && <ThumbnailList data={thumbnails}/>}
             {description && status === 'Completed' && <Text>{description}</Text>}
         </View>
     )
 }
 
-const getStatusColor = (status: string): string => {
-    switch (status) {
-        case 'Completed':
-            return theme.colors.green;
-        case 'Availed':
-            return theme.colors.orange;
-        default:
-            return theme.colors.green;
-    }
-};
 
-const styles = StyleSheet.create({
-    cardHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-});
+export default Card;
