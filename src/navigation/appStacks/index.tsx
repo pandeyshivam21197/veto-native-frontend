@@ -7,7 +7,7 @@ import React from 'react';
 const Tab = createMaterialBottomTabNavigator();
 
 const getTabOptions = (stackName: string) => {
-    let iconName: string = 'home';
+    let iconName: string;
     let backgroundColor = 'white';
     let label = '';
     const activeColor = 'white';
@@ -15,23 +15,24 @@ const getTabOptions = (stackName: string) => {
 
     switch (stackName) {
         case RoutesNames.HomeStack:
+            iconName = 'home';
             label = 'Home';
             backgroundColor = 'orange';
             break;
         case RoutesNames.DonationStack:
-            iconName = 'donation';
-            backgroundColor = 'blue';
+            iconName = 'donate';
             label = 'Donation';
+            backgroundColor = 'blue';
             break;
         case RoutesNames.DistributorStack:
-            iconName = 'donation';
-            backgroundColor = 'red';
+            iconName = 'hands-helping';
             label = 'Distributor';
+            backgroundColor = 'red';
             break;
         case RoutesNames.AccountStack:
-            iconName = 'account';
-            backgroundColor = 'green';
+            iconName = 'user';
             label = 'Account';
+            backgroundColor = 'green';
             break;
         default:
             iconName = 'home';
@@ -41,7 +42,7 @@ const getTabOptions = (stackName: string) => {
         tabBarLabel: label,
         tabBarColor: backgroundColor,
         tabBarIcon: ({color}: { color: string }) => {
-            return (<Icon name={iconName} color={color} size={26}/>)
+            return (<Icon name={iconName} color={color} size={24}/>)
         },
         activeColor,
         inactiveColor,
