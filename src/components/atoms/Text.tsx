@@ -11,11 +11,11 @@ export type FontSize = 'small' | 'medium' | 'large';
 
 export type FontWeight = 'regular' | 'medium' | 'bold';
 
-interface IText extends IFontWeight, TextProps {
+interface IText extends TextProps {
     containerStyle?: StyleProp<ViewStyle>;
     children: string | React.ReactNode;
-    fontSize: FontSize;
-    fontWeight: FontWeight;
+    fontSize?: FontSize;
+    fontWeight?: FontWeight;
 }
 
 export const Text = (props: IText) => {
