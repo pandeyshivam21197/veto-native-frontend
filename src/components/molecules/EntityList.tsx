@@ -15,16 +15,23 @@ interface IEntityList {
     containerStyle?: StyleProp<ViewStyle>;
     data: IEntity[];
     numColumns?: number;
+    isHorizontal?: boolean;
 }
 
 const EntityList = (props: IEntityList): React.ReactElement => {
-    const {containerStyle = {}, data, numColumns = 2} = props;
+    const {containerStyle = {}, data, numColumns = 2, isHorizontal = true} = props;
     return (
-        <FlatList data={data} renderItem={renderEntity} contentContainerStyle={containerStyle} numColumns={numColumns}/>
+        <FlatList
+            data={data}
+            renderItem={renderEntity}
+            contentContainerStyle={containerStyle}
+            numColumns={numColumns}
+            horizontal={isHorizontal}
+        />
     )
 };
 
-const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
+const renderEntity = ({item}: { item: IEntity }): React.ReactElement => {
     const {title, requestedAmount, availedAmount, status} = item;
     const progress = availedAmount / requestedAmount;
     return (

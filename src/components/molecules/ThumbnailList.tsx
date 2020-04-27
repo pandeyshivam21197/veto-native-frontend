@@ -15,18 +15,20 @@ export const thumbnailType = {
 interface IThumbnailList {
     containerStyle?: StyleProp<ViewStyle>;
     data: IThumbnail[];
+    numColumns?: number;
+    isHorizontal?: boolean;
 }
 
 const ThumbnailList = (props: IThumbnailList): React.ReactElement => {
-    const {data, containerStyle = {}} = props;
+    const {data, containerStyle = {}, numColumns = 2, isHorizontal = true} = props;
 
     return (
         <FlatList
             data={data}
             renderItem={renderThumbnail}
             contentContainerStyle={containerStyle}
-            horizontal={true}
-            numColumns={2}
+            horizontal={isHorizontal}
+            numColumns={numColumns}
         />
     );
 };

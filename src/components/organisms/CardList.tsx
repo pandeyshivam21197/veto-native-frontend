@@ -5,12 +5,13 @@ import {FlatList, StyleProp, ViewStyle} from 'react-native';
 interface ICardList {
     data: ICard[];
     containerStyle?: StyleProp<ViewStyle>;
+    isHorizontal?: boolean;
 }
 
 const CardList = (props: ICardList): React.ReactNode => {
-    const {containerStyle = {}, data} = props;
+    const {containerStyle = {}, data, isHorizontal= true} = props;
     return (
-        <FlatList data={data} renderItem={renderCard} contentContainerStyle={containerStyle}/>
+        <FlatList data={data} renderItem={renderCard} contentContainerStyle={containerStyle} horizontal={isHorizontal}/>
     )
 };
 
