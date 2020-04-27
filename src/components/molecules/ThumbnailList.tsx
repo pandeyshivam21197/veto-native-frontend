@@ -38,7 +38,7 @@ const onBuffer = (data: OnBufferData): React.ReactNode => {
     if (!data.isBuffering) {
         return null;
     }
-    return <ProgressBar type={'circle'} barProps={{indeterminate: true}}/>
+    return <ProgressBar type={'circleSnail'} barProps={{indeterminate: true}}/>
 }
 
 const onVideoError = () => {
