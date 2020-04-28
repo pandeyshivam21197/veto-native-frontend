@@ -4,4 +4,5 @@ export const colors = {
   grey: '#cccccc',
   green: 'green',
   orange: 'orange',
+  tomato: '#F25139',
 };

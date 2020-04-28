@@ -8,7 +8,7 @@ import React from 'react';
 const Stack = createStackNavigator();
 
 const AppNavigation = () => {
-    const isAuth = true;
+    const isAuth = false;
     return (
         <NavigationContainer>
             <Stack.Navigator>
