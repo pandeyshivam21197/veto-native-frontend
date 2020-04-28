@@ -1,6 +1,6 @@
-import {Button} from "@components/atoms/Button";
-import React from "react";
-import {FormikProps, FormikValues} from "formik";
+import {Button} from '@components/atoms/Button';
+import {FormikProps, FormikValues} from 'formik';
+import React from 'react';
 
 interface IFormButton {
     formProps: FormikProps<FormikValues>;

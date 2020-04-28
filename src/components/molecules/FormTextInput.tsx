@@ -1,8 +1,8 @@
-import {WithFieldError} from "@components/molecules/WithFieldError";
-import {TextInput, TextInputProps} from "react-native";
-import React from "react";
-import {FormikErrors, FormikProps, FormikValues} from "formik";
-import {Label} from "@components/atoms/Text";
+import {Label} from '@components/atoms/Text';
+import {WithFieldError} from '@components/molecules/WithFieldError';
+import {FormikErrors, FormikProps, FormikValues} from 'formik';
+import React from 'react';
+import {TextInput, TextInputProps} from 'react-native';
 
 type SupportedInputType = 'email' | 'password' | 'number' | 'phone' | 'grouped-number' | 'default';
 
@@ -14,11 +14,11 @@ interface IFromTextProps extends TextInputProps {
 }
 
 const FormTextInput = (props: IFromTextProps) => {
-    const {label, formProps} = props;
+    const {label} = props;
 
     const inputProps = getInputProps(props);
 
-    let error: string | FormikErrors<any> | string[] | FormikErrors<any>[] | undefined = getError(props);
+    const error: string | FormikErrors<any> | string[] | FormikErrors<any>[] | undefined = getError(props);
 
     if (error) {
         // TODO: change textInput border
@@ -40,7 +40,7 @@ const getInputProps = (props: IFromTextProps): FormikValues => {
 
     let inputProps: TextInputProps = {
         value: values[inputName],
-        placeholder: placeholder,
+        placeholder,
         onChangeText: handleChange(inputName),
     };
 

@@ -1,7 +1,7 @@
+import ProgressBar from '@components/atoms/ProgressBar';
 import React from 'react';
 import {FlatList, Image, StyleProp, ViewStyle} from 'react-native';
 import Video, {OnBufferData} from 'react-native-video';
-import ProgressBar from "@components/atoms/ProgressBar";
 
 export interface IThumbnail {
     url: string;

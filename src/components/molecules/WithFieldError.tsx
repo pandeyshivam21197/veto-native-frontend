@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
-import {StyleProp, StyleSheet, TextStyle} from 'react-native';
-import { FormikErrors } from 'formik';
 import { Label } from '@components/atoms/Text';
 import { theme } from '@styles/theme';
+import { FormikErrors } from 'formik';
+import React, { Fragment } from 'react';
+import {StyleProp, StyleSheet, TextStyle} from 'react-native';
 
 interface IProps {
   children: string | React.ReactNode | null;
@@ -36,5 +36,5 @@ const styles = StyleSheet.create({
   },
   label: {
     marginTop: 3,
-  }
+  },
 });
