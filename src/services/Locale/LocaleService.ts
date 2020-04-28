@@ -4,7 +4,7 @@ import * as RNLocalize from "react-native-localize";
 import * as english from '@assets/lang/english.json';
 import * as hindi from '@assets/lang/hindi.json';
 
-class LocaleService {
+export default class LocaleService {
     private translationGetters = {
         english: () => english,
         hindi: () => hindi,
@@ -34,7 +34,7 @@ class LocaleService {
         i18n.locale = language;
     }
 
-    public translate: any = t;
+    public static t: any = t;
 }
 
 const localeService = new LocaleService();

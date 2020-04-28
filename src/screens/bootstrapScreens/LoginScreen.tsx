@@ -3,7 +3,7 @@ import FormTextInput from '@components/molecules/FormTextInput';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {TextInput, View} from 'react-native';
-import {LocalService} from "@services/Locale/LocaleService";
+import LocalService from "@services/Locale/LocaleService";
 
 interface ILoginState {
     login: {
@@ -25,8 +25,6 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
     }
 
     render() {
-        const {translate} = LocalService;
-        console.log(translate('Currency'), 'currency');
         return (
             <View>
                 <TextInput/>
@@ -45,15 +43,23 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
     }
 
     public renderLoginForm = (formProps: FormikProps<FormikValues>) => {
+        const {t} = LocalService;
+
         return (
             <React.Fragment>
                 <FormTextInput
                     formProps={formProps}
                     inputName={'email'}
-                    placeholder={'enter you email'}
-                    label={'Enter your email'}
+                    placeholder={t('Login.emailPlaceHolder')}
+                    label={t('Login.emailLabel')}
                 />
-                <FormSubmitButton formProps={formProps} buttonTitle={'Login'}/>
+                <FormTextInput
+                    formProps={formProps}
+                    inputName={'password'}
+                    placeholder={t('Login.passwordPlaceHolder')}
+                    label={t('Login.passwordLabel')}
+                />
+                <FormSubmitButton formProps={formProps} buttonTitle={t('Login.login')}/>
             </React.Fragment>
         )
     }

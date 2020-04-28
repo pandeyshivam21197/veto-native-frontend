@@ -1,9 +1,4 @@
 {
-  "hello": "namaste!",
-  "Good morning": "suprabhat",
-  "Currency": {
-    "name": "IND rupeeeee"
-  },
   "Home": {
   },
   "Donate": {
@@ -11,5 +6,12 @@
   "Distribute": {
   },
   "Account": {
+  },
+  "Login": {
+    "login": "लॉग इन",
+    "emailPlaceHolder": "आप ईमेल दर्ज करें",
+    "passwordPlaceHolder": "आप पासवर्ड दर्ज करें",
+    "emailLabel": "ईमेल / उपयोगकर्ता नाम: ",
+    "passwordLabel": "पासवर्ड: "
   }
 }
