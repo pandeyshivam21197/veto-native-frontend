@@ -23,7 +23,7 @@ import {
 export type ButtonType = 'filled' | 'ghost' | 'rounded' | 'link';
 
 export interface IButtonProps {
-    title?: any;
+    title?: string | React.ReactNode;
     onPress?: (event?: GestureResponderEvent) => void;
     containerStyle?: StyleProp<ViewStyle>;
     iconStyle?: StyleProp<ViewStyle>;
@@ -70,11 +70,11 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
         } = this.props;
 
         const Touchable = PlatformUtils.isAndroid() ? TouchableNativeFeedback : TouchableOpacity;
-        let TextField = null;
+        let TextTag;
         if (textTagType === 'label') {
-            TextField = Label;
+            TextTag = Label;
         } else {
-            TextField = Text;
+            TextTag = Text;
         }
 
         const debouncePress = () => {
@@ -115,14 +115,14 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
                     <Image resizeMode={'cover'} source={image} style={imageStyle}/>
                     }
                     {title &&
-                    <TextField
+                    <TextTag
                         fontWeight={textFontWeight}
                         fontSize={textFontSize}
                         numberOfLines={numberOfLines}
                         style={[styles.title(buttonType), titleStyle, styles.disabledTitle(disabled)]}
                     >
                         {title}
-                    </TextField>
+                    </TextTag>
                     }
                 </View>
             </Touchable>
