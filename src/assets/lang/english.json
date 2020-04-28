@@ -1,0 +1,15 @@
+{
+  "hello": "Hello!",
+  "Good morning": "Good morning",
+  "Currency": {
+    "name": "USD"
+  },
+  "Home": {
+  },
+  "Donate": {
+  },
+  "Distribute": {
+  },
+  "Account": {
+  }
+}
