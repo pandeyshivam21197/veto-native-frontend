@@ -1,18 +1,29 @@
 import {Button} from '@components/atoms/Button';
 import {FormikProps, FormikValues} from 'formik';
 import React from 'react';
+import {StyleSheet} from "react-native";
 
 interface IFormButton {
     formProps: FormikProps<FormikValues>;
     buttonTitle: string;
 }
+
 const FormSubmitButton = (props: IFormButton) => {
     const {buttonTitle, formProps} = props;
     const {handleSubmit} = formProps;
 
-    return(
-        <Button onPress={handleSubmit} title={buttonTitle} buttonType={'ghost'}/>
+    return (
+        <Button onPress={handleSubmit} title={buttonTitle} buttonType={'ghost'} containerStyle={styles.container}/>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 60,
+        paddingHorizontal: 30,
+        paddingVertical: 10,
+        alignSelf: 'center',
+    }
+});
 
 export default FormSubmitButton;

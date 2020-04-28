@@ -1,9 +1,9 @@
 import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
+import LocalService from '@services/Locale/LocaleService';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
-import {TextInput, View} from 'react-native';
-import LocalService from "@services/Locale/LocaleService";
+import {ScrollView, StyleSheet, TextInput, View} from 'react-native';
 
 interface ILoginState {
     login: {
@@ -26,8 +26,7 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
 
     render() {
         return (
-            <View>
-                <TextInput/>
+            <View style={[styles.flexOne, styles.container]}>
                 <Formik
                     initialValues={this.state.login}
                     onSubmit={this.onSubmitHandler}
@@ -46,7 +45,11 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
         const {t} = LocalService;
 
         return (
-            <React.Fragment>
+            <ScrollView
+                contentContainerStyle={[styles.flexOne, styles.loginForm]}
+                keyboardShouldPersistTaps='handled'
+                showsHorizontalScrollIndicator={false}
+            >
                 <FormTextInput
                     formProps={formProps}
                     inputName={'email'}
@@ -60,9 +63,23 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
                     label={t('Login.passwordLabel')}
                 />
                 <FormSubmitButton formProps={formProps} buttonTitle={t('Login.login')}/>
-            </React.Fragment>
+            </ScrollView>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    flexOne: {
+        flex: 1,
+    },
+    container: {
+        flex: 1,
+    },
+    loginForm: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center'
+    }
+});
 
 export default LoginScreen;

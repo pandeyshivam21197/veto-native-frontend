@@ -1,8 +1,9 @@
-import {Label} from '@components/atoms/Text';
+import {Text} from '@components/atoms/Text';
 import {WithFieldError} from '@components/molecules/WithFieldError';
 import {FormikErrors, FormikProps, FormikValues} from 'formik';
 import React from 'react';
-import {TextInput, TextInputProps} from 'react-native';
+import {StyleSheet, TextInput, TextInputProps, View} from 'react-native';
+import {theme} from "@styles/theme";
 
 type SupportedInputType = 'email' | 'password' | 'number' | 'phone' | 'grouped-number' | 'default';
 
@@ -26,7 +27,7 @@ const FormTextInput = (props: IFromTextProps) => {
 
     return (
         <React.Fragment>
-            {label && <Label>{label}</Label>}
+            {label && <Text containerStyle={styles.label}>{label}</Text>}
             <WithFieldError errors={error}>
                 <TextInput {...inputProps}/>
             </WithFieldError>
@@ -42,6 +43,7 @@ const getInputProps = (props: IFromTextProps): FormikValues => {
         value: values[inputName],
         placeholder,
         onChangeText: handleChange(inputName),
+        style: styles.textInput,
     };
 
     switch (inputType) {
@@ -68,5 +70,19 @@ const getError =
 
         return touched[inputName] && errors[inputName] ? errors[inputName] : undefined;
     };
+
+const styles = StyleSheet.create({
+    textInput: {
+        fontSize: 16,
+        height: 40,
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: theme.colors.skyBlue,
+        borderRadius: 2,
+        marginBottom: 8,
+    },
+    label: {
+        marginBottom: 8,
+    }
+})
 
 export default FormTextInput;

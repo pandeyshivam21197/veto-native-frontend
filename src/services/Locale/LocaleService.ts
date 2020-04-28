@@ -1,13 +1,15 @@
-import memoize from "lodash.memoize";
-import i18n, {t} from "i18n-js";
-import * as RNLocalize from "react-native-localize";
 import * as english from '@assets/lang/english.json';
 import * as hindi from '@assets/lang/hindi.json';
+import * as kannada from '@assets/lang/kannada.json';
+import i18n, {t} from 'i18n-js';
+import memoize from 'lodash.memoize';
+import * as RNLocalize from 'react-native-localize';
 
 export default class LocaleService {
     private translationGetters = {
         english: () => english,
         hindi: () => hindi,
+        kannada: () => kannada,
     }
 
     private mapTranslation = memoize(
