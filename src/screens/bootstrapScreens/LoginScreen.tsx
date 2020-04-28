@@ -23,7 +23,7 @@ class LoginScreen extends React.PureComponent<any, any> {
                                     placeholder={'enter you email'}
                                     label={'Enter your email'}
                                 />
-                                <FormSubmitButton onPress={formProps.handleSubmit} buttonTitle={'Login'}/>
+                                <FormSubmitButton formProps={formProps} buttonTitle={'Login'}/>
                             </React.Fragment>
                         )
                     }

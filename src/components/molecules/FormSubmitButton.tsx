@@ -1,15 +1,17 @@
 import {Button} from "@components/atoms/Button";
 import React from "react";
+import {FormikProps, FormikValues} from "formik";
 
 interface IFormButton {
-    onPress: () => void;
+    formProps: FormikProps<FormikValues>;
     buttonTitle: string;
 }
 const FormSubmitButton = (props: IFormButton) => {
-    const {onPress, buttonTitle} = props;
+    const {buttonTitle, formProps} = props;
+    const {handleSubmit} = formProps;
 
     return(
-        <Button onPress={onPress} title={buttonTitle} buttonType={'ghost'}/>
+        <Button onPress={handleSubmit} title={buttonTitle} buttonType={'ghost'}/>
     )
 }
 
