@@ -2,9 +2,9 @@ import memoize from "lodash.memoize";
 import i18n, {t} from "i18n-js";
 import * as RNLocalize from "react-native-localize";
 import * as english from '@assets/lang/english.json';
-import * as hindi from '@assets/lang/english.json';
+import * as hindi from '@assets/lang/hindi.json';
 
-export default class LocaleService {
+class LocaleService {
     private translationGetters = {
         english: () => english,
         hindi: () => hindi,
@@ -34,7 +34,7 @@ export default class LocaleService {
         i18n.locale = language;
     }
 
-    public static translate: any = t;
+    public translate: any = t;
 }
 
 const localeService = new LocaleService();

@@ -3,8 +3,7 @@ import FormTextInput from '@components/molecules/FormTextInput';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {TextInput, View} from 'react-native';
-import * as RNLocalize from 'react-native-localize'
-import LocalService from "@services/Locale/LocaleService";
+import {LocalService} from "@services/Locale/LocaleService";
 
 interface ILoginState {
     login: {
@@ -22,13 +21,12 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
                 email: '',
                 password: '',
             },
-
         };
     }
 
     render() {
         const {translate} = LocalService;
-        console.log(translate('Currency'), RNLocalize.getLocales());
+        console.log(translate('Currency'), 'currency');
         return (
             <View>
                 <TextInput/>
