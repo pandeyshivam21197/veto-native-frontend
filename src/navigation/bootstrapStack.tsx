@@ -1,9 +1,9 @@
+import {commonScreenOption, defaultScreenStyle} from '@navigation/constant';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '@screens/appScreens/HomeScreen';
 import LoginScreen from '@screens/bootstrapScreens/LoginScreen';
+import LocaleService from '@services/Locale/LocaleService';
 import React from 'react';
-import {commonScreenOption, defaultScreenStyle} from "@navigation/constant";
-import LocaleService from "@services/Locale/LocaleService";
 
 const Stack = createStackNavigator();
 

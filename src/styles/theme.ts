@@ -3,5 +3,5 @@ import layout from "@styles/layout";
 
 export const theme = {
   colors,
-  layout
+  layout,
 };

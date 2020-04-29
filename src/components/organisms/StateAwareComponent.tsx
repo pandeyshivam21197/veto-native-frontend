@@ -1,7 +1,7 @@
-import React, {PureComponent} from 'react';
 import LoadingSpinner from '@components/atoms/LoadingSpinner';
-import ErrorComponent from "@components/molecules/ErrorComponent";
-import EmptyComponent from "@components/molecules/EmptyComponent";
+import EmptyComponent from '@components/molecules/EmptyComponent';
+import ErrorComponent from '@components/molecules/ErrorComponent';
+import React, {PureComponent} from 'react';
 
 export interface IStateAwareComponentProps {
     loading: boolean;

@@ -1,12 +1,12 @@
 import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
 import LocalService from '@services/Locale/LocaleService';
-import {Formik, FormikProps, FormikValues, ErrorMessage} from 'formik';
+import'@styles/theme'@styles/theme";
+import {ErrorMessage, Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {theme} from "@styles/theme";
-import * as yup from 'yup';
 import {Text} from "@components/atoms/Text";
+import * as yup from 'yup';
 
 interface ILoginState {
     login: {
@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
     loginForm: {
         flex: 1,
         justifyContent: 'center',
-        alignContent: 'center'
-    }
+        alignContent: 'center',
+    },
 });
 
 export default LoginScreen;

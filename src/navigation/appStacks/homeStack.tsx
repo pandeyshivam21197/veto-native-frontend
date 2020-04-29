@@ -1,7 +1,7 @@
+import {defaultScreenStyle} from '@navigation/constant';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '@screens/appScreens/HomeScreen';
 import React from 'react';
-import {defaultScreenStyle} from "@navigation/constant";
 
 const Stack = createStackNavigator();
 

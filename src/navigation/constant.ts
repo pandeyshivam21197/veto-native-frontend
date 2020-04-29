@@ -6,11 +6,11 @@ export const defaultScreenStyle = {
 
 export const commonScreenOption = {
     headerStyle: {
-        backgroundColor: theme.colors.lightBlue
+        backgroundColor: theme.colors.lightBlue,
     },
     headerTitleStyle: {
         fontWeight: '400',
         fontSize: 20,
     },
-    headerTitleAlign: 'center'
+    headerTitleAlign: 'center',
 };

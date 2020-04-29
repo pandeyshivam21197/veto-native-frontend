@@ -1,6 +1,5 @@
 import {Label} from '@components/atoms/Text';
 import {theme} from '@styles/theme';
-import {FormikErrors} from 'formik';
 import React, {Fragment} from 'react';
 import {StyleProp, StyleSheet, TextStyle} from 'react-native';
 
@@ -13,7 +12,6 @@ interface IProps {
 
 export const WithFieldError = (props: IProps) => {
     const {children, error, hideError = false, labelStyle = {}} = props;
-    console.log(error, 'error!!');
     const hasError = !!error;
     // @ts-ignore
     return (

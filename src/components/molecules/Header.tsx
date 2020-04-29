@@ -1,7 +1,7 @@
-import {StyleSheet, View} from "react-native";
-import React from "react";
 import {Text} from '@components/atoms/Text';
 import {theme} from "@styles/theme";
+import React from "react";
+import {StyleSheet, View} from "react-native";
 
 interface IHeader {
    title: string;
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: theme.layout.headerHeight,
-        backgroundColor: 'red'
-    }
+        backgroundColor: 'red',
+    },
 })
 
 export default Header;

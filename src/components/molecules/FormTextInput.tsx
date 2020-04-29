@@ -1,9 +1,9 @@
 import {Text} from '@components/atoms/Text';
 import {WithFieldError} from '@components/molecules/WithFieldError';
+import {theme}'@styles/theme'theme";
 import {FormikErrors, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {StyleSheet, TextInput, TextInputProps, View} from 'react-native';
-import {theme} from "@styles/theme";
 
 type SupportedInputType = 'email' | 'password' | 'number' | 'phone' | 'grouped-number' | 'default';
 
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     error: {
         borderColor: theme.colors.tomato,
-    }
+    },
 })
 
 export default FormTextInput;

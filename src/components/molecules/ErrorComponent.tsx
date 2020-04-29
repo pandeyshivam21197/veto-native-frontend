@@ -1,8 +1,8 @@
-import React from "react";
-import {StyleSheet, View} from "react-native";
-import {Text} from "@components/atoms/Text";
-import Icon from "@components/atoms/Icon";
-import {Button} from "@components/atoms/Button";
+import {Button} from '@components/atoms/Button';
+import Icon from '@components/atoms/Icon';
+import {Text} from '@components/atoms/Text';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 
 interface IErrorComponentProps {
     text: string;

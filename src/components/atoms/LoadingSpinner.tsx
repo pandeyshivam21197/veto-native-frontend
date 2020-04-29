@@ -1,6 +1,6 @@
-import React from "react";
-import {ActivityIndicator, StyleProp, StyleSheet, View, ViewStyle} from "react-native";
-import {theme} from "@styles/theme";
+import {theme} from '@styles/theme';
+import React from 'react';
+import {ActivityIndicator, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 
 interface ILoadingSpinner {
     size?: number | 'small' | 'large';

@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 60,
         width: 150,
-        alignSelf: 'center'
-    }
+        alignSelf: 'center',
+    },
 });
 
 export default FormSubmitButton;
