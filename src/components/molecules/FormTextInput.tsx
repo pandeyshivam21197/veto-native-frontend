@@ -1,6 +1,6 @@
 import {Text} from '@components/atoms/Text';
 import {WithFieldError} from '@components/molecules/WithFieldError';
-import {theme}'@styles/theme'theme";
+import {theme} from '@styles/theme';
 import {FormikErrors, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {StyleSheet, TextInput, TextInputProps} from 'react-native';
