@@ -1,10 +1,12 @@
 import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
 import LocalService from '@services/Locale/LocaleService';
-import {Formik, FormikProps, FormikValues} from 'formik';
+import {Formik, FormikProps, FormikValues, ErrorMessage} from 'formik';
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {theme} from "@styles/theme";
+import * as yup from 'yup';
+import {Text} from "@components/atoms/Text";
 
 interface ILoginState {
     login: {
@@ -31,6 +33,7 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
                 <Formik
                     initialValues={this.state.login}
                     onSubmit={this.onSubmitHandler}
+                    validationSchema={formSchema()}
                 >
                     {this.renderLoginForm}
                 </Formik>
@@ -44,7 +47,6 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
 
     public renderLoginForm = (formProps: FormikProps<FormikValues>) => {
         const {t} = LocalService;
-
         return (
             <ScrollView
                 contentContainerStyle={[styles.flexOne, styles.loginForm]}
@@ -69,6 +71,19 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
         )
     }
 }
+
+const formSchema = () => {
+    const {t} = LocalService;
+    return yup.object().shape({
+        email: yup.string()
+            .trim()
+            .email(t('Login.invalidEmail'))
+            .required(t('Login.requiredEmail')),
+        password: yup.string()
+            .trim()
+            .required(t('Login.requiredPassword')),
+    });
+};
 
 const styles = StyleSheet.create({
     flexOne: {

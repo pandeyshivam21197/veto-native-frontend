@@ -12,7 +12,10 @@
     "emailPlaceHolder": "Enter you email",
     "passwordPlaceHolder": "Enter you password",
     "emailLabel": "Email/Username: ",
-    "passwordLabel": "Password: "
+    "passwordLabel": "Password: ",
+    "invalidEmail": "Please enter valid email.",
+    "requiredEmail": "Please enter email.",
+    "requiredPassword": "Please enter password."
   },
   "Common": {
   },

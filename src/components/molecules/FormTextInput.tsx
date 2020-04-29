@@ -23,12 +23,13 @@ const FormTextInput = (props: IFromTextProps) => {
 
     if (error) {
         // TODO: change textInput border
+        inputProps.style = {...inputProps.style, ...styles.error};
     }
 
     return (
         <React.Fragment>
             {label && <Text containerStyle={styles.label}>{label}</Text>}
-            <WithFieldError errors={error}>
+            <WithFieldError error={error as string}>
                 <TextInput {...inputProps}/>
             </WithFieldError>
         </React.Fragment>
@@ -67,7 +68,6 @@ const getError =
     (props: IFromTextProps): string | string[] | FormikErrors<any> | FormikErrors<any>[] | undefined => {
         const {formProps, inputName} = props;
         const {errors, touched} = formProps;
-
         return touched[inputName] && errors[inputName] ? errors[inputName] : undefined;
     };
 
@@ -82,7 +82,11 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     label: {
+        marginTop: 8,
         marginBottom: 8,
+    },
+    error: {
+        borderColor: theme.colors.tomato,
     }
 })
 
