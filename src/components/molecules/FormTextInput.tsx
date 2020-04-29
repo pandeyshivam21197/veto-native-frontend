@@ -3,7 +3,7 @@ import {WithFieldError} from '@components/molecules/WithFieldError';
 import {theme}'@styles/theme'theme";
 import {FormikErrors, FormikProps, FormikValues} from 'formik';
 import React from 'react';
-import {StyleSheet, TextInput, TextInputProps, View} from 'react-native';
+import {StyleSheet, TextInput, TextInputProps} from 'react-native';
 
 type SupportedInputType = 'email' | 'password' | 'number' | 'phone' | 'grouped-number' | 'default';
 

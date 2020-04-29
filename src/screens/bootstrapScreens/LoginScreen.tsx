@@ -2,10 +2,10 @@ import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
 import LocalService from '@services/Locale/LocaleService';
 import'@styles/theme'@styles/theme";
+import {Text} from "@components/atoms/Text";
 import {ErrorMessage, Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {Text} from "@components/atoms/Text";
 import * as yup from 'yup';
 
 interface ILoginState {
