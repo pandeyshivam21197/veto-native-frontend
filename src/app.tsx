@@ -3,7 +3,7 @@ import AppNavigation from '@navigation/index';
 import {LocalService} from '@services/Locale/LocaleService';
 import {StoreProviderService} from '@services/StoreProviderService';
 import React from 'react'
-import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import 'react-native-gesture-handler';
 import * as RNLocalize from 'react-native-localize'
 import {Provider} from 'react-redux';
@@ -51,7 +51,5 @@ export class App extends React.PureComponent {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 20,
-        marginVertical: 20,
     },
 });

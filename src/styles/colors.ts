@@ -5,5 +5,6 @@ export const colors = {
   green: 'green',
   orange: 'orange',
   tomato: '#F25139',
-  skyBlue: '#75baff'
+  skyBlue: '#75baff',
+  darkBlue: '#0000ff',
 };

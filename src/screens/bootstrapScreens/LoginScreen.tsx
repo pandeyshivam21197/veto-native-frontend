@@ -3,7 +3,8 @@ import FormTextInput from '@components/molecules/FormTextInput';
 import LocalService from '@services/Locale/LocaleService';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
-import {ScrollView, StyleSheet, TextInput, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {theme} from "@styles/theme";
 
 interface ILoginState {
     login: {
@@ -74,6 +75,8 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        marginHorizontal: theme.layout.screenHorizontalMargin,
+        marginVertical: theme.layout.screenVerticalMargin,
     },
     loginForm: {
         flex: 1,

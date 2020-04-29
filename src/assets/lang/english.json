@@ -13,5 +13,8 @@
     "passwordPlaceHolder": "Enter you password",
     "emailLabel": "Email/Username: ",
     "passwordLabel": "Password: "
+  },
+  "Common": {
+    "loading": "Loading"
   }
 }

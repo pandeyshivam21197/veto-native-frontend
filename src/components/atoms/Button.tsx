@@ -6,6 +6,7 @@ import {StyleUtils} from '@utils/StyleUtils';
 import {debounce} from 'lodash';
 import React, {ReactElement} from 'react';
 import {
+    ActivityIndicator,
     GestureResponderEvent,
     Image,
     ImageSourcePropType,
@@ -23,6 +24,7 @@ import {
 export type ButtonType = 'filled' | 'ghost' | 'rounded' | 'link';
 
 export interface IButtonProps {
+    isLoading?: boolean;
     title?: string | React.ReactNode;
     onPress?: (event?: GestureResponderEvent) => void;
     containerStyle?: StyleProp<ViewStyle>;
@@ -48,6 +50,7 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
 
     public render(): ReactElement<View> {
         const {
+            isLoading = false,
             title,
             icon,
             onPress,
@@ -103,26 +106,32 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
                         StyleUtils.conditionalStyle(disabled, containerDisabledStyle),
                     ]}
                 >
-                    {icon &&
-                    <Icon
-                        name={icon}
-                        size={iconSize}
-                        color={disabled ? theme.colors.grey : iconColor}
-                        style={[styles.iconStyle, iconStyle]}
-                    />
-                    }
-                    {image &&
-                    <Image resizeMode={'cover'} source={image} style={imageStyle}/>
-                    }
-                    {title &&
-                    <TextTag
-                        fontWeight={textFontWeight}
-                        fontSize={textFontSize}
-                        numberOfLines={numberOfLines}
-                        style={[styles.title(buttonType), titleStyle, styles.disabledTitle(disabled)]}
-                    >
-                        {title}
-                    </TextTag>
+                    {isLoading ?
+                        <ActivityIndicator size={'small'} color={theme.colors.darkBlue}/>
+                        :
+                        <React.Fragment>
+                            {icon &&
+                            <Icon
+                                name={icon}
+                                size={iconSize}
+                                color={disabled ? theme.colors.grey : iconColor}
+                                style={[styles.iconStyle, iconStyle]}
+                            />
+                            }
+                            {image &&
+                            <Image resizeMode={'cover'} source={image} style={imageStyle}/>
+                            }
+                            {title &&
+                            <TextTag
+                                fontWeight={textFontWeight}
+                                fontSize={textFontSize}
+                                numberOfLines={numberOfLines}
+                                style={[styles.title(buttonType), titleStyle, styles.disabledTitle(disabled)]}
+                            >
+                                {title}
+                            </TextTag>
+                            }
+                        </React.Fragment>
                     }
                 </View>
             </Touchable>

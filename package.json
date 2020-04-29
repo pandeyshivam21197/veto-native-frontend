@@ -69,5 +69,10 @@
     "tslint-react-recommended": "^1.0.15",
     "tslint-sonarts": "^1.9.0",
     "typescript": "^3.8.3"
+  },
+  "rnpm": {
+    "assets": [
+      "src/assets/fonts"
+    ]
   }
 }

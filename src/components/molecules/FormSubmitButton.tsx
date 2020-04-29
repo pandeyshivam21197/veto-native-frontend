@@ -13,16 +13,15 @@ const FormSubmitButton = (props: IFormButton) => {
     const {handleSubmit} = formProps;
 
     return (
-        <Button onPress={handleSubmit} title={buttonTitle} buttonType={'ghost'} containerStyle={styles.container}/>
+        <Button onPress={handleSubmit} title={buttonTitle} buttonType={'ghost'} containerStyle={styles.container} isLoading={false}/>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         marginTop: 60,
-        paddingHorizontal: 30,
-        paddingVertical: 10,
-        alignSelf: 'center',
+        width: 150,
+        alignSelf: 'center'
     }
 });
 
