@@ -13,5 +13,10 @@
     "passwordPlaceHolder": "ನಿಮಗೆ ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ",
     "emailLabel": "ಇಮೇಲ್ / ಬಳಕೆದಾರಹೆಸರು: ",
     "passwordLabel": "ಪಾಸ್ವರ್ಡ್: "
+  },
+  "Common": {
+  },
+  "ScreenTitle": {
+    "login": "ಲಾಗಿನ್"
   }
 }

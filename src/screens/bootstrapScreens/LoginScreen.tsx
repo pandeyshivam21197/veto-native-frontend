@@ -59,6 +59,7 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
                 />
                 <FormTextInput
                     formProps={formProps}
+                    inputType={'password'}
                     inputName={'password'}
                     placeholder={t('Login.passwordPlaceHolder')}
                     label={t('Login.passwordLabel')}

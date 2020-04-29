@@ -73,6 +73,7 @@ const getError =
 
 const styles = StyleSheet.create({
     textInput: {
+        paddingHorizontal: 8,
         fontSize: 16,
         height: 40,
         borderWidth: StyleSheet.hairlineWidth,
