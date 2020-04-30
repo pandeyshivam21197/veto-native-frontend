@@ -38,7 +38,7 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
           {this.renderLoginForm}
         </Formik>
       </View>
-    );;
+    );
   }
 
   public renderLoginForm = (formProps: FormikProps<FormikValues>) => {
@@ -69,7 +69,7 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
           />
         </ScrollView>
       </KeyboardAvoidingView>
-    );;
+    );
   };
 
   public onSubmitHandler = async (values: FormikValues) => {
@@ -88,7 +88,7 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
         baseURL: baseUrl,
         timeout: DEFAULT_API_TIMEOUT,
         headers: {'Content-type': 'application/json'},
-        data: JSON.stringify(payload),,
+        data: JSON.stringify(payload),
       });
       const {
         data: {
@@ -98,7 +98,7 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
         },
       } = res;
       console.log(token, 'token!!!');
-      await LocalStorage.set(LocalStorageKeys.TOKEN, token);;
+      await LocalStorage.set(LocalStorageKeys.TOKEN, token);
     } catch (e) {
       console.log(e, 'error!!');
     }
