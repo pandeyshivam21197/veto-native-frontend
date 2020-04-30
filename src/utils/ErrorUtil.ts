@@ -1,4 +1,4 @@
-import {showMessage, MessageType} from 'react-native-flash-message';
+import {MessageType, showMessage} from 'react-native-flash-message';
 
 interface IMessage {
   message: string;

@@ -1,19 +1,19 @@
 import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
+import {postLogin} from '@domain/graphQueries';
+import UserActions from '@modules/user/actions';
 import {baseUrl, DEFAULT_API_TIMEOUT} from '@network/Constants';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
+import {flashMessage} from '@utils/ErrorUtil';
 import {LocalStorage, LocalStorageKeys} from '@utils/LoacalStorage';
 import axios from 'axios';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {KeyboardAvoidingView, ScrollView, StyleSheet, View} from 'react-native';
-import * as yup from 'yup';
-import {postLogin} from '@domain/graphQueries';
-import {flashMessage} from '@utils/ErrorUtil';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import UserActions from '@modules/user/actions';
+import * as yup from 'yup';
 
 interface ILoginState {
   login: {

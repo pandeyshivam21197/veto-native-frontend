@@ -4,11 +4,11 @@ import {LocalService} from '@services/Locale/LocaleService';
 import {StoreProviderService} from '@services/StoreProviderService';
 import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import FlashMessage from 'react-native-flash-message';
 import 'react-native-gesture-handler';
 import * as RNLocalize from 'react-native-localize';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import FlashMessage from 'react-native-flash-message';
 
 export class App extends React.PureComponent {
   constructor(props: any) {
@@ -40,7 +40,7 @@ export class App extends React.PureComponent {
       <Provider store={StoreProviderService.getStore()}>
         <StatusBar />
         <SafeAreaView style={styles.container}>
-          <AppNavigation issAuth={false} />
+          <AppNavigation />
           <FlashMessage />
         </SafeAreaView>
       </Provider>
