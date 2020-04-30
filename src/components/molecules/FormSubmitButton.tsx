@@ -11,16 +11,16 @@ interface IFormButton {
 
 const FormSubmitButton = (props: IFormButton) => {
   const {buttonTitle, formProps, isLoading = false} = props;
-  const {handleSubmit} = formProps;
+  const {handleSubmit, isSubmitting} = formProps;
 
   return (
     <Button
-      disabled={isLoading}
+      disabled={isLoading || isSubmitting}
       onPress={handleSubmit}
       title={buttonTitle}
       buttonType={'ghost'}
       containerStyle={styles.container}
-      isLoading={isLoading}
+      isLoading={isLoading || isSubmitting}
     />
   );
 };

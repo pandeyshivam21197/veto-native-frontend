@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {connect} from 'react-redux';
 import RoutesNames from './routes';
-import HomeScreen from '@screens/appScreens/HomeScreen';
+import SplashScreen from '@screens/bootstrapScreens/SplashScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,12 +23,12 @@ class AppNavigation extends React.PureComponent<INaviagtionProps, any> {
         <Stack.Navigator initialRouteName={RoutesNames.SplashScreen}>
           <Stack.Screen
             name={RoutesNames.SplashScreen}
-            component={HomeScreen}
+            component={SplashScreen}
             options={{headerShown: false}}
           />
           {isAuth ? (
             <Stack.Screen
-              name={RoutesNames.RootStack}
+              name={RoutesNames.AppRootStack}
               component={AppRootStack}
               options={{headerShown: false}}
             />

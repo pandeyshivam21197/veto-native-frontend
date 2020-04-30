@@ -1,5 +1,5 @@
 const stacks = {
-  RootStack: 'RootStack',
+  AppRootStack: 'AppRootStack',
   BootstrapStack: 'BootstrapStack',
   AppStack: 'AppStack',
   HomeStack: 'HomeStack',

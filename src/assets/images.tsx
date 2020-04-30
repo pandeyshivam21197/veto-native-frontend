@@ -1,5 +1,5 @@
 const images = {
-    backgroundImage: require('./images/backgroundImage.jpg'),
-}
+  splashBackgroundImage: require('./images/indianFlag2.jpg'),
+};
 
 export default images;

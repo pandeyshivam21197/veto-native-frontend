@@ -5,7 +5,7 @@ class LocalStorage {
     await AsyncStorage.setItem(key, value);
   };
 
-  public get = async (key: string) => {
+  public get = async (key: string): Promise<string | null> => {
     return await AsyncStorage.getItem(key);
   };
 
@@ -20,6 +20,7 @@ class LocalStorage {
 
 export const LocalStorageKeys = {
   TOKEN: '@token',
+  IS_ONBOARDED: '@isOnboarded',
 };
 
 const localStorage = new LocalStorage();

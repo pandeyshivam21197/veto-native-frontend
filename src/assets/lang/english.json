@@ -22,5 +22,8 @@
   "ScreenTitle": {
     "login": "Login",
     "singUp": "Sing Up"
+  },
+  "Error": {
+    "unauthenticatedUser": "User unauthenticated please login."
   }
 }
