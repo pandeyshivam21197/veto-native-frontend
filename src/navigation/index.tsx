@@ -3,24 +3,52 @@ import BootstrapStack from '@navigation/bootstrapStack';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-
+import {connect} from 'react-redux';
+import RoutesNames from './routes';
+import {IState} from '@modules/interfaces';
 
 const Stack = createStackNavigator();
 
-const AppNavigation = () => {
-    const isAuth = false;
-    return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                {/*<Stack.Screen name="Splash" component={HomeScreen} options={{ title: 'Splash' }}/>*/}
-                {isAuth ?
-                    <Stack.Screen name="RootStack" component={AppRootStack} options={{headerShown: false}}/>
-                    :
-                    < Stack.Screen name="Bootstrap" component={BootstrapStack} options={{headerShown: false}}/>
-                }
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+interface INaviagtionProps {
+  isAuth: boolean;
 }
 
-export default AppNavigation;
+class AppNavigation extends React.PureComponent<INaviagtionProps, any> {
+  render() {
+    const {isAuth} = this.props;
+    console.log(isAuth, 'isAuth!!!');
+
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          {/* <Stack.Screen
+            name={RoutesNames.SplashScreen}
+            component={HomeScreen}
+            options={{headerShown: false}}
+          /> */}
+          {isAuth ? (
+            <Stack.Screen
+              name={RoutesNames.RootStack}
+              component={AppRootStack}
+              options={{headerShown: false}}
+            />
+          ) : (
+            <Stack.Screen
+              name={RoutesNames.BootstrapStack}
+              component={BootstrapStack}
+              options={{headerShown: false}}
+            />
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+}
+
+const MapStateToProps = (state: IState) => {
+  return {
+    isAuth: state.user.isLoggedIn,
+  };
+};
+
+export default connect(MapStateToProps)(AppNavigation);

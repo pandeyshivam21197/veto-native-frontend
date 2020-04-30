@@ -4,15 +4,36 @@ import HomeScreen from '@screens/appScreens/HomeScreen';
 import LoginScreen from '@screens/bootstrapScreens/LoginScreen';
 import LocaleService from '@services/Locale/LocaleService';
 import React from 'react';
+import RoutesNames from './routes';
 
 const Stack = createStackNavigator();
 
 const BootstrapStack = () => (
-    <Stack.Navigator initialRouteName="Login" screenOptions={{cardStyle: defaultScreenStyle}}>
-        <Stack.Screen name="Login" component={LoginScreen} options={{ title: LocaleService.t('ScreenTitle.login'), ...commonScreenOption }}/>
-        <Stack.Screen name="OnBoarding" component={HomeScreen} options={{ title: 'OnBoarding' }}/>
-        <Stack.Screen name="SignUp" component={HomeScreen} options={{ title: 'SignUp' }}/>
-    </Stack.Navigator>
+  <Stack.Navigator
+    initialRouteName={RoutesNames.LoginScreen}
+    screenOptions={{cardStyle: defaultScreenStyle}}>
+    <Stack.Screen
+      name={RoutesNames.OnBoardingScreen}
+      component={HomeScreen}
+      options={{headerShown: false}}
+    />
+    <Stack.Screen
+      name={RoutesNames.LoginScreen}
+      component={LoginScreen}
+      options={{
+        title: LocaleService.t('ScreenTitle.login'),
+        ...commonScreenOption,
+      }}
+    />
+    <Stack.Screen
+      name={RoutesNames.SingUpScreen}
+      component={HomeScreen}
+      options={{
+        title: LocaleService.t('ScreenTitle.singUp'),
+        ...commonScreenOption,
+      }}
+    />
+  </Stack.Navigator>
 );
 
 export default BootstrapStack;

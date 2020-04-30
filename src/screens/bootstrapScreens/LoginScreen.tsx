@@ -9,6 +9,11 @@ import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {KeyboardAvoidingView, ScrollView, StyleSheet, View} from 'react-native';
 import * as yup from 'yup';
+import {postLogin} from '@domain/graphQueries';
+import {flashMessage} from '@utils/ErrorUtil';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import UserActions from '@modules/user/actions';
 
 interface ILoginState {
   login: {
@@ -17,8 +22,12 @@ interface ILoginState {
   };
 }
 
-class LoginScreen extends React.PureComponent<any, ILoginState> {
-  public constructor(props: any) {
+interface ILoginProps {
+  setUserLoggedIn: (isLoggedIn: boolean) => void;
+}
+
+class LoginScreen extends React.PureComponent<ILoginProps, ILoginState> {
+  constructor(props: any) {
     super(props);
     this.state = {
       login: {
@@ -73,22 +82,16 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
   };
 
   public onSubmitHandler = async (values: FormikValues) => {
+    const {setUserLoggedIn} = this.props;
     const {email, password} = values;
 
-    const payload = {
-      query: `mutation{
-          login(loginInput: {email: "${email}", password: "${password}"}) {
-                token
-              }
-        }`,
-    };
     try {
       const res = await axios.request({
         method: 'post',
         baseURL: baseUrl,
         timeout: DEFAULT_API_TIMEOUT,
         headers: {'Content-type': 'application/json'},
-        data: JSON.stringify(payload),
+        data: postLogin(email, password),
       });
       const {
         data: {
@@ -97,10 +100,10 @@ class LoginScreen extends React.PureComponent<any, ILoginState> {
           },
         },
       } = res;
-      console.log(token, 'token!!!');
       await LocalStorage.set(LocalStorageKeys.TOKEN, token);
+      setUserLoggedIn(!!token);
     } catch (e) {
-      console.log(e, 'error!!');
+      flashMessage({message: e.message, type: 'info'});
     }
   };
 }
@@ -112,6 +115,18 @@ const formSchema = () => {
     password: yup.string().trim().required(t('Login.requiredPassword')),
   });
 };
+
+const mapDispatchToProps = (dispatch: any) => {
+  const {setUserLoggedIn} = UserActions;
+  return bindActionCreators(
+    {
+      setUserLoggedIn,
+    },
+    dispatch,
+  );
+};
+
+export default connect(null, mapDispatchToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
   flexOne: {
@@ -128,5 +143,3 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
 });
-
-export default LoginScreen;
