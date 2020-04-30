@@ -6,19 +6,21 @@ import {StyleSheet} from 'react-native';
 interface IFormButton {
   formProps: FormikProps<FormikValues>;
   buttonTitle: string;
+  isLoading: boolean;
 }
 
 const FormSubmitButton = (props: IFormButton) => {
-  const {buttonTitle, formProps} = props;
+  const {buttonTitle, formProps, isLoading = false} = props;
   const {handleSubmit} = formProps;
 
   return (
     <Button
+      disabled={isLoading}
       onPress={handleSubmit}
       title={buttonTitle}
       buttonType={'ghost'}
       containerStyle={styles.container}
-      isLoading={false}
+      isLoading={isLoading}
     />
   );
 };

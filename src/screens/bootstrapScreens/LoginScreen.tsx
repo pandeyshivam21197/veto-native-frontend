@@ -1,14 +1,14 @@
 import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
+import {baseUrl, DEFAULT_API_TIMEOUT} from '@network/Constants';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
+import {LocalStorage, LocalStorageKeys} from '@utils/LoacalStorage';
+import axios from 'axios';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
-import {ScrollView, StyleSheet, View, KeyboardAvoidingView} from 'react-native';
+import {KeyboardAvoidingView, ScrollView, StyleSheet, View} from 'react-native';
 import * as yup from 'yup';
-import axios from 'axios';
-import {baseUrl, DEFAULT_API_TIMEOUT} from '@network/Constants';
-import {LocalStorage, LocalStorageKeys} from '@utils/LoacalStorage';
 
 interface ILoginState {
   login: {
