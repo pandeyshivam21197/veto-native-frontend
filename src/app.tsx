@@ -8,6 +8,7 @@ import 'react-native-gesture-handler';
 import * as RNLocalize from 'react-native-localize'
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+import {LocalStorage} from '@utils/LoacalStorage';
 
 
 export class App extends React.PureComponent {
