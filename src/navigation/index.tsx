@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {connect} from 'react-redux';
 import RoutesNames from './routes';
+import HomeScreen from '@screens/appScreens/HomeScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,16 +17,15 @@ interface INaviagtionProps {
 class AppNavigation extends React.PureComponent<INaviagtionProps, any> {
   render() {
     const {isAuth} = this.props;
-    console.log(isAuth, 'isAuth!!!');
 
     return (
       <NavigationContainer>
-        <Stack.Navigator>
-          {/* <Stack.Screen
+        <Stack.Navigator initialRouteName={RoutesNames.SplashScreen}>
+          <Stack.Screen
             name={RoutesNames.SplashScreen}
             component={HomeScreen}
             options={{headerShown: false}}
-          /> */}
+          />
           {isAuth ? (
             <Stack.Screen
               name={RoutesNames.RootStack}

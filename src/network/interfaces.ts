@@ -1,5 +1,4 @@
-
 export interface IApiConfig {
-    baseUrl: string;
-    requestTimeout: number;
+  baseUrl: string;
+  requestTimeout: number;
 }

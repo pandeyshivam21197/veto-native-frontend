@@ -1,6 +1,7 @@
-export const DEFAULT_API_TIMEOUT = 1000;
+export const DEFAULT_API_TIMEOUT = 2000;
 export const baseUrl = 'http://localhost:8080/graphql';
-export const NO_INTERNET_ERROR_MESSAGE = 'We’re having trouble connecting. Please check your internet connectivity!';
+export const NO_INTERNET_ERROR_MESSAGE =
+  'We’re having trouble connecting. Please check your internet connectivity!';
 
 export const HttpStatusCode = {
   Ok: 200,
