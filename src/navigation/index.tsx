@@ -3,10 +3,10 @@ import AppRootStack from '@navigation/appRootStack';
 import BootstrapStack from '@navigation/bootstrapStack';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import SplashScreen from '@screens/bootstrapScreens/SplashScreen';
 import React from 'react';
 import {connect} from 'react-redux';
 import RoutesNames from './routes';
-import SplashScreen from '@screens/bootstrapScreens/SplashScreen';
 
 const Stack = createStackNavigator();
 

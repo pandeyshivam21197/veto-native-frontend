@@ -9,7 +9,7 @@ export const flashMessage = (args: IMessage) => {
   const {type = 'danger', message, description} = args;
   showMessage({
     message,
-    description: description,
+    description,
     position: 'top',
     type,
     floating: true,

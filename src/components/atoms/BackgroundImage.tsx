@@ -1,8 +1,8 @@
 import React from 'react';
 import {
   ImageBackground,
-  ImageSourcePropType,
   ImageResizeMode,
+  ImageSourcePropType,
   StyleSheet,
   View,
 } from 'react-native';

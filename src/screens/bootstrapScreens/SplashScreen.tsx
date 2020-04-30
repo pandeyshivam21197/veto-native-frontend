@@ -1,20 +1,19 @@
-import React from 'react';
-import BackgroundImage from '@components/atoms/BackgroundImage';
 import images from '@assets/images';
+import BackgroundImage from '@components/atoms/BackgroundImage';
 import ProgressBar from '@components/atoms/ProgressBar';
-import {theme} from '@styles/theme';
-import {LocalStorage, LocalStorageKeys} from '@utils/LoacalStorage';
-import {NavigationScreenProp, NavigationState} from 'react-navigation';
-import RoutesNames from '@navigation/routes';
-import axios from 'axios';
-import {baseUrl, DEFAULT_API_TIMEOUT} from '@network/Constants';
 import {getTokenAuth} from '@domain/graphQueries';
+import UserActions from '@modules/user/actions';
+import RoutesNames from '@navigation/routes';
+import {baseUrl, DEFAULT_API_TIMEOUT} from '@network/Constants';
+import LocaleService from '@services/Locale/LocaleService';
+import {theme} from '@styles/theme';
+import {flashMessage} from '@utils/ErrorUtil';
+import {LocalStorage, LocalStorageKeys} from '@utils/LoacalStorage';
+import axios from 'axios';
+import React from 'react';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import UserActions from '@modules/user/actions';
-import {flashMessage} from '@utils/ErrorUtil';
-import {type} from 'os';
-import LocaleService from '@services/Locale/LocaleService';
 
 interface ISplashState {
   isLoading: boolean;
