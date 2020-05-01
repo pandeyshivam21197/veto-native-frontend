@@ -5,6 +5,7 @@ import LoginScreen from '@screens/bootstrapScreens/LoginScreen';
 import LocaleService from '@services/Locale/LocaleService';
 import React from 'react';
 import RoutesNames from './routes';
+import onBoardingScreen from '@screens/bootstrapScreens/onBoardingScreen';
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,7 @@ const BootstrapStack = () => (
     screenOptions={{cardStyle: defaultScreenStyle}}>
     <Stack.Screen
       name={RoutesNames.OnBoardingScreen}
-      component={HomeScreen}
+      component={onBoardingScreen}
       options={{headerShown: false}}
     />
     <Stack.Screen
@@ -26,7 +27,7 @@ const BootstrapStack = () => (
       }}
     />
     <Stack.Screen
-      name={RoutesNames.SingUpScreen}
+      name={RoutesNames.HomeScreen}
       component={HomeScreen}
       options={{
         title: LocaleService.t('ScreenTitle.singUp'),

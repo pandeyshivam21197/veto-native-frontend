@@ -39,11 +39,23 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
     const isOnboarded: string | null = await LocalStorage.get(
       LocalStorageKeys.IS_ONBOARDED,
     );
-    const token: string | null = await LocalStorage.get(LocalStorageKeys.TOKEN);
+    console.log(isOnboarded, 'isOnboarded');
+
+    // TODO: (shivam: 1/5/20): add on boarding screen
 
     // check if its a new user
-    if (!isOnboarded && !token) {
-      navigation.navigate(RoutesNames.OnBoardingScreen);
+    // if (!isOnboarded) {
+    //   navigation.navigate(RoutesNames.BootstrapStack, {
+    //     screen: RoutesNames.OnBoardingScreen,
+    //   });
+    //   return;
+    // }
+    const token: string | null = await LocalStorage.get(LocalStorageKeys.TOKEN);
+    console.log(token, 'token!!!');
+
+    if (!token) {
+      // If toekn is not there redirect to login.
+      navigation.navigate(RoutesNames.BootstrapStack);
       return;
     }
 
@@ -64,13 +76,16 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
       },
     } = res;
 
+    console.log(getAuthConfirmation, 'getAuthConfirmation');
+
     if (getAuthConfirmation) {
       setUserLoggedIn(true);
-      navigation.navigate(RoutesNames.AppRootStack);
+      // async function runs always after sync function, this will always after setUserLoggedIn() sets the reducer for rootNavigation.
+      setTimeout(() => navigation.navigate(RoutesNames.AppRootStack), 0);
       return;
     }
+    // if token is there but not authenticated the redirect to login screen to fetch new token
     flashMessage({message: t('Error.unauthenticatedUser')});
-    // if token is not authenticated the redirect to login screen to fetch new token
     navigation.navigate(RoutesNames.BootstrapStack);
   }
 

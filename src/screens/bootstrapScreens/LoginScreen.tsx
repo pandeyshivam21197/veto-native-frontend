@@ -133,12 +133,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    flex: 1,
     marginHorizontal: theme.layout.screenHorizontalMargin,
     marginVertical: theme.layout.screenVerticalMargin,
   },
   loginForm: {
-    flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
   },
