@@ -1,6 +1,6 @@
-import {IFluxStandardAction} from '@modules/interfaces';
 import {fetchHomeFeeds} from '@domain/homeRepository';
 import {ICampaignRequest} from '@domain/interfaces';
+import {IFluxStandardAction} from '@modules/interfaces';
 
 const homeTypePrefix = 'HOME/';
 

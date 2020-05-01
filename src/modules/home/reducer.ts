@@ -1,16 +1,5 @@
-import {IFluxStandardAction} from '@modules/interfaces';
+import {IFluxStandardAction, IHomeState} from '@modules/interfaces';
 import {homeTypes} from './actions';
-import {ICampaignRequest} from '@domain/interfaces';
-
-export interface IHomeState {
-  feeds: ICampaignRequest[] | null;
-  loading: {
-    feeds: boolean;
-  };
-  error: {
-    feeds: string;
-  };
-}
 
 const initialHomeState = {
   feeds: null,

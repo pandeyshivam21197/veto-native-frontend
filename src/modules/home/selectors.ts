@@ -1,5 +1,5 @@
-import {IState} from '@modules/interfaces';
 import {ICampaignRequest} from '@domain/interfaces';
+import {IState} from '@modules/interfaces';
 
 const getHomeFeeds = (state: IState): ICampaignRequest[] | null => {
   const {

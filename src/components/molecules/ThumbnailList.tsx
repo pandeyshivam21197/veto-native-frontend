@@ -1,8 +1,8 @@
 import ProgressBar from '@components/atoms/ProgressBar';
+import {IThumbnail} from '@domain/interfaces';
 import React from 'react';
 import {FlatList, Image, StyleProp, ViewStyle} from 'react-native';
 import Video, {OnBufferData} from 'react-native-video';
-import {IThumbnail} from '@domain/interfaces';
 
 export const thumbnailType = {
   IMAGE: 'Image',

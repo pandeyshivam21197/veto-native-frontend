@@ -9,7 +9,7 @@ import FlashMessage from 'react-native-flash-message';
 import 'react-native-gesture-handler';
 import * as RNLocalize from 'react-native-localize';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware, compose} from 'redux';
+import {applyMiddleware, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 
 export class App extends React.PureComponent {

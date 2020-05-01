@@ -1,9 +1,9 @@
 import Icon from '@components/atoms/Icon';
 import {Text} from '@components/atoms/Text';
+import {campaignStatus} from '@domain/interfaces';
 import {theme} from '@styles/theme';
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {campaignStatus} from '@domain/interfaces';
 
 interface IStatusHeader {
   title: string;

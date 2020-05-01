@@ -22,7 +22,7 @@ export const postLogin = (email: string, password: string): string => {
 
 // app screen
 
-//home
+// home
 export const getHomeCampaignRequests = (page: number) => {
   const payload = {
     query: `mutation{

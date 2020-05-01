@@ -2,9 +2,9 @@ import {Text} from '@components/atoms/Text';
 import EntityList from '@components/molecules/EntityList';
 import StatusHeader from '@components/molecules/StatusHeader';
 import ThumbnailList from '@components/molecules/ThumbnailList';
+import {ICampaignRequest} from '@domain/interfaces';
 import * as React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
-import {ICampaignRequest} from '@domain/interfaces';
 
 export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;

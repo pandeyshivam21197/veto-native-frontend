@@ -1,8 +1,8 @@
 import ProgressBar from '@components/atoms/ProgressBar';
 import StatusHeader from '@components/molecules/StatusHeader';
+import {IEntity} from '@domain/interfaces';
 import React from 'react';
 import {FlatList, StyleProp, View, ViewStyle} from 'react-native';
-import {IEntity} from '@domain/interfaces';
 
 interface IEntityList {
   containerStyle?: StyleProp<ViewStyle>;

@@ -1,16 +1,16 @@
-import {Text} from '@components/atoms/Text';
+import CardList from '@components/organisms/CardList';
+import StateAwareComponent from '@components/organisms/StateAwareComponent';
+import {ICampaignRequest} from '@domain/interfaces';
+import HomeActions from '@modules/home/actions';
+import HomeSelector from '@modules/home/selectors';
+import {IState} from '@modules/interfaces';
+import {theme} from '@styles/theme';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {theme} from '@styles/theme';
-import CardList from '@components/organisms/CardList';
 import {connect} from 'react-redux';
-import {IState} from '@modules/interfaces';
-import HomeSelector from '@modules/home/selectors';
 import {bindActionCreators} from 'redux';
-import HomeActions from '@modules/home/actions';
-import {ICampaignRequest} from '@domain/interfaces';
-import StateAwareComponent from '@components/organisms/StateAwareComponent';
+'@components/organisms/StateAwareComponent';
 
 interface IHomeProps {
   getHomeFeeds: (pageNumbe: number) => void;

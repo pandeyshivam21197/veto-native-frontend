@@ -1,5 +1,4 @@
-import {IUserState} from './user/reducer';
-import {IHomeState} from './home/reducer';
+import {ICampaignRequest} from '@domain/interfaces';
 
 export interface IFluxStandardAction<
   Payload = undefined,
@@ -12,7 +11,16 @@ export interface IFluxStandardAction<
   meta?: Meta;
 }
 
+export interface IHomeState {
+  feeds: ICampaignRequest[] | null;
+  loading: {
+    feeds: boolean;
+  };
+  error: {
+    feeds: string;
+  };
+}
+
 export interface IState {
-  user: IUserState;
   home: IHomeState;
 }

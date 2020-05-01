@@ -2,8 +2,8 @@ import Icon from '@components/atoms/Icon';
 import HomeStack from '@navigation/appStacks/homeStack';
 import RoutesNames from '@navigation/routes';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import React from 'react';
 import {theme} from '@styles/theme';
+import React from 'react';
 
 const Tab = createMaterialBottomTabNavigator();
 
