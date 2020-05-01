@@ -2,6 +2,7 @@ import rootReducer from '@modules/reducers';
 import AppNavigation from '@navigation/index';
 import {LocalService} from '@services/Locale/LocaleService';
 import {StoreProviderService} from '@services/StoreProviderService';
+import {flashMessage} from '@utils/ErrorUtil';
 import React from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 import FlashMessage from 'react-native-flash-message';
@@ -9,7 +10,6 @@ import 'react-native-gesture-handler';
 import * as RNLocalize from 'react-native-localize';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import {flashMessage} from '@utils/ErrorUtil';
 
 export class App extends React.PureComponent {
   constructor(props: any) {

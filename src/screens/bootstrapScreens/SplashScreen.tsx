@@ -36,12 +36,11 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
     const {navigation, setUserLoggedIn} = this.props;
     const {t} = LocaleService;
 
-    const isOnboarded: string | null = await LocalStorage.get(
-      LocalStorageKeys.IS_ONBOARDED,
-    );
-    console.log(isOnboarded, 'isOnboarded');
-
     // TODO: (shivam: 1/5/20): add on boarding screen
+
+    // const isOnboarded: string | null = await LocalStorage.get(
+    //   LocalStorageKeys.IS_ONBOARDED,
+    // );
 
     // check if its a new user
     // if (!isOnboarded) {
@@ -51,7 +50,6 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
     //   return;
     // }
     const token: string | null = await LocalStorage.get(LocalStorageKeys.TOKEN);
-    console.log(token, 'token!!!');
 
     if (!token) {
       // If toekn is not there redirect to login.
@@ -75,8 +73,6 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
         data: {getAuthConfirmation},
       },
     } = res;
-
-    console.log(getAuthConfirmation, 'getAuthConfirmation');
 
     if (getAuthConfirmation) {
       setUserLoggedIn(true);
