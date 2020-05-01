@@ -9,6 +9,7 @@ import 'react-native-gesture-handler';
 import * as RNLocalize from 'react-native-localize';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+import {flashMessage} from '@utils/ErrorUtil';
 
 export class App extends React.PureComponent {
   constructor(props: any) {
@@ -23,7 +24,7 @@ export class App extends React.PureComponent {
     try {
       LocalService.init();
     } catch (e) {
-      console.log(e);
+      flashMessage({message: e.message});
     }
   };
 

@@ -2,10 +2,10 @@ import {commonScreenOption, defaultScreenStyle} from '@navigation/constant';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '@screens/appScreens/HomeScreen';
 import LoginScreen from '@screens/bootstrapScreens/LoginScreen';
+import onBoardingScreen from '@screens/bootstrapScreens/onBoardingScreen';
 import LocaleService from '@services/Locale/LocaleService';
 import React from 'react';
 import RoutesNames from './routes';
-import onBoardingScreen from '@screens/bootstrapScreens/onBoardingScreen';
 
 const Stack = createStackNavigator();
 

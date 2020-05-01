@@ -1,10 +1,9 @@
 import React from 'react';
 import RNCarousel from 'react-native-snap-carousel';
-import {View} from 'react-native';
 
 // T is the generic type of each card which is rendered.
 interface ICarouselProps<T> {
-  data: Array<T>;
+  data: T[];
   itemWidth: number;
   sliderWidth: number;
   card: React.ReactNode;

@@ -1,8 +1,8 @@
-import React from 'react';
+import images from '@assets/images';
 import Carousel from '@components/atoms/Carousel';
 import {Text} from '@components/atoms/Text';
-import {View, Image, ImageSourcePropType, StyleSheet} from 'react-native';
-import images from '@assets/images';
+import React from 'react';
+import {ImageSourcePropType, StyleSheet, View} from 'react-native';
 
 interface IOnboardCard {
   imageSource: ImageSourcePropType;
