@@ -1,13 +1,14 @@
 import ProgressBar from '@components/atoms/ProgressBar';
 import {Text} from '@components/atoms/Text';
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {theme} from '@styles/theme';
 
 class HomeScreen extends React.PureComponent {
   render() {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <Text>This is home screen</Text>
         <ProgressBar type={'bar'} barProps={{}} />
         <ProgressBar
@@ -35,3 +36,12 @@ class HomeScreen extends React.PureComponent {
 }
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#262626',
+    borderBottomColor: theme.colors.white,
+    borderBottomWidth: theme.layout.screenBottomBorderWidth,
+  },
+});

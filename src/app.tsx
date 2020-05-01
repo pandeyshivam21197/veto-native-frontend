@@ -39,8 +39,8 @@ export class App extends React.PureComponent {
   render() {
     return (
       <Provider store={StoreProviderService.getStore()}>
-        <StatusBar />
         <View style={styles.container}>
+          <StatusBar barStyle={'light-content'} />
           <AppNavigation />
           <FlashMessage />
         </View>

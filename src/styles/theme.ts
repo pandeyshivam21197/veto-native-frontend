@@ -1,4 +1,4 @@
-import { colors } from '@styles/colors';
+import {colors} from '@styles/colors';
 import layout from '@styles/layout';
 
 export const theme = {

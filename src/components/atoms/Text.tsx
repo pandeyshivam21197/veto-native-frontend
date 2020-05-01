@@ -105,6 +105,7 @@ const getStyles = (fontWeight: string, fontSize: string) =>
   StyleSheet.create({
     text: {
       ...getTextStyle(fontWeight, fontSize),
+      color: 'white',
     },
     label: {
       ...getTextStyle(fontWeight, fontSize, true),
