@@ -13,4 +13,5 @@ export interface IFluxStandardAction<
 
 export interface IState {
   user: IUserState;
+  home: any;
 }

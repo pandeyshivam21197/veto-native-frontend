@@ -47,19 +47,19 @@ class ApiClient {
   };
 
   // data is body
-  public get = (url: string, params?: {}): Promise<any> => {
+  public get = (params?: {}, headers?: {}): Promise<any> => {
     return this.client.request({
       method: HttpMethod.GET,
-      url,
+      headers,
       params,
     });
   };
 
-  public post = (url: string, data?: {}, params?: {}): Promise<any> => {
+  public post = (data?: {}, headers?: {}, params?: {}): Promise<any> => {
     return this.client.request({
       method: HttpMethod.POST,
-      url,
       data,
+      headers,
       params,
     });
   };

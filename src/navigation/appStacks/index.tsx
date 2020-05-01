@@ -26,7 +26,7 @@ const getTabOptions = (stackName: string) => {
       label = 'Distributor';
       break;
     case RoutesNames.AccountStack:
-      iconName = 'user';
+      iconName = 'user-tie';
       label = 'Account';
       break;
     default:
