@@ -2,11 +2,12 @@ import ProgressBar from '@components/atoms/ProgressBar';
 import {Text} from '@components/atoms/Text';
 import React from 'react';
 import {View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 class HomeScreen extends React.PureComponent {
   render() {
     return (
-      <View>
+      <SafeAreaView>
         <Text>This is home screen</Text>
         <ProgressBar type={'bar'} barProps={{}} />
         <ProgressBar
@@ -28,7 +29,7 @@ class HomeScreen extends React.PureComponent {
             size: 100,
           }}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }
