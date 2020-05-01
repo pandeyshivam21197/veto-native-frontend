@@ -27,7 +27,20 @@ export const getHomeCampaignRequests = (page: number) => {
   const payload = {
     query: `mutation{
     getCampaignRequests(page: ${page}) {
+      title
+      status
       description
+      thumbnails{
+        url
+        type
+      }
+      entities{
+        title
+        requestedAmount
+        availedAmount
+        currentPrice
+        status
+      }
     }
   }`,
   };

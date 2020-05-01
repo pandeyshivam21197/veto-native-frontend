@@ -5,10 +5,10 @@ import {ICampaignRequest} from './interfaces';
 
 const apiClient = new ApiClient({baseUrl});
 
-export const fetchHomeFeeds = (
+export const fetchHomeFeeds = async (
   pageNumber: number,
 ): Promise<ICampaignRequest[]> => {
-  return apiClient.post(getHomeCampaignRequests(pageNumber), {
+  return await apiClient.post(getHomeCampaignRequests(pageNumber), {
     'Content-Type': 'application/json',
   });
 };

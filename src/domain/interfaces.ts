@@ -8,7 +8,7 @@ export interface IEntity {
   requestedAmount: number;
   availedAmount: number;
   currentPrice: number;
-  status: number;
+  status: campaignStatus;
 }
 
 export interface IDonationHistory {
@@ -34,20 +34,22 @@ export interface IUser {
   maxDistance: number;
 }
 
-export interface IThumbanils {
+export interface IThumbnail {
   url: string;
   type: string;
 }
+
+export type campaignStatus = 'Completed' | 'Availed' | 'Initiated';
 
 export interface ICampaignRequest extends ITimeStamps {
   _id: string;
   title: string;
   subTitle: string;
   entities: IEntity[];
-  status: string;
+  status: campaignStatus;
   creatorId: IUser;
   donerIds: IUser[];
   groupMemberIds: IUser[];
-  thumbnails: IThumbanils[];
+  thumbnails: IThumbnail[];
   description: string;
 }

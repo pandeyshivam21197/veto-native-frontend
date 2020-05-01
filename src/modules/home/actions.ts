@@ -4,7 +4,7 @@ import {ICampaignRequest} from '@domain/interfaces';
 
 const homeTypePrefix = 'HOME/';
 
-const homeTypes = {
+export const homeTypes = {
   homeFeedLoading: `${homeTypePrefix}HOME_FEEDS_LOADING`,
   homeFeedSuccess: `${homeTypePrefix}HOME_FEEDS_SUCCESS`,
   homeFeedError: `${homeTypePrefix}HOME_FEEDS_ERROR`,
@@ -19,9 +19,11 @@ const setHomeFeedsLoading = (
   };
 };
 
-const setHomeFeedsSuccess = (payload: any): IFluxStandardAction<any> => {
+const setHomeFeedsSuccess = (
+  payload: any,
+): IFluxStandardAction<ICampaignRequest[]> => {
   return {
-    type: homeTypes.homeFeedLoading,
+    type: homeTypes.homeFeedSuccess,
     payload,
   };
 };
@@ -30,7 +32,7 @@ const setHomeFeedsError = (
   error: string,
 ): IFluxStandardAction<undefined, undefined, string> => {
   return {
-    type: homeTypes.homeFeedLoading,
+    type: homeTypes.homeFeedError,
     error,
   };
 };
@@ -38,10 +40,17 @@ const setHomeFeedsError = (
 const getHomeFeeds = (pageNumber: number) => async (
   dispatch: any,
 ): Promise<any> => {
+  console.log('coming here');
   dispatch(setHomeFeedsLoading);
   try {
-    const feeds: ICampaignRequest[] = await fetchHomeFeeds(pageNumber);
-    dispatch(setHomeFeedsSuccess(feeds));
+    const feeds: any = await fetchHomeFeeds(pageNumber);
+    const {
+      data: {
+        data: {getCampaignRequests},
+      },
+    } = feeds;
+
+    dispatch(setHomeFeedsSuccess(getCampaignRequests));
   } catch (error) {
     dispatch(setHomeFeedsError(error.message));
   }

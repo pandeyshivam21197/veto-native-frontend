@@ -1,4 +1,5 @@
 import {IUserState} from './user/reducer';
+import {IHomeState} from './home/reducer';
 
 export interface IFluxStandardAction<
   Payload = undefined,
@@ -13,5 +14,5 @@ export interface IFluxStandardAction<
 
 export interface IState {
   user: IUserState;
-  home: any;
+  home: IHomeState;
 }

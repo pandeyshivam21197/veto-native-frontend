@@ -3,8 +3,7 @@ import {Text} from '@components/atoms/Text';
 import {theme} from '@styles/theme';
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
-
-export type campaignStatus = 'Completed' | 'Availed' | 'Initiated';
+import {campaignStatus} from '@domain/interfaces';
 
 interface IStatusHeader {
   title: string;

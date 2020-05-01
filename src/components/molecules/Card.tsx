@@ -1,17 +1,12 @@
 import {Text} from '@components/atoms/Text';
-import EntityList, {IEntity} from '@components/molecules/EntityList';
-import StatusHeader, {campaignStatus} from '@components/molecules/StatusHeader';
-import ThumbnailList, {IThumbnail} from '@components/molecules/ThumbnailList';
+import EntityList from '@components/molecules/EntityList';
+import StatusHeader from '@components/molecules/StatusHeader';
+import ThumbnailList from '@components/molecules/ThumbnailList';
 import * as React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
+import {ICampaignRequest} from '@domain/interfaces';
 
-export interface ICard {
-  title: string;
-  subTitle?: string;
-  status: campaignStatus;
-  entities?: IEntity[];
-  description?: string;
-  thumbnails?: IThumbnail[];
+export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;
 }
 
@@ -31,7 +26,7 @@ const Card = (props: ICard): React.ReactElement => {
       <StatusHeader title={title} status={status} subTitle={subTitle} />
       {entities && <EntityList data={entities} />}
       {thumbnails && <ThumbnailList data={thumbnails} />}
-      {description && status === 'Completed' && <Text>{description}</Text>}
+      {description ? <Text>{description}</Text> : null}
     </View>
   );
 };

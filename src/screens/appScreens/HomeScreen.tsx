@@ -9,10 +9,14 @@ import {IState} from '@modules/interfaces';
 import HomeSelector from '@modules/home/selectors';
 import {bindActionCreators} from 'redux';
 import HomeActions from '@modules/home/actions';
+import {ICampaignRequest} from '@domain/interfaces';
+import StateAwareComponent from '@components/organisms/StateAwareComponent';
 
 interface IHomeProps {
   getHomeFeeds: (pageNumbe: number) => void;
-  feeds: any;
+  feeds: ICampaignRequest[] | null;
+  isFeedsLoading: boolean;
+  isFeedsError: string;
 }
 
 interface IHomeState {
@@ -28,44 +32,44 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
   }
 
   componentDidMount() {
+    this.getHomeFeeds();
+  }
+
+  public getHomeFeeds = (): void => {
     const {getHomeFeeds} = this.props;
     const {page} = this.state;
     getHomeFeeds(page);
-  }
+  };
 
   render() {
+    const {isFeedsLoading, isFeedsError} = this.props;
     return (
       <SafeAreaView style={styles.container}>
-        <Text>This is home screen</Text>
-        {/* <CardList/> */}
-        {/* <ProgressBar type={'bar'} barProps={{}} />
-        <ProgressBar
-          type={'circle'}
-          barProps={{
-            progress: 0.5,
-            showsText: true,
-            strokeCap: 'square',
-            size: 100,
-          }}
+        <StateAwareComponent
+          loading={isFeedsLoading}
+          error={isFeedsError}
+          renderComponent={this.renderScreen()}
+          onErrorPress={this.getHomeFeeds}
         />
-        <ProgressBar
-          type={'circle'}
-          barProps={{
-            progress: 0.7,
-            showsText: true,
-            fill: 'yellow',
-            thickness: 0,
-            size: 100,
-          }}
-        /> */}
       </SafeAreaView>
     );
   }
+
+  public renderScreen = (): React.ReactNode => {
+    const {feeds} = this.props;
+    if (!feeds) {
+      return null;
+    }
+
+    return <CardList data={feeds} />;
+  };
 }
 
 const mapStateToProps = (state: IState) => {
   return {
     feeds: HomeSelector.getHomeFeeds(state),
+    isFeedsLoading: HomeSelector.getFeedsLoading(state),
+    isFeedError: HomeSelector.getFeedsError(state),
   };
 };
 
