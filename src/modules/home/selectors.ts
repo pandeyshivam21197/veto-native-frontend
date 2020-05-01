@@ -2,13 +2,12 @@ import {IState} from '@modules/interfaces';
 import {ICampaignRequest} from '@domain/interfaces';
 
 const getHomeFeeds = (state: IState): ICampaignRequest[] | null => {
-  console.log(state, 'state!!');
   const {
     home: {feeds},
   } = state;
-  console.log(feeds, 'sselector!!');
   return feeds;
 };
+
 const getFeedsLoading = (state: IState): boolean => {
   const {
     home: {
@@ -18,6 +17,7 @@ const getFeedsLoading = (state: IState): boolean => {
 
   return feeds;
 };
+
 const getFeedsError = (state: IState): string => {
   const {
     home: {

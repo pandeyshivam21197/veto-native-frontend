@@ -16,7 +16,6 @@ interface ILoadingSpinner {
 
 const LoadingSpinner = (props: ILoadingSpinner): React.ReactElement => {
   const {size = 'large', color = theme.colors.white, style = {}} = props;
-  console.log('comeing here###');
 
   return (
     <View style={styles.container}>
