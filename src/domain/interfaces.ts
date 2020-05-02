@@ -1,6 +1,6 @@
 export interface ITimeStamps {
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface IEntity {
@@ -33,6 +33,7 @@ export interface IUser {
   campaignRequestIds: ICampaignRequest;
   joinedCampaignIds: ICampaignRequest[];
   donationHistory: IDonationHistory;
+  userImage: string;
   maxDistance: number;
 }
 
@@ -46,14 +47,14 @@ export type campaignStatus = 'Completed' | 'Availed' | 'Initiated';
 export interface ICampaignRequest extends ITimeStamps {
   _id: string;
   title: string;
-  subTitle: string;
-  entities: IEntity[];
+  subTitle?: string;
+  entities?: IEntity[];
   status: campaignStatus;
   creatorId: IUser;
   donerIds: IUser[];
   groupMemberIds: IUser[];
-  thumbnails: IThumbnail[];
-  description: string;
+  thumbnails?: IThumbnail[];
+  description?: string;
 }
 
 export interface response<D> {

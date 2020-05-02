@@ -36,7 +36,6 @@ const getUserAccountData = () => async (dispatch: any): Promise<void> => {
   dispatch(setUserDataLoading());
   try {
     const userData = await fetchUserData();
-    console.log(userData, 'userData');
     const {
       data: {
         data: {getUserData},

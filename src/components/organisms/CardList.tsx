@@ -41,7 +41,6 @@ const renderCard = ({
   const {
     _id,
     title,
-    entities,
     subTitle,
     status,
     description,
@@ -49,8 +48,6 @@ const renderCard = ({
     creatorId,
     donerIds,
     groupMemberIds,
-    createdAt,
-    updatedAt,
   } = item;
 
   return (
@@ -58,15 +55,12 @@ const renderCard = ({
       _id={_id}
       title={title}
       status={status}
-      entities={entities}
       subTitle={subTitle}
       description={description}
       thumbnails={thumbnails}
       creatorId={creatorId}
       donerIds={donerIds}
       groupMemberIds={groupMemberIds}
-      createdAt={createdAt}
-      updatedAt={updatedAt}
       cardIndex={index}
     />
   );

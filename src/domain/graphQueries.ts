@@ -44,6 +44,21 @@ export const getHomeCampaignRequests = (page: number) => {
         unitType
         currency
       }
+      creatorId{
+        _id
+        name
+        userImage
+      }
+      donerIds {
+        _id
+        name
+        userImage
+      }
+      groupMemberIds {
+        _id
+        name
+        userImage
+      }
     }
   }`,
   };

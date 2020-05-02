@@ -21,7 +21,10 @@
     "requestedAmount": "Requested:",
     "availedAmount": "Availed:",
     "unit": "units",
-    "currentPrice": "Price:"
+    "currentPrice": "Price:",
+    "members": "Members:",
+    "doners": "Doners:",
+    "viewAll": "View All"
   },
   "ScreenTitle": {
     "login": "Login",

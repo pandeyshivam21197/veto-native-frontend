@@ -74,7 +74,6 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
       textFontSize = 'small',
       textFontWeight = 'regular',
       textTagType = 'text',
-      numberOfLines = 1,
       touchableStyle = {},
     } = this.props;
 
@@ -107,7 +106,7 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
         style={touchableStyle}>
         <View
           style={[
-            styles.containerStyle(buttonType, textFontSize, iconRight, icon),
+            styles.containerStyle(buttonType, iconRight, icon),
             containerStyle,
             styles.disabled(disabled),
             StyleUtils.conditionalStyle(disabled, containerDisabledStyle),
@@ -150,7 +149,6 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
 const styles = {
   containerStyle: (
     type: string,
-    size: string,
     iconRight: boolean,
     icon: string | undefined,
   ) => ({
@@ -166,7 +164,7 @@ const styles = {
     borderColor: theme.colors.black,
   }),
   title: (type: string) => ({
-    color: type === 'filled' ? 'white' : theme.colors.black,
+    color: type === 'filled' ? theme.colors.white : theme.colors.black,
     textAlign: 'center',
     paddingVertical: 5,
   }),

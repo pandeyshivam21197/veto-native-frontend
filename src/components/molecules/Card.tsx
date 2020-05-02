@@ -6,6 +6,8 @@ import {ICampaignRequest} from '@domain/interfaces';
 import {theme} from '@styles/theme';
 import * as React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import CampaignContributorList from './CampaignContributorList';
+import {t} from 'i18n-js';
 
 export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;
@@ -22,13 +24,28 @@ const Card = (props: ICard): React.ReactElement => {
     thumbnails,
     containerStyle = {},
     cardIndex,
+    donerIds,
+    groupMemberIds,
+    creatorId,
   } = props;
   // TODO: add total progress bar
+  const displayDoners = donerIds && donerIds.length > 0;
+  const updatedGroupMemberIds = [creatorId, ...groupMemberIds];
+
   return (
     <View style={[styles.cardConatiner, containerStyle]}>
       <StatusHeader title={title} status={status} subTitle={subTitle} />
       {entities && <EntityList data={entities} cardIndex={cardIndex} />}
       {thumbnails && <ThumbnailList data={thumbnails} cardIndex={cardIndex} />}
+      {updatedGroupMemberIds && (
+        <CampaignContributorList
+          data={updatedGroupMemberIds}
+          title={t('Common.members')}
+        />
+      )}
+      {displayDoners && (
+        <CampaignContributorList data={donerIds} title={t('Common.doners')} />
+      )}
       {description ? (
         <Text containerStyle={styles.description}>{description}</Text>
       ) : null}
