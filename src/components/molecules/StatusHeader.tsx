@@ -19,7 +19,7 @@ const StatusHeader = (props: IStatusHeader) => {
         <Text>{title}</Text>
         {subTitle && <Text>{subTitle}</Text>}
       </React.Fragment>
-      <Icon name={'circle'} color={getStatusColor(status)} />
+      <Icon name={'circle'} color={getStatusColor(status)} size={20} />
     </View>
   );
 };
@@ -27,9 +27,9 @@ const StatusHeader = (props: IStatusHeader) => {
 const getStatusColor = (status: string): string => {
   switch (status) {
     case 'Completed':
-      return theme.colors.green;
+      return theme.colors.screamingGreen;
     case 'Availed':
-      return theme.colors.orange;
+      return theme.colors.mustard;
     default:
       return theme.colors.green;
   }

@@ -9,6 +9,7 @@ interface IEntityList {
   data: IEntity[];
   numColumns?: number;
   isHorizontal?: boolean;
+  cardIndex: number;
 }
 
 const EntityList = (props: IEntityList): React.ReactElement => {
@@ -17,17 +18,23 @@ const EntityList = (props: IEntityList): React.ReactElement => {
     data,
     numColumns = 2,
     isHorizontal = false,
+    cardIndex,
   } = props;
   return (
     <FlatList
       data={data}
+      keyExtractor={keyExtractor}
       renderItem={renderEntity}
       contentContainerStyle={containerStyle}
       numColumns={numColumns}
       horizontal={isHorizontal}
+      listKey={`entityList-${cardIndex}`}
     />
   );
 };
+
+const keyExtractor = (item: IEntity, index: number): string =>
+  `${item.title}-${index}`;
 
 const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
   const {title, requestedAmount, availedAmount, status} = item;

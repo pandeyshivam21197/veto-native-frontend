@@ -59,7 +59,7 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
       icon,
       onPress,
       containerStyle = {},
-      titleStyle,
+      titleStyle = {},
       iconStyle,
       iconRight = false,
       iconSize = 25,
@@ -131,8 +131,7 @@ export class Button extends React.PureComponent<IButtonProps, {}> {
                 <TextTag
                   fontWeight={textFontWeight}
                   fontSize={textFontSize}
-                  numberOfLines={numberOfLines}
-                  style={[
+                  containerStyle={[
                     styles.title(buttonType),
                     titleStyle,
                     styles.disabledTitle(disabled),

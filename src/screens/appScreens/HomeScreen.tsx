@@ -6,13 +6,15 @@ import HomeSelector from '@modules/home/selectors';
 import {IState} from '@modules/interfaces';
 import {theme} from '@styles/theme';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 '@components/organisms/StateAwareComponent';
 
 interface IHomeProps {
+  navigation: NavigationScreenProp<NavigationState>;
   getHomeFeeds: (pageNumbe: number) => void;
   feeds: ICampaignRequest[] | null;
   isFeedsLoading: boolean;
@@ -44,7 +46,7 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
   render() {
     const {isFeedsLoading, isFeedsError} = this.props;
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={[styles.container, styles.flexOne]}>
         <StateAwareComponent
           loading={isFeedsLoading}
           error={isFeedsError}
@@ -61,7 +63,11 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
       return null;
     }
 
-    return <CardList data={feeds} />;
+    return (
+      <View style={[styles.screenConatiner, styles.flexOne]}>
+        <CardList data={feeds} isHorizontal={false} />
+      </View>
+    );
   };
 }
 
@@ -87,10 +93,16 @@ const mapDispatchToProps = (dispatch: any) => {
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
 
 const styles = StyleSheet.create({
-  container: {
+  flexOne: {
     flex: 1,
+  },
+  container: {
     backgroundColor: theme.colors.raisinBlack,
     borderBottomColor: theme.colors.white,
     borderBottomWidth: theme.layout.screenBottomBorderWidth,
+  },
+  screenConatiner: {
+    marginHorizontal: theme.layout.screenHorizontalMargin,
+    marginVertical: theme.layout.screenVerticalMargin,
   },
 });

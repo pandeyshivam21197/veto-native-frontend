@@ -14,6 +14,7 @@ interface IThumbnailList {
   data: IThumbnail[];
   numColumns?: number;
   isHorizontal?: boolean;
+  cardIndex: number;
 }
 
 const ThumbnailList = (props: IThumbnailList): React.ReactElement => {
@@ -22,18 +23,24 @@ const ThumbnailList = (props: IThumbnailList): React.ReactElement => {
     containerStyle = {},
     numColumns = 2,
     isHorizontal = false,
+    cardIndex,
   } = props;
 
   return (
     <FlatList
       data={data}
+      keyExtractor={keyExtractor}
       renderItem={renderThumbnail}
       contentContainerStyle={containerStyle}
       horizontal={isHorizontal}
       numColumns={numColumns}
+      listKey={`tumbnailList-${cardIndex}`}
     />
   );
 };
+
+const keyExtractor = (item: IThumbnail, index: number): string =>
+  `${item.url}-${index}`;
 
 const onBuffer = (data: OnBufferData): React.ReactNode => {
   if (!data.isBuffering) {

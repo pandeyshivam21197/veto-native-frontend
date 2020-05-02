@@ -1,7 +1,7 @@
 import Card from '@components/molecules/Card';
 import {ICampaignRequest} from '@domain/interfaces';
 import React from 'react';
-import {FlatList, StyleProp, ViewStyle} from 'react-native';
+import {FlatList, StyleProp, ViewStyle, View, StyleSheet} from 'react-native';
 
 interface ICardList {
   data: ICampaignRequest[];
@@ -14,14 +14,30 @@ const CardList = (props: ICardList): React.ReactElement => {
   return (
     <FlatList
       data={data}
+      keyExtractor={keyExtractor}
       renderItem={renderCard}
+      ItemSeparatorComponent={renderSeperator}
       contentContainerStyle={containerStyle}
       horizontal={isHorizontal}
+      listKey={'cardList'}
     />
   );
 };
 
-const renderCard = ({item}: {item: ICampaignRequest}): React.ReactElement => {
+const renderSeperator = (): React.ReactElement => (
+  <View style={styles.separator} />
+);
+
+const keyExtractor = (item: ICampaignRequest, index: number): string =>
+  `${item._id}-${index}`;
+
+const renderCard = ({
+  item,
+  index,
+}: {
+  item: ICampaignRequest;
+  index: number;
+}): React.ReactElement => {
   const {
     _id,
     title,
@@ -51,8 +67,15 @@ const renderCard = ({item}: {item: ICampaignRequest}): React.ReactElement => {
       groupMemberIds={groupMemberIds}
       createdAt={createdAt}
       updatedAt={updatedAt}
+      cardIndex={index}
     />
   );
 };
 
 export default CardList;
+
+const styles = StyleSheet.create({
+  separator: {
+    height: 20,
+  },
+});

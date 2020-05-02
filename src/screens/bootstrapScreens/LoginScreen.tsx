@@ -14,6 +14,8 @@ import {KeyboardAvoidingView, ScrollView, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as yup from 'yup';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
+import RoutesNames from '@navigation/routes';
 
 interface ILoginState {
   login: {
@@ -23,7 +25,7 @@ interface ILoginState {
 }
 
 interface ILoginProps {
-  setUserLoggedIn: (isLoggedIn: boolean) => void;
+  navigation: NavigationScreenProp<NavigationState>;
 }
 
 class LoginScreen extends React.PureComponent<ILoginProps, ILoginState> {
@@ -75,6 +77,7 @@ class LoginScreen extends React.PureComponent<ILoginProps, ILoginState> {
           <FormSubmitButton
             formProps={formProps}
             buttonTitle={t('Login.login')}
+            titleStyle={styles.formButtonTitle}
           />
         </ScrollView>
       </KeyboardAvoidingView>
@@ -82,7 +85,7 @@ class LoginScreen extends React.PureComponent<ILoginProps, ILoginState> {
   };
 
   public onSubmitHandler = async (values: FormikValues) => {
-    const {setUserLoggedIn} = this.props;
+    const {navigation} = this.props;
     const {email, password} = values;
 
     try {
@@ -101,7 +104,7 @@ class LoginScreen extends React.PureComponent<ILoginProps, ILoginState> {
         },
       } = res;
       await LocalStorage.set(LocalStorageKeys.TOKEN, token);
-      setUserLoggedIn(!!token);
+      navigation.navigate(RoutesNames.AppRootStack);
     } catch (e) {
       flashMessage({message: e.message, type: 'info'});
     }
@@ -116,6 +119,7 @@ const formSchema = () => {
   });
 };
 
+// TODO: remove this
 const mapDispatchToProps = (dispatch: any) => {
   const {setUserLoggedIn} = UserActions;
   return bindActionCreators(
@@ -139,5 +143,8 @@ const styles = StyleSheet.create({
   loginForm: {
     justifyContent: 'center',
     alignContent: 'center',
+  },
+  formButtonTitle: {
+    color: theme.colors.black,
   },
 });
