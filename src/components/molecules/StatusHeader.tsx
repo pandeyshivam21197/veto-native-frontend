@@ -19,7 +19,12 @@ const StatusHeader = (props: IStatusHeader) => {
         <Text>{title}</Text>
         {subTitle && <Text>{subTitle}</Text>}
       </React.Fragment>
-      <Icon name={'circle'} color={getStatusColor(status)} size={20} />
+      <Icon
+        name={'circle'}
+        color={getStatusColor(status)}
+        size={15}
+        style={styles.icon}
+      />
     </View>
   );
 };
@@ -31,7 +36,7 @@ const getStatusColor = (status: string): string => {
     case 'Availed':
       return theme.colors.mustard;
     default:
-      return theme.colors.green;
+      return theme.colors.skyBlue;
   }
 };
 
@@ -39,6 +44,9 @@ const styles = StyleSheet.create({
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  icon: {
+    alignSelf: 'center',
   },
 });
 

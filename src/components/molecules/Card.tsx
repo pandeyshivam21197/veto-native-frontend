@@ -39,6 +39,7 @@ export default Card;
 const styles = StyleSheet.create({
   cardConatiner: {
     backgroundColor: theme.colors.nero,
-    padding: 4,
+    padding: 12,
+    borderRadius: 3,
   },
 });
