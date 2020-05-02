@@ -1,4 +1,4 @@
-import {ICampaignRequest} from '@domain/interfaces';
+import {ICampaignRequest, IUser} from '@domain/interfaces';
 
 export interface IFluxStandardAction<
   Payload = undefined,
@@ -21,6 +21,17 @@ export interface IHomeState {
   };
 }
 
+export interface IUserState {
+  user: IUser | null;
+  loading: {
+    user: boolean;
+  };
+  error: {
+    user: string;
+  };
+}
+
 export interface IState {
   home: IHomeState;
+  user: IUserState;
 }

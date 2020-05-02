@@ -1,23 +1,48 @@
-import {IFluxStandardAction} from '@modules/interfaces';
+import {IFluxStandardAction, IUserState} from '@modules/interfaces';
 import {userTypes} from './actions';
 
-export interface IUserState {
-  isLoggedIn: boolean;
-}
-
-const initialLoginState = {
-  isLoggedIn: false,
+const initialUserState = {
+  user: null,
+  loading: {
+    user: true,
+  },
+  error: {
+    user: '',
+  },
 };
 
 const userReducer = (
-  state: IUserState = initialLoginState,
+  state: IUserState = initialUserState,
   action: IFluxStandardAction<any>,
 ) => {
   switch (action.type) {
-    case userTypes.setUserLoggedIn:
+    case userTypes.getUserDataLoading:
       return {
         ...state,
-        ['isLoggedIn']: action.payload,
+        ['loading']: {
+          ...state.loading,
+          ['user']: true,
+        },
+      };
+    case userTypes.getUserDataSuccess:
+      return {
+        ...state,
+        ['user']: action.payload,
+        ['loading']: {
+          ...state.loading,
+          ['user']: false,
+        },
+      };
+    case userTypes.getUserDataLoading:
+      return {
+        ...state,
+        ['error']: {
+          ['user']: action.error,
+        },
+        ['loading']: {
+          ...state.loading,
+          ['user']: false,
+        },
       };
 
     default:

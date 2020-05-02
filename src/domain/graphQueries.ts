@@ -27,6 +27,7 @@ export const getHomeCampaignRequests = (page: number) => {
   const payload = {
     query: `mutation{
     getCampaignRequests(page: ${page}) {
+      _id
       title
       status
       description
@@ -41,6 +42,43 @@ export const getHomeCampaignRequests = (page: number) => {
         currentPrice
         status
       }
+    }
+  }`,
+  };
+
+  return JSON.stringify(payload);
+};
+
+// user
+
+export const getUserData = (): string => {
+  const payload = {
+    query: `query{
+    getUserData{
+      _id
+      name
+      username
+      email
+      location
+      idProofType
+      idProofImageUrl
+      DOB
+      contactNumber
+      rewardPoints
+      campaignRequestIds{
+        _id
+      }
+      joinedCampaignIds{
+        _id
+      }
+      donationHistory
+      {
+        campaignRequestId{
+          _id
+        },
+        donationAmount
+      }
+      maxDistance
     }
   }`,
   };

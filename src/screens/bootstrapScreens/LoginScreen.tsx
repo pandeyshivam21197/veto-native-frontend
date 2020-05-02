@@ -1,7 +1,6 @@
 import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
 import {postLogin} from '@domain/graphQueries';
-import UserActions from '@modules/user/actions';
 import {baseUrl, DEFAULT_API_TIMEOUT} from '@network/Constants';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
@@ -11,8 +10,6 @@ import axios from 'axios';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {KeyboardAvoidingView, ScrollView, StyleSheet, View} from 'react-native';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import * as yup from 'yup';
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import RoutesNames from '@navigation/routes';
@@ -66,6 +63,7 @@ class LoginScreen extends React.PureComponent<ILoginProps, ILoginState> {
             inputName={'email'}
             placeholder={t('Login.emailPlaceHolder')}
             label={t('Login.emailLabel')}
+            labelStyle={styles.titleColor}
           />
           <FormTextInput
             formProps={formProps}
@@ -73,11 +71,12 @@ class LoginScreen extends React.PureComponent<ILoginProps, ILoginState> {
             inputName={'password'}
             placeholder={t('Login.passwordPlaceHolder')}
             label={t('Login.passwordLabel')}
+            labelStyle={styles.titleColor}
           />
           <FormSubmitButton
             formProps={formProps}
             buttonTitle={t('Login.login')}
-            titleStyle={styles.formButtonTitle}
+            titleStyle={styles.titleColor}
           />
         </ScrollView>
       </KeyboardAvoidingView>
@@ -119,18 +118,7 @@ const formSchema = () => {
   });
 };
 
-// TODO: remove this
-const mapDispatchToProps = (dispatch: any) => {
-  const {setUserLoggedIn} = UserActions;
-  return bindActionCreators(
-    {
-      setUserLoggedIn,
-    },
-    dispatch,
-  );
-};
-
-export default connect(null, mapDispatchToProps)(LoginScreen);
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   flexOne: {
@@ -144,7 +132,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
   },
-  formButtonTitle: {
+  titleColor: {
     color: theme.colors.black,
   },
 });

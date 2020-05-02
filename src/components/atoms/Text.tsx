@@ -19,7 +19,7 @@ export type FontSize = 'small' | 'medium' | 'large';
 export type FontWeight = 'regular' | 'medium' | 'bold';
 
 interface IText extends TextProps {
-  containerStyle?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<TextStyle>;
   children: string | React.ReactNode;
   fontSize?: FontSize;
   fontWeight?: FontWeight;

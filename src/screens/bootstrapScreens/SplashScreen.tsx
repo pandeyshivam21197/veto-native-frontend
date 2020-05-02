@@ -21,7 +21,7 @@ interface ISplashState {
 
 interface ISplashProps {
   navigation: NavigationScreenProp<NavigationState>;
-  setUserLoggedIn: (isLoggedIn: boolean) => void;
+  getUserAccountData: () => void;
 }
 
 class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
@@ -33,7 +33,7 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
   }
 
   async componentDidMount() {
-    const {navigation, setUserLoggedIn} = this.props;
+    const {navigation, getUserAccountData} = this.props;
     const {t} = LocaleService;
 
     // TODO: (shivam: 1/5/20): add on boarding screen
@@ -74,15 +74,15 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
       },
     } = res;
 
-    if (getAuthConfirmation) {
-      setUserLoggedIn(true);
-      // async function runs always after sync function, this will always after setUserLoggedIn() sets the reducer for rootNavigation.
-      setTimeout(() => navigation.navigate(RoutesNames.AppRootStack), 0);
-      return;
+    if (!getAuthConfirmation) {
+      // if token is there but not authenticated the redirect to login screen to fetch new token
+      flashMessage({message: t('Error.unauthenticatedUser')});
+      navigation.navigate(RoutesNames.BootstrapStack);
     }
-    // if token is there but not authenticated the redirect to login screen to fetch new token
-    flashMessage({message: t('Error.unauthenticatedUser')});
-    navigation.navigate(RoutesNames.BootstrapStack);
+
+    getUserAccountData();
+    navigation.navigate(RoutesNames.AppRootStack);
+    return;
   }
 
   render() {
@@ -104,10 +104,10 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
 }
 
 const mapDispatchToProps = (dispatch: any) => {
-  const {setUserLoggedIn} = UserActions;
+  const {getUserAccountData} = UserActions;
   return bindActionCreators(
     {
-      setUserLoggedIn,
+      getUserAccountData,
     },
     dispatch,
   );

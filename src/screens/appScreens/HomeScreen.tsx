@@ -11,7 +11,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
-'@components/organisms/StateAwareComponent';
 
 interface IHomeProps {
   navigation: NavigationScreenProp<NavigationState>;

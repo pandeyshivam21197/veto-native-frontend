@@ -53,3 +53,7 @@ export interface ICampaignRequest extends ITimeStamps {
   thumbnails: IThumbnail[];
   description: string;
 }
+
+export interface response<D> {
+  data: {data: D};
+}
