@@ -3,9 +3,9 @@ import EntityList from '@components/molecules/EntityList';
 import StatusHeader from '@components/molecules/StatusHeader';
 import ThumbnailList from '@components/molecules/ThumbnailList';
 import {ICampaignRequest} from '@domain/interfaces';
-import * as React from 'react';
-import {StyleProp, View, ViewStyle, StyleSheet} from 'react-native';
 import {theme} from '@styles/theme';
+import * as React from 'react';
+import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 
 export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;
@@ -39,5 +39,6 @@ export default Card;
 const styles = StyleSheet.create({
   cardConatiner: {
     backgroundColor: theme.colors.nero,
+    padding: 4,
   },
 });

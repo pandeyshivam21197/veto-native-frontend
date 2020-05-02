@@ -1,7 +1,7 @@
 import Card from '@components/molecules/Card';
 import {ICampaignRequest} from '@domain/interfaces';
 import React from 'react';
-import {FlatList, StyleProp, ViewStyle, View, StyleSheet} from 'react-native';
+import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 
 interface ICardList {
   data: ICampaignRequest[];

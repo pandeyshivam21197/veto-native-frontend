@@ -1,6 +1,6 @@
-import {IFluxStandardAction} from '@modules/interfaces';
 import {IUser} from '@domain/interfaces';
 import {fetchUserData} from '@domain/userRepository';
+import {IFluxStandardAction} from '@modules/interfaces';
 
 const userPrefix = 'USER/';
 

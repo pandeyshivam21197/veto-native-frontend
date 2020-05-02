@@ -8,9 +8,9 @@ import {theme} from '@styles/theme';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {NavigationScreenProp, NavigationState} from 'react-navigation';
 
 interface IHomeProps {
   navigation: NavigationScreenProp<NavigationState>;

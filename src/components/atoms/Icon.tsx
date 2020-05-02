@@ -11,7 +11,7 @@ interface IIcon {
 
 const Icon = (props: IIcon) => {
   const {name, color = 'white', size = 26, style = {}} = props;
-  return <FontIcon name={name} solid color={color} size={size} style={style} />;
+  return <FontIcon name={name} solid={true} color={color} size={size} style={style} />;
 };
 
 export default Icon;

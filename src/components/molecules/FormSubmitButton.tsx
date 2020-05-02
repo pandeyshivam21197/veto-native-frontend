@@ -1,7 +1,7 @@
 import {Button} from '@components/atoms/Button';
 import {FormikProps, FormikValues} from 'formik';
 import React from 'react';
-import {StyleSheet, StyleProp, TextStyle} from 'react-native';
+import {StyleProp, StyleSheet, TextStyle} from 'react-native';
 
 interface IFormButton {
   formProps: FormikProps<FormikValues>;

@@ -5,7 +5,6 @@ import {
   Text as RNText,
   TextProps,
   TextStyle,
-  ViewStyle,
 } from 'react-native';
 
 export interface IFontWeight {

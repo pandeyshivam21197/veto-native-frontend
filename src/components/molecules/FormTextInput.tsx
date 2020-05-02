@@ -4,11 +4,10 @@ import {theme} from '@styles/theme';
 import {FormikErrors, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {
+  StyleProp,
   StyleSheet,
   TextInput,
   TextInputProps,
-  StyleProp,
-  ViewStyle,
   TextStyle,
 } from 'react-native';
 

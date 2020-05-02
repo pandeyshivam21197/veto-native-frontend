@@ -9,7 +9,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 const getTabOptions = (stackName: string) => {
   let iconName: string;
-  let backgroundColor = 'orange';
+  const backgroundColor = 'orange';
   let label = '';
 
   switch (stackName) {

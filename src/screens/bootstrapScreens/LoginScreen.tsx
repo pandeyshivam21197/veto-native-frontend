@@ -1,6 +1,7 @@
 import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
 import {postLogin} from '@domain/graphQueries';
+import RoutesNames from '@navigation/routes';
 import {baseUrl, DEFAULT_API_TIMEOUT} from '@network/Constants';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
@@ -10,9 +11,8 @@ import axios from 'axios';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {KeyboardAvoidingView, ScrollView, StyleSheet, View} from 'react-native';
-import * as yup from 'yup';
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
-import RoutesNames from '@navigation/routes';
+import * as yup from 'yup';
 
 interface ILoginState {
   login: {
