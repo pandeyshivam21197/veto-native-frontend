@@ -9,7 +9,7 @@ interface ICardList {
   isHorizontal?: boolean;
 }
 
-const CardList = (props: ICardList): React.ReactNode => {
+const CardList = (props: ICardList): React.ReactElement => {
   const {containerStyle = {}, data, isHorizontal = true} = props;
   return (
     <FlatList
