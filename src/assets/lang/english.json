@@ -18,6 +18,10 @@
     "requiredPassword": "Please enter password."
   },
   "Common": {
+    "requestedAmount": "Requested:",
+    "availedAmount": "Availed:",
+    "unit": "units",
+    "currentPrice": "Price:"
   },
   "ScreenTitle": {
     "login": "Login",

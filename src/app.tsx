@@ -18,8 +18,10 @@ export class App extends React.PureComponent {
 
     StoreProviderService.init(() => {
       const middleware = applyMiddleware(thunk);
+      const composeEnhancers =
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
       // added thunk middleware
-      return createStore(rootReducer, compose(middleware));
+      return createStore(rootReducer, composeEnhancers(middleware));
     });
     LocalService.init();
   }

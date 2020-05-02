@@ -3,29 +3,39 @@ import {Text} from '@components/atoms/Text';
 import {campaignStatus} from '@domain/interfaces';
 import {theme} from '@styles/theme';
 import * as React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
 
 interface IStatusHeader {
   title: string;
   subTitle?: string;
   status: campaignStatus;
+  containerStyle?: StyleProp<ViewStyle>;
+  titleContainer?: StyleProp<ViewStyle>;
 }
 const StatusHeader = (props: IStatusHeader) => {
-  const {title, subTitle, status} = props;
+  const {
+    title,
+    subTitle,
+    status,
+    containerStyle = {},
+    titleContainer = {},
+  } = props;
 
   return (
-    <View style={styles.cardHeader}>
-      <React.Fragment>
-        <Text>{title}</Text>
-        {subTitle && <Text>{subTitle}</Text>}
-      </React.Fragment>
-      <Icon
-        name={'circle'}
-        color={getStatusColor(status)}
-        size={15}
-        style={styles.icon}
-      />
-    </View>
+    <React.Fragment>
+      <View style={[styles.cardHeader, containerStyle]}>
+        <Text fontWeight={'bold'} containerStyle={titleContainer}>
+          {title}
+        </Text>
+        <Icon
+          name={'circle'}
+          color={getStatusColor(status)}
+          size={15}
+          style={styles.icon}
+        />
+      </View>
+      {subTitle && <Text fontWeight={'medium'}>{subTitle}</Text>}
+    </React.Fragment>
   );
 };
 
@@ -44,6 +54,7 @@ const styles = StyleSheet.create({
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 12,
   },
   icon: {
     alignSelf: 'center',

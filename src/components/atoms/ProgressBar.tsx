@@ -27,7 +27,11 @@ const ProgressBar = (props: IProgressBar) => {
     const formatText = () => {
       return `${progress * 100} %`;
     };
-    newProps = {...barProps, formatText};
+    newProps = {
+      ...barProps,
+      formatText,
+      textStyle: {fontWeight: '800'},
+    };
   }
   const BarTag = getBarTag(type);
   // @ts-ignore

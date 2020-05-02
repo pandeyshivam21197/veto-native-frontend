@@ -7,7 +7,9 @@ export interface IEntity {
   title: string;
   requestedAmount: number;
   availedAmount: number;
+  unitType: string;
   currentPrice: number;
+  currency: string;
   status: campaignStatus;
 }
 

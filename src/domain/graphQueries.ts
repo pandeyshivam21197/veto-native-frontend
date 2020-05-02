@@ -41,6 +41,8 @@ export const getHomeCampaignRequests = (page: number) => {
         availedAmount
         currentPrice
         status
+        unitType
+        currency
       }
     }
   }`,

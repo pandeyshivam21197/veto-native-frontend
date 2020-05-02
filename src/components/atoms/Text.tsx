@@ -108,5 +108,6 @@ const getStyles = (fontWeight: string, fontSize: string) =>
     },
     label: {
       ...getTextStyle(fontWeight, fontSize, true),
+      color: 'white',
     },
   });

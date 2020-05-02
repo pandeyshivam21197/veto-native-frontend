@@ -29,7 +29,9 @@ const Card = (props: ICard): React.ReactElement => {
       <StatusHeader title={title} status={status} subTitle={subTitle} />
       {entities && <EntityList data={entities} cardIndex={cardIndex} />}
       {thumbnails && <ThumbnailList data={thumbnails} cardIndex={cardIndex} />}
-      {description ? <Text>{description}</Text> : null}
+      {description ? (
+        <Text containerStyle={styles.description}>{description}</Text>
+      ) : null}
     </View>
   );
 };
@@ -41,5 +43,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.nero,
     padding: 12,
     borderRadius: 3,
+  },
+  description: {
+    flex: 1,
+    marginTop: 12,
   },
 });
