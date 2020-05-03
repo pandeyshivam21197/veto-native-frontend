@@ -75,7 +75,9 @@ const Card = (props: ICard): React.ReactElement => {
         <Text containerStyle={styles.description}>{description}</Text>
       ) : null}
       {donationAmount ? (
-        <Text containerStyle={styles.description}>{donationAmount}</Text>
+        <Text containerStyle={styles.description}>
+          {`${t('Common.amount')} ${donationAmount}`}
+        </Text>
       ) : null}
     </TouchableOpacity>
   );

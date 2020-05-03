@@ -1,14 +1,19 @@
 {
   "Home": {
+    "homeTab": "Home"
   },
   "Donate": {
+    "donateTab": "Donate"
   },
   "Distribute": {
+    "distributeTab": "Distribute"
   },
   "Account": {
+    "userTab": "User",
     "userCampaigns": "User Campaigns",
     "joinedCampaigns": "Joined Campaigns",
-    "donationHistory": "Donation History"
+    "donationHistory": "Donation History",
+    "userSettings": "Settings"
   },
   "Login": {
     "login": "Login",
@@ -28,7 +33,8 @@
     "members": "Members:",
     "doners": "Doners:",
     "viewAll": "view all",
-    "retry": "Retry"
+    "retry": "Retry",
+    "amount": "Amount:"
   },
   "ScreenTitle": {
     "login": "Login",

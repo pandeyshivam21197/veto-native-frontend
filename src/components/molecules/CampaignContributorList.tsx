@@ -41,6 +41,7 @@ const CampaignContributorList = (
             title={t('Common.viewAll')}
             showBorder={false}
             onPress={onViewAllPress}
+            needPadding={false}
           />
         )}
       </View>

@@ -22,6 +22,7 @@ interface IButtonProps {
   isLoading?: boolean;
   titleStyle?: StyleProp<TextStyle>;
   showBorder?: boolean;
+  needPadding?: boolean;
 }
 
 const Button = (props: IButtonProps): React.ReactElement => {
@@ -37,14 +38,19 @@ const Button = (props: IButtonProps): React.ReactElement => {
     isLoading = false,
     titleStyle = {},
     showBorder = true,
+    needPadding = true,
   } = props;
 
   const Touchable = PlatformUtils.isAndroid()
     ? TouchableNativeFeedback
     : TouchableOpacity;
 
-  const container: ViewStyle = createStyle(isDisabled, iconName, showBorder)
-    .container;
+  const container: ViewStyle = createStyle(
+    isDisabled,
+    iconName,
+    showBorder,
+    needPadding,
+  ).container;
 
   return (
     // @ts-ignore
@@ -77,6 +83,7 @@ const createStyle = (
   isDisabled: boolean,
   iconName?: string,
   showBorder?: boolean,
+  needPadding?: boolean,
 ) =>
   StyleSheet.create({
     container: {
@@ -85,9 +92,9 @@ const createStyle = (
       backgroundColor: isDisabled
         ? theme.colors.whiteSmoke
         : theme.colors.transparent,
-      borderColor: showBorder ? theme.colors.nero : theme.colors.white,
+      borderColor: showBorder ? theme.colors.white : theme.colors.nero,
       borderWidth: showBorder ? StyleSheet.hairlineWidth : 0,
-      paddingVertical: showBorder ? 8 : 0,
-      paddingHorizontal: showBorder ? 4 : 0,
+      paddingVertical: needPadding ? 8 : 0,
+      paddingHorizontal: needPadding ? 4 : 0,
     },
   });

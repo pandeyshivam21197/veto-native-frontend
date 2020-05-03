@@ -10,6 +10,7 @@ import {bindActionCreators} from 'redux';
 import UserActions from '@modules/user/actions';
 import LocalService from '@services/Locale/LocaleService';
 import HorizontalCampaignRail from '@components/templates/HorizontalCampaignRail';
+import Button from '@components/atoms/Button';
 
 interface IAccountProps {
   isUserLoading: boolean;
@@ -38,11 +39,17 @@ class AccountScreen extends React.PureComponent<IAccountProps, any> {
   }
 
   public renderScreen = (): React.ReactNode => {
+    const {t} = LocalService;
+
     return (
       <ScrollView style={[styles.screenConatiner, styles.flexOne]}>
         {this.renderUserCampaigns()}
         {this.renderUserJoinedCampaigns()}
         {this.renderUserDonationHistory()}
+        <Button
+          title={t('Account.userSettings')}
+          containerStyle={styles.marginHorizontal}
+        />
       </ScrollView>
     );
   };
@@ -130,5 +137,8 @@ const styles = StyleSheet.create({
   },
   screenConatiner: {
     marginVertical: theme.layout.screenVerticalMargin,
+  },
+  marginHorizontal: {
+    marginHorizontal: theme.layout.screenHorizontalMargin,
   },
 });

@@ -5,10 +5,12 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {theme} from '@styles/theme';
 import React from 'react';
 import AccountScreen from '@screens/appScreens/AccountScreen';
+import LocalService from '@services/Locale/LocaleService';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const getTabOptions = (stackName: string) => {
+  const {t} = LocalService;
   let iconName: string;
   const backgroundColor = 'orange';
   let label = '';
@@ -16,19 +18,19 @@ const getTabOptions = (stackName: string) => {
   switch (stackName) {
     case RoutesNames.HomeStack:
       iconName = 'home';
-      label = 'Home';
+      label = t('Home.homeTab');
       break;
     case RoutesNames.DonationStack:
       iconName = 'donate';
-      label = 'Donation';
+      label = t('Donate.donateTab');
       break;
     case RoutesNames.DistributorStack:
       iconName = 'hands-helping';
-      label = 'Distributor';
+      label = t('Distribute.distributeTab');
       break;
     case RoutesNames.AccountStack:
       iconName = 'user-tie';
-      label = 'Account';
+      label = t('Account.userTab');
       break;
     default:
       iconName = 'home';
