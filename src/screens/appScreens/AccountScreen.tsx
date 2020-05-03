@@ -1,16 +1,16 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
-import {IUser} from '@domain/interfaces';
-import {theme} from '@styles/theme';
-import StateAwareComponent from '@components/organisms/StateAwareComponent';
-import {connect} from 'react-redux';
-import {IState} from '@modules/interfaces';
-import UserSelector from '@modules/user/selectors';
-import {bindActionCreators} from 'redux';
-import UserActions from '@modules/user/actions';
-import LocalService from '@services/Locale/LocaleService';
-import HorizontalCampaignRail from '@components/templates/HorizontalCampaignRail';
 import Button from '@components/atoms/Button';
+import StateAwareComponent from '@components/organisms/StateAwareComponent';
+import HorizontalCampaignRail from '@components/templates/HorizontalCampaignRail';
+import {IUser} from '@domain/interfaces';
+import {IState} from '@modules/interfaces';
+import UserActions from '@modules/user/actions';
+import UserSelector from '@modules/user/selectors';
+import LocalService from '@services/Locale/LocaleService';
+import {theme} from '@styles/theme';
+import React from 'react';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 interface IAccountProps {
   isUserLoading: boolean;

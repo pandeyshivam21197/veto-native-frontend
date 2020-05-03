@@ -6,9 +6,9 @@ import {ICampaignRequest} from '@domain/interfaces';
 import {theme} from '@styles/theme';
 import * as React from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import CampaignContributorList from './CampaignContributorList';
-import {t} from 'i18n-js';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import CampaignContributorList from './CampaignContributorList';
+import LocalService from '@services/Locale/LocaleService';
 
 export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;
@@ -43,6 +43,7 @@ const Card = (props: ICard): React.ReactElement => {
   // TODO: add total progress bar
   const displayDoners = donerIds && donerIds.length > 0;
   const updatedGroupMemberIds = [creatorId, ...groupMemberIds];
+  const {t} = LocalService;
 
   return (
     <TouchableOpacity

@@ -1,11 +1,11 @@
-import {IUser} from '@domain/interfaces';
-import {FlatList, View, StyleSheet} from 'react-native';
-import * as React from 'react';
+import Button from '@components/atoms/Button';
 import Divider from '@components/atoms/Divider';
 import Image from '@components/atoms/Image';
 import {Text} from '@components/atoms/Text';
-import Button from '@components/atoms/Button';
+import {IUser} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
+import * as React from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 
 interface IConstributoList {
   data: IUser[];

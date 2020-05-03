@@ -1,8 +1,8 @@
 import Button from '@components/atoms/Button';
 import {Text} from '@components/atoms/Text';
+import LocalService from '@services/Locale/LocaleService';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import LocalService from '@services/Locale/LocaleService';
 
 interface IErrorComponentProps {
   text: string;

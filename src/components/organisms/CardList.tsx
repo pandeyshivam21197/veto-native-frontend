@@ -1,7 +1,7 @@
 import {ICampaignRequest, IDonationHistory} from '@domain/interfaces';
+import {theme} from '@styles/theme';
 import React from 'react';
 import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import {theme} from '@styles/theme';
 
 interface ICardList {
   data: ICampaignRequest[] | IDonationHistory[];

@@ -1,6 +1,6 @@
-import {StyleSheet, View} from 'react-native';
 import {theme} from '@styles/theme';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 
 const Divider = (): React.ReactElement => {
   return <View style={styles.separator} />;

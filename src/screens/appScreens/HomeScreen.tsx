@@ -1,3 +1,4 @@
+import Card from '@components/molecules/Card';
 import CardList from '@components/organisms/CardList';
 import StateAwareComponent from '@components/organisms/StateAwareComponent';
 import {ICampaignRequest} from '@domain/interfaces';
@@ -11,7 +12,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import Card from '@components/molecules/Card';
 
 interface IHomeProps {
   navigation: NavigationScreenProp<NavigationState>;

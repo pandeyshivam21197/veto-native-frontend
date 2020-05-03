@@ -1,11 +1,11 @@
+import Divider from '@components/atoms/Divider';
 import ProgressBar from '@components/atoms/ProgressBar';
+import {Label} from '@components/atoms/Text';
 import StatusHeader from '@components/molecules/StatusHeader';
 import {IEntity} from '@domain/interfaces';
-import React from 'react';
-import {FlatList, StyleProp, View, ViewStyle, StyleSheet} from 'react-native';
-import {Label, Text} from '@components/atoms/Text';
 import LocalService from '@services/Locale/LocaleService';
-import Divider from '@components/atoms/Divider';
+import React from 'react';
+import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 
 interface IEntityList {
   containerStyle?: StyleProp<ViewStyle>;

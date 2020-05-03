@@ -1,13 +1,13 @@
-import * as React from 'react';
-import {
-  TouchableOpacity,
-  TouchableNativeFeedback,
-} from 'react-native-gesture-handler';
-import {PlatformUtils} from '@utils/PlatformUtil';
-import {Text, FontSize, FontWeight} from '@components/atoms/Text';
 import Icon from '@components/atoms/Icon';
-import {StyleSheet, ViewStyle, StyleProp, TextStyle} from 'react-native';
+import {FontSize, FontWeight, Text} from '@components/atoms/Text';
 import {theme} from '@styles/theme';
+import {PlatformUtils} from '@utils/PlatformUtil';
+import * as React from 'react';
+import {StyleProp, StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import {
+  TouchableNativeFeedback,
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 import LoadingSpinner from './LoadingSpinner';
 
 interface IButtonProps {

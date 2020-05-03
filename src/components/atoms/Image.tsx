@@ -1,15 +1,15 @@
+import images from '@assets/images';
 import * as React from 'react';
+import {useState} from 'react';
 import {
   Image as RNImgae,
-  ImageSourcePropType,
   ImageResizeMode,
-  StyleProp,
+  ImageSourcePropType,
   ImageStyle,
+  StyleProp,
   StyleSheet,
   View,
 } from 'react-native';
-import {useState} from 'react';
-import images from '@assets/images';
 
 interface IImage {
   source?: ImageSourcePropType;

@@ -1,10 +1,10 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import Card from '@components/molecules/Card';
-import {ICampaignRequest, IDonationHistory} from '@domain/interfaces';
 import {Text} from '@components/atoms/Text';
-import {theme} from '@styles/theme';
+import Card from '@components/molecules/Card';
 import CardList from '@components/organisms/CardList';
+import {ICampaignRequest, IDonationHistory} from '@domain/interfaces';
+import {theme} from '@styles/theme';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 
 interface IHorizontalCampaign {
   title: string;

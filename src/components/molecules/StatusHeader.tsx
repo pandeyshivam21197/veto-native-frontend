@@ -3,7 +3,7 @@ import {Text} from '@components/atoms/Text';
 import {campaignStatus} from '@domain/interfaces';
 import {theme} from '@styles/theme';
 import * as React from 'react';
-import {StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
+import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 
 interface IStatusHeader {
   title: string;
