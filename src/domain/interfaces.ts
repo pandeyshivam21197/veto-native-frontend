@@ -57,6 +57,6 @@ export interface ICampaignRequest extends ITimeStamps {
   description?: string;
 }
 
-export interface response<D> {
+export interface Response<D> {
   data: {data: D};
 }

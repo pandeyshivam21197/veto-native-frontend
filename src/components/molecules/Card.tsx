@@ -3,12 +3,12 @@ import EntityList from '@components/molecules/EntityList';
 import StatusHeader from '@components/molecules/StatusHeader';
 import ThumbnailList from '@components/molecules/ThumbnailList';
 import {ICampaignRequest} from '@domain/interfaces';
+import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import * as React from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import CampaignContributorList from './CampaignContributorList';
-import LocalService from '@services/Locale/LocaleService';
 
 export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;

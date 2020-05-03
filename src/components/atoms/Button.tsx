@@ -47,9 +47,9 @@ const Button = (props: IButtonProps): React.ReactElement => {
 
   const container: ViewStyle = createStyle(
     isDisabled,
-    iconName,
     showBorder,
     needPadding,
+    iconName,
   ).container;
 
   return (
@@ -81,9 +81,9 @@ export default Button;
 
 const createStyle = (
   isDisabled: boolean,
+  showBorder: boolean,
+  needPadding: boolean,
   iconName?: string,
-  showBorder?: boolean,
-  needPadding?: boolean,
 ) =>
   StyleSheet.create({
     container: {

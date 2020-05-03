@@ -1,7 +1,7 @@
 import ApiClient from '@network/ApiClient';
 import {baseUrl} from '@network/Constants';
 import {getHomeCampaignRequests} from './graphQueries';
-import {ICampaignRequest, response} from './interfaces';
+import {ICampaignRequest, Response} from './interfaces';
 
 const apiClient = new ApiClient({baseUrl});
 
@@ -11,7 +11,7 @@ interface IGetCampaignRequestsResponse {
 
 export const fetchHomeFeeds = async (
   pageNumber: number,
-): Promise<response<IGetCampaignRequestsResponse>> => {
+): Promise<Response<IGetCampaignRequestsResponse>> => {
   return await apiClient.post(getHomeCampaignRequests(pageNumber), {
     'Content-Type': 'application/json',
   });

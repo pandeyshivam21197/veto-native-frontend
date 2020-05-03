@@ -1,10 +1,10 @@
-import React from 'react';
-import {SafeAreaView, View, StyleSheet} from 'react-native';
-import CardList from '@components/organisms/CardList';
 import Card from '@components/molecules/Card';
+import CardList from '@components/organisms/CardList';
+import StateAwareComponent from '@components/organisms/StateAwareComponent';
 import {ICampaignRequest} from '@domain/interfaces';
 import {theme} from '@styles/theme';
-import StateAwareComponent from '@components/organisms/StateAwareComponent';
+import React from 'react';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 
 class DonationScreen extends React.PureComponent<any, any> {
   componentDidMount() {
