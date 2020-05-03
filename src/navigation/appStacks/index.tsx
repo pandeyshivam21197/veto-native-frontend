@@ -4,6 +4,7 @@ import RoutesNames from '@navigation/routes';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {theme} from '@styles/theme';
 import React from 'react';
+import AccountScreen from '@screens/appScreens/AccountScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -65,7 +66,7 @@ const AppTabs = () => (
     />
     <Tab.Screen
       name={RoutesNames.AccountStack}
-      component={HomeStack}
+      component={AccountScreen}
       options={getTabOptions(RoutesNames.AccountStack)}
     />
   </Tab.Navigator>

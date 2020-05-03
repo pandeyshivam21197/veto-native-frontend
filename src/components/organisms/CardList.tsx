@@ -1,24 +1,42 @@
-import Card from '@components/molecules/Card';
-import {ICampaignRequest} from '@domain/interfaces';
+import {ICampaignRequest, IDonationHistory} from '@domain/interfaces';
 import React from 'react';
 import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import {theme} from '@styles/theme';
 
 interface ICardList {
-  data: ICampaignRequest[];
-  containerStyle?: StyleProp<ViewStyle>;
+  data: ICampaignRequest[] | IDonationHistory[];
+  contentContainerStyle?: StyleProp<ViewStyle>;
   isHorizontal?: boolean;
+  renderItem: ({
+    item,
+    index,
+  }: {
+    item: ICampaignRequest;
+    index: number;
+  }) => React.ReactElement;
 }
 
 const CardList = (props: ICardList): React.ReactElement => {
-  const {containerStyle = {}, data, isHorizontal = true} = props;
+  const {
+    contentContainerStyle = {},
+    data,
+    isHorizontal = true,
+    renderItem,
+  } = props;
+
   return (
     <FlatList
       data={data}
       keyExtractor={keyExtractor}
-      renderItem={renderCard}
+      renderItem={renderItem}
       ItemSeparatorComponent={renderSeperator}
-      contentContainerStyle={containerStyle}
+      contentContainerStyle={[
+        contentContainerStyle,
+        isHorizontal ? styles.HorizontalContent : {},
+      ]}
       horizontal={isHorizontal}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
       listKey={'cardList'}
     />
   );
@@ -31,45 +49,14 @@ const renderSeperator = (): React.ReactElement => (
 const keyExtractor = (item: ICampaignRequest, index: number): string =>
   `${item._id}-${index}`;
 
-const renderCard = ({
-  item,
-  index,
-}: {
-  item: ICampaignRequest;
-  index: number;
-}): React.ReactElement => {
-  const {
-    _id,
-    title,
-    subTitle,
-    status,
-    description,
-    thumbnails,
-    creatorId,
-    donerIds,
-    groupMemberIds,
-  } = item;
-
-  return (
-    <Card
-      _id={_id}
-      title={title}
-      status={status}
-      subTitle={subTitle}
-      description={description}
-      thumbnails={thumbnails}
-      creatorId={creatorId}
-      donerIds={donerIds}
-      groupMemberIds={groupMemberIds}
-      cardIndex={index}
-    />
-  );
-};
-
 export default CardList;
 
 const styles = StyleSheet.create({
   separator: {
     height: 20,
+    width: 20,
+  },
+  HorizontalContent: {
+    paddingHorizontal: theme.layout.screenHorizontalMargin,
   },
 });

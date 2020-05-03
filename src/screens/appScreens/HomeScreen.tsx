@@ -11,6 +11,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import Card from '@components/molecules/Card';
 
 interface IHomeProps {
   navigation: NavigationScreenProp<NavigationState>;
@@ -64,17 +65,57 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
 
     return (
       <View style={[styles.screenConatiner, styles.flexOne]}>
-        <CardList data={feeds} isHorizontal={false} />
+        <CardList
+          data={feeds}
+          isHorizontal={false}
+          renderItem={this.renderHomeCard}
+        />
       </View>
+    );
+  };
+
+  public renderHomeCard = ({
+    item,
+    index,
+  }: {
+    item: ICampaignRequest;
+    index: number;
+  }): React.ReactElement => {
+    const {
+      _id,
+      title,
+      subTitle,
+      status,
+      description,
+      thumbnails,
+      creatorId,
+      donerIds,
+      groupMemberIds,
+    } = item;
+
+    return (
+      <Card
+        _id={_id}
+        title={title}
+        status={status}
+        subTitle={subTitle}
+        description={description}
+        thumbnails={thumbnails}
+        creatorId={creatorId}
+        donerIds={donerIds}
+        groupMemberIds={groupMemberIds}
+        cardIndex={index}
+      />
     );
   };
 }
 
 const mapStateToProps = (state: IState) => {
+  const {getFeedsError, getFeedsLoading, getHomeFeeds} = HomeSelector;
   return {
-    feeds: HomeSelector.getHomeFeeds(state),
-    isFeedsLoading: HomeSelector.getFeedsLoading(state),
-    isFeedError: HomeSelector.getFeedsError(state),
+    feeds: getHomeFeeds(state),
+    isFeedsLoading: getFeedsLoading(state),
+    isFeedError: getFeedsError(state),
   };
 };
 

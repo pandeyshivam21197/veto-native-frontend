@@ -23,17 +23,19 @@ const CampaignContributorList = (
     <React.Fragment>
       {title && <Text style={styles.title}>{title}</Text>}
       <View style={[styles.listContainer, styles.flexOne]}>
-        <FlatList
-          data={data}
-          horizontal={isHorizontal}
-          contentContainerStyle={styles.flexOne}
-          renderItem={
-            isHorizontal ? renderHorizontalItems : renderVerticalItems
-          }
-          ItemSeparatorComponent={
-            isHorizontal ? renderHorizontalSeperator : renderVerticalSeperator
-          }
-        />
+        <View style={[styles.flexOne]}>
+          <FlatList
+            data={data}
+            horizontal={isHorizontal}
+            keyExtractor={keyExtractor}
+            renderItem={
+              isHorizontal ? renderHorizontalItems : renderVerticalItems
+            }
+            ItemSeparatorComponent={
+              isHorizontal ? renderHorizontalSeperator : renderVerticalSeperator
+            }
+          />
+        </View>
         {isHorizontal && (
           <Button
             title={t('Common.viewAll')}
@@ -46,11 +48,14 @@ const CampaignContributorList = (
   );
 };
 
-const renderHorizontalSeperator = () => (
+const keyExtractor = (item: IUser, index: number): string =>
+  `${item._id}-${index}`;
+
+const renderHorizontalSeperator = (): React.ReactElement => (
   <View style={styles.horizontalSeperator} />
 );
 
-const renderVerticalSeperator = () => <Divider />;
+const renderVerticalSeperator = (): React.ReactElement => <Divider />;
 
 const renderHorizontalItems = ({item}: {item: IUser}): React.ReactElement => {
   const {userImage} = item;
@@ -92,6 +97,5 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
 });

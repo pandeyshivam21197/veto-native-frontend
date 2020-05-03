@@ -6,6 +6,9 @@
   "Distribute": {
   },
   "Account": {
+    "userCampaigns": "User Campaigns",
+    "joinedCampaigns": "Joined Campaigns",
+    "donationHistory": "Donation History"
   },
   "Login": {
     "login": "Login",

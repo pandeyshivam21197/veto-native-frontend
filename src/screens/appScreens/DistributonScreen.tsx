@@ -6,7 +6,7 @@ import {ICampaignRequest} from '@domain/interfaces';
 import {theme} from '@styles/theme';
 import StateAwareComponent from '@components/organisms/StateAwareComponent';
 
-class DonationScreen extends React.PureComponent<any, any> {
+class Distribution extends React.PureComponent<any, any> {
   componentDidMount() {
     this.getHomeFeeds();
   }
@@ -84,7 +84,7 @@ class DonationScreen extends React.PureComponent<any, any> {
   };
 }
 
-export default DonationScreen;
+export default Distribution;
 
 const styles = StyleSheet.create({
   flexOne: {

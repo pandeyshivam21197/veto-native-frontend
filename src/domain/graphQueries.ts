@@ -23,42 +23,45 @@ export const postLogin = (email: string, password: string): string => {
 // app screen
 
 // home
+const requiredCampaignData = `
+_id
+title
+status
+description
+thumbnails{
+  url
+  type
+}
+entities{
+  title
+  requestedAmount
+  availedAmount
+  currentPrice
+  status
+  unitType
+  currency
+}
+creatorId{
+  _id
+  name
+  userImage
+}
+donerIds {
+  _id
+  name
+  userImage
+}
+groupMemberIds {
+  _id
+  name
+  userImage
+}`;
+
 export const getHomeCampaignRequests = (page: number) => {
   const payload = {
     query: `mutation{
     getCampaignRequests(page: ${page}) {
-      _id
-      title
-      status
-      description
-      thumbnails{
-        url
-        type
-      }
-      entities{
-        title
-        requestedAmount
-        availedAmount
-        currentPrice
-        status
-        unitType
-        currency
-      }
-      creatorId{
-        _id
-        name
-        userImage
-      }
-      donerIds {
-        _id
-        name
-        userImage
-      }
-      groupMemberIds {
-        _id
-        name
-        userImage
-      }
+      ${requiredCampaignData}
     }
   }`,
   };
@@ -83,15 +86,15 @@ export const getUserData = (): string => {
       contactNumber
       rewardPoints
       campaignRequestIds{
-        _id
+        ${requiredCampaignData}
       }
       joinedCampaignIds{
-        _id
+        ${requiredCampaignData}
       }
       donationHistory
       {
         campaignRequestId{
-          _id
+          ${requiredCampaignData}
         },
         donationAmount
       }

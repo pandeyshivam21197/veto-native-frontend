@@ -30,9 +30,9 @@ export interface IUser {
   DOB: string;
   contactNumber: string;
   rewardPoints: string;
-  campaignRequestIds: ICampaignRequest;
+  campaignRequestIds: ICampaignRequest[];
   joinedCampaignIds: ICampaignRequest[];
-  donationHistory: IDonationHistory;
+  donationHistory: IDonationHistory[];
   userImage: string;
   maxDistance: number;
 }
