@@ -1,4 +1,4 @@
-import {Button} from '@components/atoms/Button';
+import Button from '@components/atoms/Button';
 import {FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {StyleProp, StyleSheet, TextStyle} from 'react-native';
@@ -16,10 +16,9 @@ const FormSubmitButton = (props: IFormButton) => {
 
   return (
     <Button
-      disabled={isLoading || isSubmitting}
+      isDisabled={isLoading || isSubmitting}
       onPress={handleSubmit}
       title={buttonTitle}
-      buttonType={'ghost'}
       containerStyle={styles.container}
       isLoading={isLoading || isSubmitting}
       titleStyle={titleStyle}

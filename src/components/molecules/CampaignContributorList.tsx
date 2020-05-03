@@ -4,38 +4,44 @@ import * as React from 'react';
 import Divider from '@components/atoms/Divider';
 import Image from '@components/atoms/Image';
 import {Text} from '@components/atoms/Text';
-import {Button} from '@components/atoms/Button';
-import {theme} from '@styles/theme';
+import Button from '@components/atoms/Button';
+import LocalService from '@services/Locale/LocaleService';
 
 interface IConstributoList {
   data: IUser[];
   isHorizontal?: boolean;
   title?: string;
+  onViewAllPress?: () => void;
 }
 const CampaignContributorList = (
   props: IConstributoList,
 ): React.ReactElement => {
-  const {data, isHorizontal = true, title} = props;
+  const {data, isHorizontal = true, title, onViewAllPress} = props;
+  const {t} = LocalService;
 
   return (
     <React.Fragment>
       {title && <Text style={styles.title}>{title}</Text>}
-      <FlatList
-        data={data}
-        horizontal={isHorizontal}
-        renderItem={isHorizontal ? renderHorizontalItems : renderVerticalItems}
-        ItemSeparatorComponent={
-          isHorizontal ? renderHorizontalSeperator : renderVerticalSeperator
-        }
-      />
-      {/* {isHorizontal && (
-        <Button
-          buttonType={'ghost'}
-          // containerStyle={styles.buttonContainer}
-          titleStyle={{backgroundColor: 'white'}}
-          title={t('Common.viewAll')}
+      <View style={[styles.listContainer, styles.flexOne]}>
+        <FlatList
+          data={data}
+          horizontal={isHorizontal}
+          contentContainerStyle={styles.flexOne}
+          renderItem={
+            isHorizontal ? renderHorizontalItems : renderVerticalItems
+          }
+          ItemSeparatorComponent={
+            isHorizontal ? renderHorizontalSeperator : renderVerticalSeperator
+          }
         />
-      )} */}
+        {isHorizontal && (
+          <Button
+            title={t('Common.viewAll')}
+            showBorder={false}
+            onPress={onViewAllPress}
+          />
+        )}
+      </View>
     </React.Fragment>
   );
 };
@@ -61,7 +67,7 @@ const renderVerticalItems = ({item}: {item: IUser}): React.ReactElement => {
   const {userImage, name} = item;
 
   return (
-    <View style={styles.verticalItems}>
+    <View style={[styles.verticalItems, styles.flexOne]}>
       <Image source={{uri: userImage}} width={100} height={100} />
       <Text fontSize={'medium'}>{name}</Text>
     </View>
@@ -71,21 +77,21 @@ const renderVerticalItems = ({item}: {item: IUser}): React.ReactElement => {
 export default CampaignContributorList;
 
 const styles = StyleSheet.create({
+  flexOne: {
+    flex: 1,
+  },
   horizontalSeperator: {
     width: 4,
   },
   verticalItems: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   title: {
     marginBottom: 4,
   },
-  buttonContainer: {
-    color: theme.colors.white,
-    backgroundColor: 'white',
-    paddingHorizontal: 0,
-    paddingVertical: 0,
+  listContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

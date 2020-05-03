@@ -24,7 +24,8 @@
     "currentPrice": "Price:",
     "members": "Members:",
     "doners": "Doners:",
-    "viewAll": "View All"
+    "viewAll": "view all",
+    "retry": "Retry"
   },
   "ScreenTitle": {
     "login": "Login",

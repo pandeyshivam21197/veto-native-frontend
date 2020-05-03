@@ -8,10 +8,14 @@ import * as React from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import CampaignContributorList from './CampaignContributorList';
 import {t} from 'i18n-js';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;
   cardIndex: number;
+  onCardPress?: () => void;
+  onMemberViewAll?: () => void;
+  onDonerViewAll?: () => void;
 }
 
 const Card = (props: ICard): React.ReactElement => {
@@ -27,13 +31,18 @@ const Card = (props: ICard): React.ReactElement => {
     donerIds,
     groupMemberIds,
     creatorId,
+    onCardPress,
+    onMemberViewAll,
+    onDonerViewAll,
   } = props;
   // TODO: add total progress bar
   const displayDoners = donerIds && donerIds.length > 0;
   const updatedGroupMemberIds = [creatorId, ...groupMemberIds];
 
   return (
-    <View style={[styles.cardConatiner, containerStyle]}>
+    <TouchableOpacity
+      style={[styles.cardConatiner, containerStyle]}
+      onPress={onCardPress}>
       <StatusHeader title={title} status={status} subTitle={subTitle} />
       {entities && <EntityList data={entities} cardIndex={cardIndex} />}
       {thumbnails && <ThumbnailList data={thumbnails} cardIndex={cardIndex} />}
@@ -41,15 +50,20 @@ const Card = (props: ICard): React.ReactElement => {
         <CampaignContributorList
           data={updatedGroupMemberIds}
           title={t('Common.members')}
+          onViewAllPress={onMemberViewAll}
         />
       )}
       {displayDoners && (
-        <CampaignContributorList data={donerIds} title={t('Common.doners')} />
+        <CampaignContributorList
+          data={donerIds}
+          title={t('Common.doners')}
+          onViewAllPress={onDonerViewAll}
+        />
       )}
       {description ? (
         <Text containerStyle={styles.description}>{description}</Text>
       ) : null}
-    </View>
+    </TouchableOpacity>
   );
 };
 
