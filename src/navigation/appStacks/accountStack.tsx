@@ -1,22 +1,27 @@
 import {defaultScreenStyle} from '@navigation/constant';
 import RoutesNames from '@navigation/routes';
 import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from '@screens/appScreens/Home/HomeScreen';
 import React from 'react';
+import AccountScreen from '@screens/appScreens/Account/AccountScreen';
 
 const Stack = createStackNavigator();
 
-const HomeStack = () => (
+const AccontStack = () => (
   <Stack.Navigator
-    initialRouteName={RoutesNames.HomeScreen}
+    initialRouteName={RoutesNames.AccountScreen}
     screenOptions={{cardStyle: defaultScreenStyle}}>
     <Stack.Screen
-      name={RoutesNames.HomeScreen}
-      component={HomeScreen}
+      name={RoutesNames.AccountScreen}
+      component={AccountScreen}
+      options={{headerShown: false}}
+    />
+    <Stack.Screen
+      name={RoutesNames.SettingScreen}
+      component={AccountScreen}
       options={{headerShown: false}}
     />
     {/*<Stack.Screen name="Details" component={DetailsScreen}/>*/}
   </Stack.Navigator>
 );
 
-export default HomeStack;
+export default AccontStack;

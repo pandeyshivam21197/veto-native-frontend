@@ -2,10 +2,11 @@ import Icon from '@components/atoms/Icon';
 import HomeStack from '@navigation/appStacks/homeStack';
 import RoutesNames from '@navigation/routes';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import AccountScreen from '@screens/appScreens/AccountScreen';
+import AccountScreen from '@screens/appScreens/Account/AccountScreen';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import React from 'react';
+import AccontStack from './accountStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -68,7 +69,7 @@ const AppTabs = () => (
     />
     <Tab.Screen
       name={RoutesNames.AccountStack}
-      component={AccountScreen}
+      component={AccontStack}
       options={getTabOptions(RoutesNames.AccountStack)}
     />
   </Tab.Navigator>

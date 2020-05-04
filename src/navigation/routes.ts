@@ -13,6 +13,7 @@ const appScreens = {
   DonationScreen: 'DonationScreen',
   DistributorScreen: 'DistributorScreen',
   AccountScreen: 'AccountScreen',
+  SettingScreen: 'SettingScreen',
 };
 
 const bootStrapScreens = {

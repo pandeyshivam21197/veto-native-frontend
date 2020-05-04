@@ -1,6 +1,6 @@
 import {commonScreenOption, defaultScreenStyle} from '@navigation/constant';
 import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from '@screens/appScreens/HomeScreen';
+import HomeScreen from '@screens/appScreens/Home/HomeScreen';
 import LoginScreen from '@screens/bootstrapScreens/LoginScreen';
 import onBoardingScreen from '@screens/bootstrapScreens/onBoardingScreen';
 import LocaleService from '@services/Locale/LocaleService';
