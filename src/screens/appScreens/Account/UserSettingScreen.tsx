@@ -139,6 +139,8 @@ class UserSettingScreen extends React.PureComponent<
     );
   };
 
+  // TODO: add max distance
+
   public renderDetails = (): React.ReactNode => {
     const {t} = LocalService;
     const {isChangePasswordPress} = this.state;
@@ -229,14 +231,27 @@ class UserSettingScreen extends React.PureComponent<
   public formSchema = () => {
     const {t} = LocalService;
     return yup.object().shape({
-      name: yup.string().trim().required(t('Login.requiredEmail')),
-      email: yup.string().trim().email().required(t('Login.requiredEmail')),
-      username: yup.string().trim().required(t('Login.requiredEmail')),
-      contactNumber: yup.string().trim().required(t('Login.requiredEmail')),
-      DOB: yup.string().trim().required(t('Login.requiredEmail')),
-      maxDistance: yup.number().required(t('Login.requiredEmail')),
-      oldPassword: yup.string().trim().required(t('Login.requiredEmail')),
-      newPassword: yup.string().trim().required(t('Login.requiredEmail')),
+      name: yup.string().trim().required(t('Setting.requiredName')),
+      email: yup
+        .string()
+        .trim()
+        .email(t('Setting.invalidEmail'))
+        .required(t('Setting.requiredEmail')),
+      username: yup.string().trim().required(t('Setting.requiredUserName')),
+      contactNumber: yup
+        .string()
+        .trim()
+        .required(t('Setting.requiredContactNumber')),
+      DOB: yup.string().trim().required(t('Setting.requiredDOB')),
+      maxDistance: yup.number().required(t('Setting.requiredMaxDistance')),
+      oldPassword: yup
+        .string()
+        .trim()
+        .required(t('Setting.requiredOldPassword')),
+      newPassword: yup
+        .string()
+        .trim()
+        .required(t('Setting.requiredNewPassword')),
     });
   };
 

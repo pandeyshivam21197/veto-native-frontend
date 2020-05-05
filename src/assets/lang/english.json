@@ -24,7 +24,16 @@
     "oldPassword": "Old Password:",
     "newPassword": "New Password:",
     "oldPasswordPlaceholed": "Enter your old password",
-    "newPasswordPlaceholed": "Enter your new password"
+    "newPasswordPlaceholed": "Enter your new password",
+    "invalidEmail": "Please enter a valid email.",
+    "requiredEmail": "Please enter a email.",
+    "requiredName": "Please enter the name.",
+    "requiredUserName": "Please enter the username.",
+    "requiredContactNumber": "Please enter the contact Number.",
+    "requiredDOB": "Please enter the DOB.",
+    "requiredOldPassword": "Please enter the old Password.",
+    "requiredNewPassword": "Please enter the new Password.",
+    "requiredMaxDistance": "Please enter the new max Distance."
   },
   "Login": {
     "login": "Login",

@@ -106,7 +106,6 @@ const getError = (
 ): string | string[] | FormikErrors<any> | FormikErrors<any>[] | undefined => {
   const {formProps, inputName} = props;
   const {errors, touched} = formProps;
-  console.log(touched, 'touched');
   return touched[inputName] && errors[inputName]
     ? errors[inputName]
     : undefined;
