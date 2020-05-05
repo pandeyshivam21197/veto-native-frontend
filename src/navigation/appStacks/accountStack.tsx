@@ -1,8 +1,8 @@
 import {defaultScreenStyle} from '@navigation/constant';
 import RoutesNames from '@navigation/routes';
 import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
 import AccountScreen from '@screens/appScreens/Account/AccountScreen';
+import React from 'react';
 
 const Stack = createStackNavigator();
 

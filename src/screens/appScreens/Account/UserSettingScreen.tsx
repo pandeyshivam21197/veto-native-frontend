@@ -1,28 +1,27 @@
+import Button from '@components/atoms/Button';
+import Image from '@components/atoms/Image';
+import FormSubmitButton from '@components/molecules/FormSubmitButton';
+import FormTextInput from '@components/molecules/FormTextInput';
 import StateAwareComponent from '@components/organisms/StateAwareComponent';
+import {IUser} from '@domain/interfaces';
 import {IState} from '@modules/interfaces';
 import UserActions from '@modules/user/actions';
 import UserSelector from '@modules/user/selectors';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
+import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {
+  KeyboardAvoidingView,
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  KeyboardAvoidingView,
   View,
 } from 'react-native';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {IUser} from '@domain/interfaces';
-import FormTextInput from '@components/molecules/FormTextInput';
-import {Formik, FormikProps, FormikValues} from 'formik';
-import FormSubmitButton from '@components/molecules/FormSubmitButton';
-import Image from '@components/atoms/Image';
-import {Text} from '@components/atoms/Text';
 // @ts-ignore
 import Lightbox from 'react-native-lightbox';
-import Button from '@components/atoms/Button';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as yup from 'yup';
 
 interface ISettingProps {
