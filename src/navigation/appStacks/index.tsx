@@ -2,11 +2,11 @@ import Icon from '@components/atoms/Icon';
 import HomeStack from '@navigation/appStacks/homeStack';
 import RoutesNames from '@navigation/routes';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import AccountScreen from '@screens/appScreens/Account/AccountScreen';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import React from 'react';
 import AccontStack from './accountStack';
+import SettingStack from './settingStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -32,6 +32,10 @@ const getTabOptions = (stackName: string) => {
     case RoutesNames.AccountStack:
       iconName = 'user-tie';
       label = t('Account.userTab');
+      break;
+    case RoutesNames.SettingStack:
+      iconName = 'cog';
+      label = t('Setting.settingTab');
       break;
     default:
       iconName = 'home';
@@ -71,6 +75,11 @@ const AppTabs = () => (
       name={RoutesNames.AccountStack}
       component={AccontStack}
       options={getTabOptions(RoutesNames.AccountStack)}
+    />
+    <Tab.Screen
+      name={RoutesNames.SettingStack}
+      component={SettingStack}
+      options={getTabOptions(RoutesNames.SettingStack)}
     />
   </Tab.Navigator>
 );

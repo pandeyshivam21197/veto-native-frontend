@@ -9,6 +9,8 @@ import {
   TextInput,
   TextInputProps,
   TextStyle,
+  View,
+  ViewStyle,
 } from 'react-native';
 
 type SupportedInputType =
@@ -24,11 +26,18 @@ interface IFromTextProps extends TextInputProps {
   inputName: string;
   label?: string;
   labelStyle?: StyleProp<TextStyle>;
+  textInputStyle?: StyleProp<TextStyle>;
+  constainerStyle?: StyleProp<ViewStyle>;
   inputType?: SupportedInputType;
 }
 
 const FormTextInput = (props: IFromTextProps) => {
-  const {label, labelStyle} = props;
+  const {
+    label,
+    labelStyle = {},
+    constainerStyle = {},
+    textInputStyle = {},
+  } = props;
 
   const inputProps = getInputProps(props);
 
@@ -43,16 +52,17 @@ const FormTextInput = (props: IFromTextProps) => {
     // TODO: change textInput border
     inputProps.style = {...inputProps.style, ...styles.error};
   }
+  inputProps.style = [inputProps.style, textInputStyle];
 
   return (
-    <React.Fragment>
+    <View style={constainerStyle}>
       {label && (
         <Text containerStyle={[styles.label, labelStyle]}>{label}</Text>
       )}
       <WithFieldError error={error as string}>
         <TextInput {...inputProps} />
       </WithFieldError>
-    </React.Fragment>
+    </View>
   );
 };
 
@@ -65,6 +75,7 @@ const getInputProps = (props: IFromTextProps): FormikValues => {
     placeholder,
     onChangeText: handleChange(inputName),
     style: styles.textInput,
+    placeholderTextColor: theme.colors.white,
   };
 
   switch (inputType) {
@@ -75,6 +86,12 @@ const getInputProps = (props: IFromTextProps): FormikValues => {
       inputProps = {
         ...inputProps,
         secureTextEntry: true,
+      };
+      break;
+    case 'number':
+      inputProps = {
+        ...inputProps,
+        ...{keyboardType: 'number-pad'},
       };
       break;
     default:
@@ -89,6 +106,7 @@ const getError = (
 ): string | string[] | FormikErrors<any> | FormikErrors<any>[] | undefined => {
   const {formProps, inputName} = props;
   const {errors, touched} = formProps;
+  console.log(touched, 'touched');
   return touched[inputName] && errors[inputName]
     ? errors[inputName]
     : undefined;

@@ -27,7 +27,12 @@ const Image = (props: IImage): React.ReactElement => {
   const onLoadEnd = () => setLoaded(true);
 
   if (!source) {
-    return <RNImgae source={images.splashBackgroundImage} style={imageStyle} />;
+    return (
+      <RNImgae
+        source={images.splashBackgroundImage}
+        style={[imageStyle, style]}
+      />
+    );
   }
 
   return (

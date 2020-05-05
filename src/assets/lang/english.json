@@ -15,6 +15,17 @@
     "donationHistory": "Donation History",
     "userSettings": "Settings"
   },
+  "Setting": {
+    "settingTab": "Setting",
+    "username": "Username:",
+    "email": "Email:",
+    "contactNumber": "Contact Number:",
+    "DOB": "DOB:",
+    "oldPassword": "Old Password:",
+    "newPassword": "New Password:",
+    "oldPasswordPlaceholed": "Enter your old password",
+    "newPasswordPlaceholed": "Enter your new password"
+  },
   "Login": {
     "login": "Login",
     "emailPlaceHolder": "Enter you email",

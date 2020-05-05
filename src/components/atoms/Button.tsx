@@ -25,6 +25,10 @@ interface IButtonProps {
   needPadding?: boolean;
 }
 
+export const Touchable = PlatformUtils.isAndroid()
+  ? TouchableNativeFeedback
+  : TouchableOpacity;
+
 const Button = (props: IButtonProps): React.ReactElement => {
   const {
     title,
@@ -40,10 +44,6 @@ const Button = (props: IButtonProps): React.ReactElement => {
     showBorder = true,
     needPadding = true,
   } = props;
-
-  const Touchable = PlatformUtils.isAndroid()
-    ? TouchableNativeFeedback
-    : TouchableOpacity;
 
   const container: ViewStyle = createStyle(
     isDisabled,
