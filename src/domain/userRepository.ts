@@ -1,6 +1,6 @@
 import ApiClient from '@network/ApiClient';
 import {baseUrl} from '@network/Constants';
-import {getUserData, patchUserData, IPatchUserData} from './graphQueries';
+import {getUserData, IPatchUserData, patchUserData} from './graphQueries';
 import {IUser, Response} from './interfaces';
 
 const apiClient = new ApiClient({baseUrl});

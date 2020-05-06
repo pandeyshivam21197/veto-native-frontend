@@ -1,9 +1,11 @@
 import Button from '@components/atoms/Button';
 import Image from '@components/atoms/Image';
+import {Text} from '@components/atoms/Text';
 import FormSubmitButton from '@components/molecules/FormSubmitButton';
 import FormTextInput from '@components/molecules/FormTextInput';
 import StateAwareComponent from '@components/organisms/StateAwareComponent';
 import {IUser} from '@domain/interfaces';
+import {patchedUserData} from '@domain/userRepository';
 import {IState} from '@modules/interfaces';
 import UserActions from '@modules/user/actions';
 import UserSelector from '@modules/user/selectors';
@@ -20,13 +22,10 @@ import {
 } from 'react-native';
 // @ts-ignore
 import Lightbox from 'react-native-lightbox';
+// @ts-ignore
+import Slider from 'react-native-slider';
 import {connect} from 'react-redux';
 import * as yup from 'yup';
-//@ts-ignore
-import Slider from 'react-native-slider';
-import {Text} from '@components/atoms/Text';
-import {patchedUserData} from '@domain/userRepository';
-
 interface ISettingProps {
   isUserLoading: boolean;
   userData: IUser | null;
@@ -340,6 +339,9 @@ class UserSettingScreen extends React.PureComponent<
       },
     } = this.state;
 
+    const isPasswordChanged =
+      values.oldPassword !== oldPassword && values.newPassword !== newPassword;
+
     const showButton =
       values.name !== name ||
       values.username !== username ||
@@ -347,8 +349,7 @@ class UserSettingScreen extends React.PureComponent<
       values.contactNumber !== contactNumber ||
       values.DOB !== DOB ||
       values.maxDistance !== maxDistance ||
-      (values.oldPassword !== oldPassword &&
-        values.newPassword !== newPassword);
+      isPasswordChanged;
 
     if (showButton) {
       return <FormSubmitButton formProps={formProps} buttonTitle={'Save'} />;

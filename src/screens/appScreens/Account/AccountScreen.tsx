@@ -1,4 +1,3 @@
-import Button from '@components/atoms/Button';
 import StateAwareComponent from '@components/organisms/StateAwareComponent';
 import HorizontalCampaignRail from '@components/templates/HorizontalCampaignRail';
 import {IUser} from '@domain/interfaces';
@@ -39,8 +38,6 @@ class AccountScreen extends React.PureComponent<IAccountProps, any> {
   }
 
   public renderScreen = (): React.ReactNode => {
-    const {t} = LocalService;
-
     return (
       <ScrollView style={[styles.screenConatiner, styles.flexOne]}>
         {this.renderUserCampaigns()}
