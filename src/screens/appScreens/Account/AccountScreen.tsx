@@ -46,10 +46,6 @@ class AccountScreen extends React.PureComponent<IAccountProps, any> {
         {this.renderUserCampaigns()}
         {this.renderUserJoinedCampaigns()}
         {this.renderUserDonationHistory()}
-        <Button
-          title={t('Account.userSettings')}
-          containerStyle={styles.marginHorizontal}
-        />
       </ScrollView>
     );
   };

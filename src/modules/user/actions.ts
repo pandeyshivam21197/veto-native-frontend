@@ -48,6 +48,11 @@ const getUserAccountData = () => async (dispatch: any): Promise<void> => {
   }
 };
 
-const UserActions = {getUserAccountData};
+const UserActions = {
+  getUserAccountData,
+  setUserDataSuccess,
+  setUserDataError,
+  setUserDataLoading,
+};
 
 export default UserActions;

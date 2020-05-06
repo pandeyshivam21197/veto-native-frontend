@@ -21,13 +21,18 @@ import {
 // @ts-ignore
 import Lightbox from 'react-native-lightbox';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import * as yup from 'yup';
+//@ts-ignore
+import Slider from 'react-native-slider';
+import {Text} from '@components/atoms/Text';
+import {patchedUserData} from '@domain/userRepository';
 
 interface ISettingProps {
   isUserLoading: boolean;
   userData: IUser | null;
   userError: string;
+  setUserDataSuccess: (userData: IUser) => void;
+  setUserDataError: (string: string) => void;
   getUserAccountData: () => void;
 }
 
@@ -36,14 +41,16 @@ interface ISettingState {
     name: string;
     username: string;
     email: string;
+    maxDistance: number;
     contactNumber: string;
     DOB: string;
-    maxDistance: number;
     oldPassword: string;
     newPassword: string;
+    isChangePasswordPress: boolean;
   };
-  isChangePasswordPress: boolean;
+  isScreenLoading: boolean;
 }
+
 class UserSettingScreen extends React.PureComponent<
   ISettingProps,
   ISettingState
@@ -61,25 +68,56 @@ class UserSettingScreen extends React.PureComponent<
           username,
           email,
           contactNumber,
-          DOB,
           maxDistance,
+          DOB,
           oldPassword: '',
           newPassword: '',
+          isChangePasswordPress: false,
         },
-        isChangePasswordPress: false,
+        isScreenLoading: false,
       };
     }
   }
+
+  static getDerivedStateFromProps(
+    nextProps: ISettingProps,
+    prevProps: ISettingState,
+  ) {
+    const {userData} = nextProps;
+    const {isScreenLoading} = prevProps;
+
+    if (userData && isScreenLoading) {
+      const {name, username, email, contactNumber, DOB, maxDistance} = userData;
+
+      return {
+        userDetails: {
+          name,
+          username,
+          email,
+          contactNumber,
+          maxDistance,
+          DOB,
+          oldPassword: '',
+          newPassword: '',
+          isChangePasswordPress: false,
+        },
+      };
+    }
+    return null;
+  }
+
   public getUserData = (): void => {
     this.props.getUserAccountData();
   };
 
   render() {
     const {isUserLoading, userError} = this.props;
+    const {isScreenLoading} = this.state;
+
     return (
       <SafeAreaView style={[styles.container, styles.flexOne]}>
         <StateAwareComponent
-          loading={isUserLoading}
+          loading={isUserLoading || isScreenLoading}
           error={userError}
           renderComponent={this.renderScreen()}
           onErrorPress={this.getUserData}
@@ -95,8 +133,10 @@ class UserSettingScreen extends React.PureComponent<
           contentContainerStyle={[styles.screenConatiner, styles.flexOne]}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}>
-          {this.renderUserImage()}
-          {this.renderDetails()}
+          <View style={styles.flexOne}>
+            {this.renderUserImage()}
+            {this.renderDetails()}
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     );
@@ -139,11 +179,13 @@ class UserSettingScreen extends React.PureComponent<
     );
   };
 
-  // TODO: add max distance
+  // TODO: location: String
+  // idProofType: String
+  // idProofImageUrl: String
 
   public renderDetails = (): React.ReactNode => {
     const {t} = LocalService;
-    const {isChangePasswordPress} = this.state;
+    const {userDetails} = this.state;
 
     return (
       <View style={styles.flexOne}>
@@ -151,78 +193,97 @@ class UserSettingScreen extends React.PureComponent<
           initialValues={this.state.userDetails}
           onSubmit={this.onUserDetailSubmit}
           validationSchema={this.formSchema()}>
-          {(formProps: FormikProps<FormikValues>) => (
-            <React.Fragment>
-              <FormTextInput
-                formProps={formProps}
-                inputName="name"
-                textInputStyle={[styles.textInput, styles.userNameInput]}
-              />
-              <View style={styles.inputGroupsContainer}>
-                <View style={styles.inputGroups}>
-                  <FormTextInput
-                    label={t('Setting.username')}
-                    formProps={formProps}
-                    inputName="username"
-                    textInputStyle={styles.textInput}
-                    constainerStyle={styles.textInputContainer}
-                  />
-                  <View style={styles.seprator} />
-                  <FormTextInput
-                    label={t('Setting.email')}
-                    formProps={formProps}
-                    inputName="email"
-                    textInputStyle={styles.textInput}
-                    constainerStyle={styles.textInputContainer}
-                  />
-                </View>
-                <View style={styles.inputGroups}>
-                  <FormTextInput
-                    label={t('Setting.contactNumber')}
-                    formProps={formProps}
-                    inputType="number"
-                    inputName="contactNumber"
-                    textInputStyle={styles.textInput}
-                    constainerStyle={styles.textInputContainer}
-                  />
-                  <View style={styles.seprator} />
-                  <FormTextInput
-                    label={t('Setting.DOB')}
-                    formProps={formProps}
-                    inputName="DOB"
-                    textInputStyle={styles.textInput}
-                    constainerStyle={styles.textInputContainer}
-                  />
-                </View>
-                {isChangePasswordPress ? (
-                  <React.Fragment>
+          {(formProps: FormikProps<FormikValues>) => {
+            const onSilderChange = (value: number) =>
+              this.onSliderValueChange(value, formProps);
+
+            return (
+              <React.Fragment>
+                <FormTextInput
+                  formProps={formProps}
+                  inputName="name"
+                  textInputStyle={[styles.textInput, styles.userNameInput]}
+                />
+                <View style={styles.inputGroupsContainer}>
+                  <View style={styles.inputGroups}>
                     <FormTextInput
-                      label={t('Setting.oldPassword')}
+                      label={t('Setting.username')}
                       formProps={formProps}
-                      inputName="oldPassword"
-                      placeholder={t('Setting.oldPasswordPlaceholed')}
+                      inputName="username"
                       textInputStyle={styles.textInput}
+                      constainerStyle={styles.textInputContainer}
                     />
                     <View style={styles.seprator} />
                     <FormTextInput
-                      label={t('Setting.newPassword')}
+                      label={t('Setting.email')}
                       formProps={formProps}
-                      placeholder={t('Setting.newPasswordPlaceholed')}
-                      inputName="newPassword"
+                      inputName="email"
                       textInputStyle={styles.textInput}
+                      constainerStyle={styles.textInputContainer}
+                    />
+                  </View>
+                  <View style={styles.inputGroups}>
+                    <FormTextInput
+                      label={t('Setting.contactNumber')}
+                      formProps={formProps}
+                      inputType="number"
+                      inputName="contactNumber"
+                      textInputStyle={styles.textInput}
+                      constainerStyle={styles.textInputContainer}
+                    />
+                    <View style={styles.seprator} />
+                    <FormTextInput
+                      label={t('Setting.DOB')}
+                      formProps={formProps}
+                      inputName="DOB"
+                      textInputStyle={styles.textInput}
+                      constainerStyle={styles.textInputContainer}
+                    />
+                  </View>
+                  <React.Fragment>
+                    <Text containerStyle={styles.sliderText}>
+                      {formProps.values.maxDistance}
+                    </Text>
+                    <Slider
+                      value={userDetails.maxDistance}
+                      onValueChange={onSilderChange}
+                      step={1}
+                      minimumValue={0}
+                      maximumValue={100}
+                      minimumTrackTintColor={theme.colors.orange}
+                      maximumTrackTintColor={theme.colors.white}
                     />
                   </React.Fragment>
-                ) : (
-                  <Button
-                    title={'Change Password'}
-                    onPress={this.onChangePassword}
-                    containerStyle={styles.changePasswordButton}
-                  />
-                )}
-                {this.renderSubmitButton(formProps)}
-              </View>
-            </React.Fragment>
-          )}
+                  {userDetails.isChangePasswordPress ? (
+                    <React.Fragment>
+                      <FormTextInput
+                        label={t('Setting.oldPassword')}
+                        formProps={formProps}
+                        inputName="oldPassword"
+                        placeholder={t('Setting.oldPasswordPlaceholed')}
+                        textInputStyle={styles.textInput}
+                      />
+                      <View style={styles.seprator} />
+                      <FormTextInput
+                        label={t('Setting.newPassword')}
+                        formProps={formProps}
+                        placeholder={t('Setting.newPasswordPlaceholed')}
+                        inputName="newPassword"
+                        textInputStyle={styles.textInput}
+                      />
+                    </React.Fragment>
+                  ) : (
+                    <Button
+                      title={'Change Password'}
+                      onPress={this.onChangePassword}
+                      containerStyle={styles.changePasswordButton}
+                    />
+                  )}
+                  {this.renderSubmitButton(formProps)}
+                </View>
+              </React.Fragment>
+            );
+          }}
         </Formik>
       </View>
     );
@@ -244,15 +305,22 @@ class UserSettingScreen extends React.PureComponent<
         .required(t('Setting.requiredContactNumber')),
       DOB: yup.string().trim().required(t('Setting.requiredDOB')),
       maxDistance: yup.number().required(t('Setting.requiredMaxDistance')),
-      oldPassword: yup
-        .string()
-        .trim()
-        .required(t('Setting.requiredOldPassword')),
-      newPassword: yup
-        .string()
-        .trim()
-        .required(t('Setting.requiredNewPassword')),
+      oldPassword: yup.string().when('isChangePasswordPress', {
+        is: true,
+        then: yup.string().trim().required(t('Setting.requiredOldPassword')),
+      }),
+      newPassword: yup.string().when('isChangePasswordPress', {
+        is: true,
+        then: yup.string().trim().required(t('Setting.requiredNewPassword')),
+      }),
     });
+  };
+
+  public onSliderValueChange = (
+    value: number,
+    formProps: FormikProps<FormikValues>,
+  ) => {
+    formProps.setFieldValue('maxDistance', value);
   };
 
   public renderSubmitButton = (
@@ -289,12 +357,51 @@ class UserSettingScreen extends React.PureComponent<
     return null;
   };
 
-  public onUserDetailSubmit = () => {};
+  public onUserDetailSubmit = async (values: FormikValues) => {
+    const {setUserDataError, setUserDataSuccess} = this.props;
+
+    const {
+      name,
+      username,
+      email,
+      maxDistance,
+      contactNumber,
+      DOB,
+      oldPassword,
+      newPassword,
+    } = values;
+
+    this.setState({isScreenLoading: true});
+    try {
+      const userResponse = await patchedUserData({
+        name,
+        username,
+        email,
+        maxDistance,
+        contactNumber,
+        DOB,
+        oldPassword,
+        newPassword,
+      });
+
+      const {
+        data: {
+          data: {patchUserData},
+        },
+      } = userResponse;
+
+      setUserDataSuccess(patchUserData);
+      this.setState({isScreenLoading: false});
+    } catch (e) {
+      setUserDataError(e.message);
+    }
+  };
 
   public onChangePassword = (): void => {
-    this.setState({
-      isChangePasswordPress: true,
-    });
+    const {userDetails} = this.state;
+    const newUserDetails = {...userDetails, isChangePasswordPress: true};
+
+    this.setState({userDetails: newUserDetails});
   };
 }
 
@@ -309,14 +416,18 @@ const mapStateToProps = (state: IState) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => {
-  const {getUserAccountData} = UserActions;
+  const {
+    setUserDataSuccess,
+    setUserDataError,
+    getUserAccountData,
+  } = UserActions;
 
-  return bindActionCreators(
-    {
-      getUserAccountData,
-    },
-    dispatch,
-  );
+  return {
+    setUserDataSuccess: (payload: IUser) =>
+      dispatch(setUserDataSuccess(payload)),
+    setUserDataError: (error: string) => dispatch(setUserDataError(error)),
+    getUserAccountData: () => dispatch(getUserAccountData()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSettingScreen);
@@ -370,5 +481,8 @@ const styles = StyleSheet.create({
   },
   changePasswordButton: {
     marginTop: 16,
+  },
+  sliderText: {
+    alignSelf: 'flex-end',
   },
 });

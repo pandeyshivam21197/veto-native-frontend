@@ -70,12 +70,8 @@ export const getHomeCampaignRequests = (page: number) => {
 };
 
 // user
-
-export const getUserData = (): string => {
-  const payload = {
-    query: `query{
-    getUserData{
-      _id
+const requiredUserData = `
+_id
       name
       username
       email
@@ -99,7 +95,65 @@ export const getUserData = (): string => {
         donationAmount
       }
       maxDistance
+`;
+
+export const getUserData = (): string => {
+  const payload = {
+    query: `query{
+    getUserData{
+      ${requiredUserData}
     }
+  }`,
+  };
+
+  return JSON.stringify(payload);
+};
+
+// Account
+
+export interface IPatchUserData {
+  name?: string;
+  username?: string;
+  email?: string;
+  oldPassword?: string;
+  newPassword?: string;
+  location?: string;
+  idProofType?: string;
+  idProofImageUrl?: string;
+  maxDistance?: number;
+  DOB?: string;
+  userImage?: string;
+  contactNumber?: number;
+}
+
+const getDefinedUserInput = (userInput: IPatchUserData) => {
+  let inputString = '';
+  let keyValueString = '';
+  for (const [key, value] of Object.entries(userInput)) {
+    if (value) {
+      if (key === 'maxDistance') {
+        keyValueString = `${key}: ${value},\n`;
+      } else {
+        keyValueString = `${key}: "${value}",\n`;
+      }
+      inputString = inputString + keyValueString;
+    }
+  }
+
+  return inputString;
+};
+
+export const patchUserData = (userInput: IPatchUserData): string => {
+  const userIputParam = getDefinedUserInput(userInput);
+
+  const payload = {
+    query: `mutation{
+      patchUserData(
+        userInput: {
+          ${userIputParam}
+        }){
+        ${requiredUserData}
+      }
   }`,
   };
 

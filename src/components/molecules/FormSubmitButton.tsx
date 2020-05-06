@@ -28,7 +28,7 @@ const FormSubmitButton = (props: IFormButton) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 60,
+    marginTop: 50,
     width: 150,
     alignSelf: 'center',
   },
