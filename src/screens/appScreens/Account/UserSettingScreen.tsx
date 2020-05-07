@@ -26,7 +26,10 @@ import Lightbox from 'react-native-lightbox';
 import Slider from 'react-native-slider';
 import {connect} from 'react-redux';
 import * as yup from 'yup';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
+
 interface ISettingProps {
+  navigation: NavigationScreenProp<NavigationState>;
   isUserLoading: boolean;
   userData: IUser | null;
   userError: string;
@@ -358,6 +361,7 @@ class UserSettingScreen extends React.PureComponent<
     return null;
   };
 
+  // TODO: catch error from the response, checkout apolo error handling library
   public onUserDetailSubmit = async (values: FormikValues) => {
     const {setUserDataError, setUserDataSuccess} = this.props;
 
@@ -395,6 +399,7 @@ class UserSettingScreen extends React.PureComponent<
       this.setState({isScreenLoading: false});
     } catch (e) {
       setUserDataError(e.message);
+      this.setState({isScreenLoading: false});
     }
   };
 

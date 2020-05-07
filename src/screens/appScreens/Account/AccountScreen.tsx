@@ -10,8 +10,10 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 
 interface IAccountProps {
+  navigation: NavigationScreenProp<NavigationState>;
   isUserLoading: boolean;
   userData: IUser | null;
   userError: string;

@@ -54,7 +54,10 @@
     "doners": "Doners:",
     "viewAll": "view all",
     "retry": "Retry",
-    "amount": "Amount:"
+    "amount": "Amount:",
+    "donate": "Donate",
+    "donatePlaceholder": "Please Donate",
+    "campaignOverview": "Campaign Overview:"
   },
   "ScreenTitle": {
     "login": "Login",

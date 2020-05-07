@@ -51,8 +51,8 @@ export interface ICampaignRequest extends ITimeStamps {
   entities?: IEntity[];
   status: campaignStatus;
   creatorId: IUser;
-  donerIds: IUser[];
-  groupMemberIds: IUser[];
+  donerIds?: IUser[];
+  groupMemberIds?: IUser[];
   thumbnails?: IThumbnail[];
   description?: string;
 }

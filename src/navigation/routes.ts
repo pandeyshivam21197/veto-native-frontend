@@ -15,6 +15,7 @@ const appScreens = {
   DistributorScreen: 'DistributorScreen',
   AccountScreen: 'AccountScreen',
   SettingScreen: 'SettingScreen',
+  HomeCampaignDescriptionScreen: 'HomeCampaignDescriptionScreen',
 };
 
 const bootStrapScreens = {

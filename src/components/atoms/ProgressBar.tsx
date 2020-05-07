@@ -9,6 +9,7 @@ import {
   Pie,
   PiePropTypes,
 } from 'react-native-progress';
+import {StyleSheet} from 'react-native';
 
 interface IProgressBar {
   type: 'bar' | 'pie' | 'circle' | 'circleSnail';
@@ -25,10 +26,12 @@ const ProgressBar = (props: IProgressBar) => {
   let newProps = {...barProps};
   if (showsText && progress) {
     const formatText = () => {
-      return `${progress * 100} %`;
+      return `${Math.floor(progress * 100)} %`;
     };
+
     newProps = {
       ...barProps,
+      style: [barProps.style, styles.progressBar],
       formatText,
       textStyle: {fontWeight: '800'},
     };
@@ -54,3 +57,9 @@ const getBarTag = (type: string) => {
 };
 
 export default ProgressBar;
+
+const styles = StyleSheet.create({
+  progressBar: {
+    marginVertical: 20,
+  },
+});

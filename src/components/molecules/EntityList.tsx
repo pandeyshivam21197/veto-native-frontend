@@ -6,16 +6,24 @@ import {IEntity} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
 import React from 'react';
 import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import {Formik, FormikProps, FormikValues} from 'formik';
+import FormTextInput from './FormTextInput';
+import FormSubmitButton from './FormSubmitButton';
 
 interface IEntityList {
   containerStyle?: StyleProp<ViewStyle>;
   data: IEntity[];
   isHorizontal?: boolean;
-  cardIndex: number;
+  cardIndex?: number;
 }
 
 const EntityList = (props: IEntityList): React.ReactElement => {
-  const {containerStyle = {}, data, isHorizontal = false, cardIndex} = props;
+  const {
+    containerStyle = {},
+    data,
+    isHorizontal = false,
+    cardIndex = 0,
+  } = props;
 
   return (
     <FlatList
@@ -47,6 +55,9 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
   } = item;
   const {t} = LocalService;
 
+  const entityValue = 0;
+  const requiredValue = requestedAmount - availedAmount;
+
   const unit = unitType ? unitType : t('Common.unit');
   const progress = availedAmount / requestedAmount;
 
@@ -73,15 +84,42 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
           {`${t('Common.availedAmount')} ${availedAmount} ${unit}`}
         </Label>
       </View>
-      <View style={styles.progressBar}>
-        <ProgressBar
-          type={'circle'}
-          barProps={{showsText: true, progress, size: 60, fill: 'yellow'}}
-        />
-      </View>
+      <ProgressBar
+        type={'circle'}
+        barProps={{
+          showsText: true,
+          progress,
+          size: 60,
+          fill: 'yellow',
+          style: styles.progressBar,
+        }}
+      />
+      {progress !== 1 && (
+        <Formik
+          initialValues={{entityValue, requiredValue}}
+          onSubmit={onDonate}>
+          {(formProps: FormikProps<FormikValues>) => (
+            <View>
+              <FormTextInput
+                formProps={formProps}
+                inputName={'entityValue'}
+                inputType={'number'}
+                placeholder={t('Common.donatePlaceholder')}
+              />
+              <FormSubmitButton
+                formProps={formProps}
+                buttonTitle={t('Common.donate')}
+                containerStyle={styles.donateButton}
+              />
+            </View>
+          )}
+        </Formik>
+      )}
     </View>
   );
 };
+
+const onDonate = () => {};
 
 export default EntityList;
 
@@ -105,5 +143,8 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginEnd: 4,
+  },
+  donateButton: {
+    marginTop: 12,
   },
 });

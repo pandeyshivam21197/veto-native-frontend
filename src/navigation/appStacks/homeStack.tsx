@@ -3,6 +3,7 @@ import RoutesNames from '@navigation/routes';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '@screens/appScreens/Home/HomeScreen';
 import React from 'react';
+import CampaignDescriptionScreen from '@screens/appScreens/Common/CampaignDescriptionScreen';
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,11 @@ const HomeStack = () => (
     <Stack.Screen
       name={RoutesNames.HomeScreen}
       component={HomeScreen}
+      options={{headerShown: false}}
+    />
+    <Stack.Screen
+      name={RoutesNames.HomeCampaignDescriptionScreen}
+      component={CampaignDescriptionScreen}
       options={{headerShown: false}}
     />
     {/*<Stack.Screen name="Details" component={DetailsScreen}/>*/}

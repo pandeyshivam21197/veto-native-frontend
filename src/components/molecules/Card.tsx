@@ -2,23 +2,38 @@ import {Text} from '@components/atoms/Text';
 import EntityList from '@components/molecules/EntityList';
 import StatusHeader from '@components/molecules/StatusHeader';
 import ThumbnailList from '@components/molecules/ThumbnailList';
-import {ICampaignRequest} from '@domain/interfaces';
+import {ICampaignRequest, IEntity} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import * as React from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import CampaignContributorList from './CampaignContributorList';
+import ProgressBar from '@components/atoms/ProgressBar';
 
 export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;
-  cardIndex: number;
+  cardIndex?: number;
   onCardPress?: () => void;
   onMemberViewAll?: () => void;
   onDonerViewAll?: () => void;
   isHorizontalRendering?: boolean;
   donationAmount?: number;
 }
+
+const getTotalProgress = (
+  entites: IEntity[],
+): {totalavailedAmount: number; totalRequestedAmount: number} => {
+  let totalavailedAmount = 0;
+  let totalRequestedAmount = 0;
+
+  entites.forEach((entity: IEntity) => {
+    totalavailedAmount = totalavailedAmount + entity.availedAmount;
+    totalRequestedAmount = totalRequestedAmount + entity.requestedAmount;
+  });
+
+  return {totalavailedAmount, totalRequestedAmount};
+};
 
 const Card = (props: ICard): React.ReactElement => {
   const {
@@ -41,8 +56,21 @@ const Card = (props: ICard): React.ReactElement => {
     donationAmount,
   } = props;
   // TODO: add total progress bar
-  const displayDoners = donerIds && donerIds.length > 0;
-  const updatedGroupMemberIds = [creatorId, ...groupMemberIds];
+  const displayDoners = !!(donerIds && donerIds.length > 0);
+  let updatedGroupMemberIds = [creatorId];
+  if (groupMemberIds) {
+    updatedGroupMemberIds = [...updatedGroupMemberIds, ...groupMemberIds];
+  }
+  const displayTotalProgress = entities && entities.length > 0;
+  let totalProgress = 0;
+
+  if (displayTotalProgress && entities) {
+    const {totalavailedAmount, totalRequestedAmount} = getTotalProgress(
+      entities,
+    );
+    totalProgress = totalavailedAmount / totalRequestedAmount;
+    console.log(totalavailedAmount, totalRequestedAmount, '!!!');
+  }
   const {t} = LocalService;
 
   return (
@@ -57,6 +85,26 @@ const Card = (props: ICard): React.ReactElement => {
       activeOpacity={0.8}>
       <StatusHeader title={title} status={status} subTitle={subTitle} />
       {entities && <EntityList data={entities} cardIndex={cardIndex} />}
+      {displayTotalProgress && (
+        <>
+          <Text
+            fontSize={'small'}
+            fontWeight={'regular'}
+            containerStyle={styles.campaignTextConatainer}>
+            {t('Common.campaignOverview')}
+          </Text>
+          <ProgressBar
+            type={'circle'}
+            barProps={{
+              showsText: true,
+              progress: totalProgress,
+              size: 90,
+              fill: 'yellow',
+              style: styles.progressBar,
+            }}
+          />
+        </>
+      )}
       {thumbnails && <ThumbnailList data={thumbnails} cardIndex={cardIndex} />}
       {updatedGroupMemberIds && (
         <CampaignContributorList
@@ -98,5 +146,11 @@ const styles = StyleSheet.create({
   },
   HorizontalCard: {
     width: theme.viewport.width - 2 * theme.layout.screenHorizontalMargin - 20,
+  },
+  progressBar: {
+    alignSelf: 'center',
+  },
+  campaignTextConatainer: {
+    marginTop: 20,
   },
 });

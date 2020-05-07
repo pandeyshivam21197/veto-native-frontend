@@ -12,6 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import RoutesNames from '@navigation/routes';
 
 interface IHomeProps {
   navigation: NavigationScreenProp<NavigationState>;
@@ -20,6 +21,8 @@ interface IHomeProps {
   isFeedsLoading: boolean;
   isFeedsError: string;
 }
+
+//TODO: add on scroll down to call the api to fetch more feeds pasing the page count
 
 interface IHomeState {
   page: number;
@@ -93,6 +96,12 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
       groupMemberIds,
     } = item;
 
+    const onCampaignPress = () => {
+      console.log('coming inside!!!');
+      const {navigation} = this.props;
+      navigation.navigate(RoutesNames.HomeCampaignDescriptionScreen, item);
+    };
+
     return (
       <Card
         _id={_id}
@@ -105,8 +114,14 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
         donerIds={donerIds}
         groupMemberIds={groupMemberIds}
         cardIndex={index}
+        onCardPress={onCampaignPress}
       />
     );
+  };
+
+  public onCampaignPress = () => {
+    const {navigation} = this.props;
+    navigation.navigate(RoutesNames.HomeCampaignDescriptionScreen, {});
   };
 }
 

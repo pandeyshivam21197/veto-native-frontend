@@ -14,7 +14,7 @@ interface IThumbnailList {
   data: IThumbnail[];
   numColumns?: number;
   isHorizontal?: boolean;
-  cardIndex: number;
+  cardIndex?: number;
 }
 
 const ThumbnailList = (props: IThumbnailList): React.ReactElement => {
@@ -23,7 +23,7 @@ const ThumbnailList = (props: IThumbnailList): React.ReactElement => {
     containerStyle = {},
     numColumns = 2,
     isHorizontal = false,
-    cardIndex,
+    cardIndex = 0,
   } = props;
 
   return (
