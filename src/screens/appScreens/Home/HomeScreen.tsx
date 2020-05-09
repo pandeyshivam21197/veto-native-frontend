@@ -5,6 +5,7 @@ import {ICampaignRequest} from '@domain/interfaces';
 import HomeActions from '@modules/home/actions';
 import HomeSelector from '@modules/home/selectors';
 import {IState} from '@modules/interfaces';
+import RoutesNames from '@navigation/routes';
 import {theme} from '@styles/theme';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -12,7 +13,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import RoutesNames from '@navigation/routes';
 
 interface IHomeProps {
   navigation: NavigationScreenProp<NavigationState>;
@@ -22,7 +22,7 @@ interface IHomeProps {
   isFeedsError: string;
 }
 
-//TODO: add on scroll down to call the api to fetch more feeds pasing the page count
+// TODO: add on scroll down to call the api to fetch more feeds pasing the page count
 
 interface IHomeState {
   page: number;

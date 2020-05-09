@@ -1,9 +1,9 @@
 import {defaultScreenStyle} from '@navigation/constant';
 import RoutesNames from '@navigation/routes';
 import {createStackNavigator} from '@react-navigation/stack';
+import CampaignDescriptionScreen from '@screens/appScreens/Common/CampaignDescriptionScreen';
 import HomeScreen from '@screens/appScreens/Home/HomeScreen';
 import React from 'react';
-import CampaignDescriptionScreen from '@screens/appScreens/Common/CampaignDescriptionScreen';
 
 const Stack = createStackNavigator();
 

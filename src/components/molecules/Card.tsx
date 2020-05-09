@@ -1,3 +1,4 @@
+import ProgressBar from '@components/atoms/ProgressBar';
 import {Text} from '@components/atoms/Text';
 import EntityList from '@components/molecules/EntityList';
 import StatusHeader from '@components/molecules/StatusHeader';
@@ -9,7 +10,6 @@ import * as React from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import CampaignContributorList from './CampaignContributorList';
-import ProgressBar from '@components/atoms/ProgressBar';
 
 export interface ICard extends ICampaignRequest {
   containerStyle?: StyleProp<ViewStyle>;

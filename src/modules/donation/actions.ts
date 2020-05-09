@@ -1,6 +1,6 @@
-import {IFluxStandardAction} from '@modules/interfaces';
-import {ICampaignRequest} from '@domain/interfaces';
 import {fetchNearestDonationCampaign} from '@domain/donationRepository';
+import {ICampaignRequest} from '@domain/interfaces';
+import {IFluxStandardAction} from '@modules/interfaces';
 
 const donationTypePrefix = 'campaign/';
 

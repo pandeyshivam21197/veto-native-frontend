@@ -1,7 +1,7 @@
+import {patchCampaignDonation, patchCampaignEntity} from '@domain/graphQueries';
 import ApiClient from '@network/ApiClient';
 import {baseUrl} from '@network/Constants';
-import {patchCampaignEntity, patchCampaignDonation} from '@domain/graphQueries';
-import {IEntity, Response, IEntityAmount} from './interfaces';
+import {IEntity, IEntityAmount, Response} from './interfaces';
 
 interface IPatchCampaignEntity {
   postCampaignEntity: IEntity;

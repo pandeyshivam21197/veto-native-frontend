@@ -1,15 +1,15 @@
-import React from 'react';
 import Card from '@components/molecules/Card';
+import {ICampaignRequest} from '@domain/interfaces';
+import {theme} from '@styles/theme';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {
+  NavigationRoute,
   NavigationScreenProp,
   NavigationState,
-  NavigationRoute,
   SafeAreaView,
 } from 'react-navigation';
-import {ICampaignRequest} from '@domain/interfaces';
-import {StyleSheet, View} from 'react-native';
-import {theme} from '@styles/theme';
-import {ScrollView} from 'react-native-gesture-handler';
 
 interface ICampaignDescriptionProps {
   navigation: NavigationScreenProp<NavigationState>;

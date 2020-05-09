@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {
   Bar,
   BarPropTypes,
@@ -9,7 +10,6 @@ import {
   Pie,
   PiePropTypes,
 } from 'react-native-progress';
-import {StyleSheet} from 'react-native';
 
 interface IProgressBar {
   type: 'bar' | 'pie' | 'circle' | 'circleSnail';

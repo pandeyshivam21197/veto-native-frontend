@@ -4,13 +4,13 @@ import {Label} from '@components/atoms/Text';
 import StatusHeader from '@components/molecules/StatusHeader';
 import {IEntity} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
+import {theme} from '@styles/theme';
+import {Formik, FormikProps, FormikValues} from 'formik';
 import React from 'react';
 import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
-import {Formik, FormikProps, FormikValues} from 'formik';
-import FormTextInput from './FormTextInput';
-import FormSubmitButton from './FormSubmitButton';
-import {theme} from '@styles/theme';
 import * as yup from 'yup';
+import FormSubmitButton from './FormSubmitButton';
+import FormTextInput from './FormTextInput';
 
 interface IEntityList {
   containerStyle?: StyleProp<ViewStyle>;

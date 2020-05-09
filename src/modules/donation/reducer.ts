@@ -1,5 +1,5 @@
-import {IFluxStandardAction} from '@modules/interfaces';
 import {ICampaignRequest} from '@domain/interfaces';
+import {IFluxStandardAction} from '@modules/interfaces';
 import {donationTypes} from './actions';
 
 export interface IDonationState {

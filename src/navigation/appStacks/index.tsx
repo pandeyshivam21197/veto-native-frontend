@@ -6,8 +6,8 @@ import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import React from 'react';
 import AccontStack from './accountStack';
-import SettingStack from './settingStack';
 import DonationStack from './donationStack';
+import SettingStack from './settingStack';
 
 const Tab = createMaterialBottomTabNavigator();
 

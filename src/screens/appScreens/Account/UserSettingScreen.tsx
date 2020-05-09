@@ -24,9 +24,9 @@ import {
 import Lightbox from 'react-native-lightbox';
 // @ts-ignore
 import Slider from 'react-native-slider';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import * as yup from 'yup';
-import {NavigationScreenProp, NavigationState} from 'react-navigation';
 
 interface ISettingProps {
   navigation: NavigationScreenProp<NavigationState>;

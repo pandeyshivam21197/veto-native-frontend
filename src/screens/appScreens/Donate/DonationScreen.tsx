@@ -1,19 +1,19 @@
+import {Text} from '@components/atoms/Text';
 import Card from '@components/molecules/Card';
 import CardList from '@components/organisms/CardList';
 import StateAwareComponent from '@components/organisms/StateAwareComponent';
 import {ICampaignRequest} from '@domain/interfaces';
-import {theme} from '@styles/theme';
-import React from 'react';
-// @ts-ignore
-import Slider from 'react-native-slider';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {connect} from 'react-redux';
 import DonationActions from '@modules/donation/actions';
-import {bindActionCreators} from 'redux';
 import DonationSelectors from '@modules/donation/selectors';
 import {IState} from '@modules/interfaces';
-import {Text} from '@components/atoms/Text';
 import LocalService from '@services/Locale/LocaleService';
+import {theme} from '@styles/theme';
+import React from 'react';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
+// @ts-ignore
+import Slider from 'react-native-slider';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 interface IDonationScreenProps {
   neearestCampaigns: ICampaignRequest[] | null;

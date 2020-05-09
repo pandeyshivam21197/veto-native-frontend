@@ -8,9 +8,9 @@ import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {NavigationScreenProp, NavigationState} from 'react-navigation';
 
 interface IAccountProps {
   navigation: NavigationScreenProp<NavigationState>;
