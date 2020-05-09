@@ -71,9 +71,7 @@ class DonationScreen extends React.PureComponent<
 
     return (
       <View style={[styles.screenConatiner, styles.flexOne]}>
-        <Text
-          fontWeight="bold"
-          containerStyle={[styles.title, styles.horizontalMargin]}>
+        <Text fontWeight="bold" containerStyle={styles.title}>
           {t('Donate.campaignNearYou')}
         </Text>
         <CardList
