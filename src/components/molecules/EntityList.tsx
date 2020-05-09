@@ -9,6 +9,8 @@ import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import {Formik, FormikProps, FormikValues} from 'formik';
 import FormTextInput from './FormTextInput';
 import FormSubmitButton from './FormSubmitButton';
+import {theme} from '@styles/theme';
+import * as yup from 'yup';
 
 interface IEntityList {
   containerStyle?: StyleProp<ViewStyle>;
@@ -56,10 +58,11 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
   const {t} = LocalService;
 
   const entityValue = 0;
-  const requiredValue = requestedAmount - availedAmount;
+  const requiredValue = requestedAmount - availedAmount + 1;
 
   const unit = unitType ? unitType : t('Common.unit');
   const progress = availedAmount / requestedAmount;
+  const onDonatePress = (values: FormikValues) => onDonate(values, title);
 
   return (
     <View style={styles.flexOne}>
@@ -97,7 +100,8 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
       {progress !== 1 && (
         <Formik
           initialValues={{entityValue, requiredValue}}
-          onSubmit={onDonate}>
+          onSubmit={onDonatePress}
+          validationSchema={donateSchema()}>
           {(formProps: FormikProps<FormikValues>) => (
             <View>
               <FormTextInput
@@ -105,6 +109,7 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
                 inputName={'entityValue'}
                 inputType={'number'}
                 placeholder={t('Common.donatePlaceholder')}
+                textInputStyle={styles.textInput}
               />
               <FormSubmitButton
                 formProps={formProps}
@@ -119,7 +124,23 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
   );
 };
 
-const onDonate = () => {};
+const donateSchema = () => {
+  const {t} = LocalService;
+  return yup.object({
+    entityValue: yup
+      .number()
+      .required('entity value required')
+      .lessThan(
+        yup.ref('requiredValue'),
+        'entity value cant be more than required',
+      ),
+  });
+};
+
+const onDonate = (values: FormikValues, title: string) => {
+  const {entityValue} = values;
+
+};
 
 export default EntityList;
 
@@ -146,5 +167,8 @@ const styles = StyleSheet.create({
   },
   donateButton: {
     marginTop: 12,
+  },
+  textInput: {
+    color: theme.colors.white,
   },
 });

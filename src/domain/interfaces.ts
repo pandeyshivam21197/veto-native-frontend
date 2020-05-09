@@ -60,3 +60,8 @@ export interface ICampaignRequest extends ITimeStamps {
 export interface Response<D> {
   data: {data: D};
 }
+
+export interface IEntityAmount {
+  title: string;
+  amount: number;
+}

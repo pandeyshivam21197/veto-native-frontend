@@ -21,7 +21,7 @@ const userReducer = (
         ...state,
         ['loading']: {
           ...state.loading,
-          ['user']: true,
+          ['user']: action.payload,
         },
       };
     case userTypes.getUserDataSuccess:

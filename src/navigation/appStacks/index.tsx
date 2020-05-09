@@ -7,6 +7,7 @@ import {theme} from '@styles/theme';
 import React from 'react';
 import AccontStack from './accountStack';
 import SettingStack from './settingStack';
+import DonationStack from './donationStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -63,7 +64,7 @@ const AppTabs = () => (
     />
     <Tab.Screen
       name={RoutesNames.DonationStack}
-      component={HomeStack}
+      component={DonationStack}
       options={getTabOptions(RoutesNames.DonationStack)}
     />
     <Tab.Screen

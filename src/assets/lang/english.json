@@ -3,7 +3,8 @@
     "homeTab": "Home"
   },
   "Donate": {
-    "donateTab": "Donate"
+    "donateTab": "Donate",
+    "campaignNearYou": "Campaigns near you:"
   },
   "Distribute": {
     "distributeTab": "Distribute"

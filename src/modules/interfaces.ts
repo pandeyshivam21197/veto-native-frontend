@@ -1,4 +1,5 @@
 import {ICampaignRequest, IUser} from '@domain/interfaces';
+import {IDonationState} from './donation/reducer';
 
 export interface IFluxStandardAction<
   Payload = undefined,
@@ -34,4 +35,5 @@ export interface IUserState {
 export interface IState {
   home: IHomeState;
   user: IUserState;
+  donation: IDonationState;
 }

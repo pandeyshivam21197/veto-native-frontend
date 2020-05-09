@@ -40,7 +40,7 @@ const setHomeFeedsError = (
 const getHomeFeeds = (pageNumber: number) => async (
   dispatch: any,
 ): Promise<void> => {
-  dispatch(setHomeFeedsLoading);
+  dispatch(setHomeFeedsLoading(true));
   try {
     const feeds: any = await fetchHomeFeeds(pageNumber);
     const {

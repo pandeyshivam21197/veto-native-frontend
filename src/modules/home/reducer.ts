@@ -21,7 +21,7 @@ const homeReducer = (
         ...state,
         ['loading']: {
           ...state.loading,
-          ['feeds']: true,
+          ['feeds']: action.payload,
         },
       };
     case homeTypes.homeFeedSuccess:

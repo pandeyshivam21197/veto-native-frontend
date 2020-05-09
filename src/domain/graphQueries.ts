@@ -1,3 +1,5 @@
+import {IEntity, IEntityAmount} from './interfaces';
+
 // bootstrap screen
 export const getTokenAuth = () => {
   const payload = {
@@ -153,6 +155,66 @@ export const patchUserData = (userInput: IPatchUserData): string => {
           ${userIputParam}
         }){
         ${requiredUserData}
+      }
+  }`,
+  };
+
+  return JSON.stringify(payload);
+};
+
+// Distributor
+
+const requiredEntityInfo = `
+  title
+  requestedAmount
+  availedAmount
+  currentPrice
+  status
+  unitType
+  currency
+`;
+
+export const patchCampaignEntity = (
+  campaignRequestId: string,
+  entityInput: IEntity[],
+): string => {
+  const payload = {
+    query: `{
+    postCampaignEntity(campaignRequestId: "${campaignRequestId}", entityInput: ${entityInput}) {
+      entities{
+        ${requiredEntityInfo}
+      }
+    }
+  }`,
+  };
+
+  return JSON.stringify(payload);
+};
+// posting the entity amount donation
+export const patchCampaignDonation = (
+  campaignRequestId: string,
+  entityAmount: IEntityAmount,
+): string => {
+  const payload = {
+    query: `{
+    postCampaignDonation(campaignRequestId: "${campaignRequestId}", entity: ${entityAmount}) {
+      entites{
+        ${requiredEntityInfo}
+      }
+    }
+  }`,
+  };
+
+  return JSON.stringify(payload);
+};
+
+// Donation
+
+export const nearestDonationCampaign = (location: string, distance: number) => {
+  const payload = {
+    query: `mutation{
+      getNearestDonationCampaign(location: "${location}", distance: ${distance}) {
+        ${requiredCampaignData}
       }
   }`,
   };

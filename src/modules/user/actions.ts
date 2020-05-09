@@ -10,9 +10,12 @@ export const userTypes = {
   getUserDataError: `${userPrefix}GET_USER_DATA_ERROR`,
 };
 
-const setUserDataLoading = (): IFluxStandardAction<undefined> => {
+const setUserDataLoading = (
+  isLoading: boolean,
+): IFluxStandardAction<boolean> => {
   return {
     type: userTypes.getUserDataLoading,
+    payload: isLoading,
   };
 };
 
@@ -33,7 +36,7 @@ const setUserDataError = (
 };
 
 const getUserAccountData = () => async (dispatch: any): Promise<void> => {
-  dispatch(setUserDataLoading());
+  dispatch(setUserDataLoading(true));
   try {
     const userData = await fetchUserData();
     const {
