@@ -58,7 +58,10 @@
     "amount": "Amount:",
     "donate": "Donate",
     "donatePlaceholder": "Please Donate",
-    "campaignOverview": "Campaign Overview:"
+    "campaignOverview": "Campaign Overview:",
+    "entityRequired": "Entity value requied.",
+    "entityValueGreater": "entity value cant be more than required"
+
   },
   "ScreenTitle": {
     "login": "Login",

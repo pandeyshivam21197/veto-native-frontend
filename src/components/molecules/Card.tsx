@@ -69,7 +69,6 @@ const Card = (props: ICard): React.ReactElement => {
       entities,
     );
     totalProgress = totalavailedAmount / totalRequestedAmount;
-    console.log(totalavailedAmount, totalRequestedAmount, '!!!');
   }
   const {t} = LocalService;
 

@@ -5,7 +5,6 @@ const getNearestCampaigns = (state: IState): ICampaignRequest[] | null => {
   const {
     donation: {nearestCampaigns},
   } = state;
-  console.log(nearestCampaigns, 'state');
   return nearestCampaigns;
 };
 

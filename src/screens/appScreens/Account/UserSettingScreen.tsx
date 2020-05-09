@@ -181,9 +181,7 @@ class UserSettingScreen extends React.PureComponent<
     );
   };
 
-  // TODO: location: String
-  // idProofType: String
-  // idProofImageUrl: String
+  // TODO: location: String, idProofType: String, idProofImageUrl: String
 
   public renderDetails = (): React.ReactNode => {
     const {t} = LocalService;

@@ -129,17 +129,13 @@ const donateSchema = () => {
   return yup.object({
     entityValue: yup
       .number()
-      .required('entity value required')
-      .lessThan(
-        yup.ref('requiredValue'),
-        'entity value cant be more than required',
-      ),
+      .required(t('Common.entityRequired'))
+      .lessThan(yup.ref('requiredValue'), t('Common.entityValueGreater')),
   });
 };
 
 const onDonate = (values: FormikValues, title: string) => {
   const {entityValue} = values;
-
 };
 
 export default EntityList;

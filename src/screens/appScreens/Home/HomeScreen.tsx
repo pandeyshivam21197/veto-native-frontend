@@ -97,7 +97,6 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
     } = item;
 
     const onCampaignPress = () => {
-      console.log('coming inside!!!');
       const {navigation} = this.props;
       navigation.navigate(RoutesNames.HomeCampaignDescriptionScreen, item);
     };
