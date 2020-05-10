@@ -1,11 +1,19 @@
-import {nearestDonationCampaign} from '@domain/graphQueries';
+import {
+  nearestDonationCampaign,
+  patchCampaignDonation,
+} from '@domain/graphQueries';
 import ApiClient from '@network/ApiClient';
 import {baseUrl} from '@network/Constants';
-import {ICampaignRequest, Response} from './interfaces';
+import {ICampaignRequest, Response, IEntityAmount, IEntity} from './interfaces';
 
 interface IGetNearestDonationCampaign {
   getNearestDonationCampaign: ICampaignRequest[];
 }
+
+interface IPostCampaignDonation {
+  postCampaignDonation: IEntity[];
+}
+
 const apiClient = new ApiClient({baseUrl});
 
 export const fetchNearestDonationCampaign = async (
@@ -15,4 +23,16 @@ export const fetchNearestDonationCampaign = async (
   return await apiClient.post(nearestDonationCampaign(location, distance), {
     'Content-Type': 'application/json',
   });
+};
+
+export const postDonation = async (
+  campaignRequestId: string,
+  entityAmount: IEntityAmount,
+): Promise<Response<IPostCampaignDonation>> => {
+  return await apiClient.post(
+    patchCampaignDonation(campaignRequestId, entityAmount),
+    {
+      'Content-Type': 'application/json',
+    },
+  );
 };

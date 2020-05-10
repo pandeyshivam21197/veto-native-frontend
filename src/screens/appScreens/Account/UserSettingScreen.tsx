@@ -241,9 +241,10 @@ class UserSettingScreen extends React.PureComponent<
                     />
                   </View>
                   <React.Fragment>
-                    <Text containerStyle={styles.sliderText}>
-                      {formProps.values.maxDistance}
-                    </Text>
+                    <View style={styles.sliderHeading}>
+                      <Text>{t('Setting.distributionRange')}</Text>
+                      <Text>{formProps.values.maxDistance}</Text>
+                    </View>
                     <Slider
                       value={userDetails.maxDistance}
                       onValueChange={onSilderChange}
@@ -486,7 +487,9 @@ const styles = StyleSheet.create({
   changePasswordButton: {
     marginTop: 16,
   },
-  sliderText: {
-    alignSelf: 'flex-end',
+  sliderHeading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 12,
   },
 });

@@ -14,8 +14,12 @@ import {SafeAreaView, StyleSheet, View} from 'react-native';
 import Slider from 'react-native-slider';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import Button from '@components/atoms/Button';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
+import RoutesNames from '@navigation/routes';
 
 interface IDonationScreenProps {
+  navigation: NavigationScreenProp<NavigationState>;
   neearestCampaigns: ICampaignRequest[] | null;
   isNearestCampaignsLoading: boolean;
   nearestCampaignsError: string;
@@ -65,23 +69,37 @@ class DonationScreen extends React.PureComponent<
     const {t} = LocalService;
     const {neearestCampaigns} = this.props;
     const {distance} = this.state;
-    if (!neearestCampaigns) {
-      return null;
-    }
 
     return (
       <View style={[styles.screenConatiner, styles.flexOne]}>
-        <Text fontWeight="bold" containerStyle={styles.title}>
-          {t('Donate.campaignNearYou')}
-        </Text>
-        <CardList
-          data={neearestCampaigns}
-          isHorizontal={false}
-          renderItem={this.renderHomeCard}
-        />
+        {neearestCampaigns ? (
+          <>
+            <Text fontWeight="bold" containerStyle={styles.title}>
+              {t('Donate.campaignNearYou')}
+            </Text>
+            <CardList
+              data={neearestCampaigns}
+              isHorizontal={false}
+              renderItem={this.renderDonationCard}
+            />
+          </>
+        ) : (
+          <>
+            <Text>{t('Donate.noCampaigns')}</Text>
+            <Text containerStyle={styles.addYourCampaignText}>
+              {t('Donate.addYourCampaign')}
+            </Text>
+            <Button title={'add Campaign'} onPress={this.onAddCampaign} />
+          </>
+        )}
+        <View style={styles.sliderHeading}>
+          <Text>{t('Donate.areaRange')}</Text>
+          <Text>{distance}</Text>
+        </View>
         <Slider
           value={distance}
           onValueChange={this.onSliderValueChange}
+          onSlidingComplete={this.fetchNearestCampaigns}
           step={1}
           minimumValue={0}
           maximumValue={100}
@@ -92,11 +110,16 @@ class DonationScreen extends React.PureComponent<
     );
   };
 
+  public onAddCampaign = () => {
+    const {navigation} = this.props;
+    navigation.navigate(RoutesNames.DistributorStack);
+  };
+
   public onSliderValueChange = (value: number) => {
     this.setState({distance: value});
   };
 
-  public renderHomeCard = ({
+  public renderDonationCard = ({
     item,
     index,
   }: {
@@ -115,6 +138,11 @@ class DonationScreen extends React.PureComponent<
       groupMemberIds,
     } = item;
 
+    const onCampaignPress = () => {
+      const {navigation} = this.props;
+      navigation.navigate(RoutesNames.DonationCampaignDescriptionScreen, item);
+    };
+
     return (
       <Card
         _id={_id}
@@ -127,6 +155,7 @@ class DonationScreen extends React.PureComponent<
         donerIds={donerIds}
         groupMemberIds={groupMemberIds}
         cardIndex={index}
+        onCardPress={onCampaignPress}
       />
     );
   };
@@ -174,5 +203,13 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: 12,
+  },
+  sliderHeading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 12,
+  },
+  addYourCampaignText: {
+    marginVertical: 20,
   },
 });

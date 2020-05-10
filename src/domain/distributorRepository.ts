@@ -1,11 +1,12 @@
-import {patchCampaignDonation, patchCampaignEntity} from '@domain/graphQueries';
+import {patchCampaignEntity} from '@domain/graphQueries';
 import ApiClient from '@network/ApiClient';
 import {baseUrl} from '@network/Constants';
-import {IEntity, IEntityAmount, Response} from './interfaces';
+import {IEntity, Response} from './interfaces';
 
 interface IPatchCampaignEntity {
-  postCampaignEntity: IEntity;
+  postCampaignEntity: IEntity[];
 }
+
 const apiClient = new ApiClient({baseUrl});
 
 export const postCampaignEntity = async (
@@ -14,17 +15,6 @@ export const postCampaignEntity = async (
 ): Promise<Response<IPatchCampaignEntity>> => {
   return await apiClient.post(
     patchCampaignEntity(campaignRequestId, entityInput),
-    {
-      'Content-Type': 'application/json',
-    },
-  );
-};
-export const postCampaignDonation = async (
-  campaignRequestId: string,
-  entityAmount: IEntityAmount,
-): Promise<Response<IPatchCampaignEntity>> => {
-  return await apiClient.post(
-    patchCampaignDonation(campaignRequestId, entityAmount),
     {
       'Content-Type': 'application/json',
     },

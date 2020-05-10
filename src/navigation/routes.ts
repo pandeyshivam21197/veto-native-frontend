@@ -16,6 +16,7 @@ const appScreens = {
   AccountScreen: 'AccountScreen',
   SettingScreen: 'SettingScreen',
   HomeCampaignDescriptionScreen: 'HomeCampaignDescriptionScreen',
+  DonationCampaignDescriptionScreen: 'DonationCampaignDescriptionScreen',
 };
 
 const bootStrapScreens = {

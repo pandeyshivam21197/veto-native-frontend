@@ -196,9 +196,9 @@ export const patchCampaignDonation = (
   entityAmount: IEntityAmount,
 ): string => {
   const payload = {
-    query: `{
-    postCampaignDonation(campaignRequestId: "${campaignRequestId}", entity: ${entityAmount}) {
-      entites{
+    query: `mutation{
+    postCampaignDonation(campaignRequestId: "${campaignRequestId}", entity: {title: "${entityAmount.title}", amount: ${entityAmount.amount}}) {
+      entities{
         ${requiredEntityInfo}
       }
     }

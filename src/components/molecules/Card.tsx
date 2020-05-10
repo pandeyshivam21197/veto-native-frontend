@@ -3,7 +3,7 @@ import {Text} from '@components/atoms/Text';
 import EntityList from '@components/molecules/EntityList';
 import StatusHeader from '@components/molecules/StatusHeader';
 import ThumbnailList from '@components/molecules/ThumbnailList';
-import {ICampaignRequest, IEntity} from '@domain/interfaces';
+import {ICampaignRequest, IEntity, IEntityAmount} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import * as React from 'react';
@@ -19,6 +19,7 @@ export interface ICard extends ICampaignRequest {
   onDonerViewAll?: () => void;
   isHorizontalRendering?: boolean;
   donationAmount?: number;
+  onDonationPress?: (_id: string, donationAmount: IEntityAmount) => void;
 }
 
 const getTotalProgress = (
@@ -54,6 +55,7 @@ const Card = (props: ICard): React.ReactElement => {
     isHorizontalRendering = false,
     _id,
     donationAmount,
+    onDonationPress = () => null,
   } = props;
   // TODO: add total progress bar
   const displayDoners = !!(donerIds && donerIds.length > 0);
@@ -70,6 +72,8 @@ const Card = (props: ICard): React.ReactElement => {
     );
     totalProgress = totalavailedAmount / totalRequestedAmount;
   }
+  const onDonate = (entityAmount: IEntityAmount) =>
+    onDonationPress(_id, entityAmount);
   const {t} = LocalService;
 
   return (
@@ -83,7 +87,9 @@ const Card = (props: ICard): React.ReactElement => {
       key={_id}
       activeOpacity={0.8}>
       <StatusHeader title={title} status={status} subTitle={subTitle} />
-      {entities && <EntityList data={entities} cardIndex={cardIndex} />}
+      {entities && (
+        <EntityList data={entities} cardIndex={cardIndex} onDonate={onDonate} />
+      )}
       {displayTotalProgress && (
         <>
           <Text
@@ -105,14 +111,14 @@ const Card = (props: ICard): React.ReactElement => {
         </>
       )}
       {thumbnails && <ThumbnailList data={thumbnails} cardIndex={cardIndex} />}
-      {updatedGroupMemberIds && (
+      {/* {updatedGroupMemberIds && (
         <CampaignContributorList
           data={updatedGroupMemberIds}
           title={t('Common.members')}
           onViewAllPress={onMemberViewAll}
         />
-      )}
-      {displayDoners && (
+      )} */}
+      {displayDoners && donerIds && (
         <CampaignContributorList
           data={donerIds}
           title={t('Common.doners')}

@@ -4,7 +4,10 @@
   },
   "Donate": {
     "donateTab": "Donate",
-    "campaignNearYou": "Campaigns near you:"
+    "campaignNearYou": "Campaigns near you:",
+    "areaRange": "Area Range:",
+    "noCampaigns": "Oops! There is no Campaign at this area range. Try changing the area range.",
+    "addYourCampaign": "Why not add your own campaign ?."
   },
   "Distribute": {
     "distributeTab": "Distribute"
@@ -34,7 +37,8 @@
     "requiredDOB": "Please enter the DOB.",
     "requiredOldPassword": "Please enter the old Password.",
     "requiredNewPassword": "Please enter the new Password.",
-    "requiredMaxDistance": "Please enter the new max Distance."
+    "requiredMaxDistance": "Please enter the new max Distance.",
+    "distributionRange": "Distribution range:"
   },
   "Login": {
     "login": "Login",
@@ -61,7 +65,6 @@
     "campaignOverview": "Campaign Overview:",
     "entityRequired": "Entity value requied.",
     "entityValueGreater": "entity value cant be more than required"
-
   },
   "ScreenTitle": {
     "login": "Login",

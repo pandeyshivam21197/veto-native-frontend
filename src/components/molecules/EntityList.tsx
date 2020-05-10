@@ -2,7 +2,7 @@ import Divider from '@components/atoms/Divider';
 import ProgressBar from '@components/atoms/ProgressBar';
 import {Label} from '@components/atoms/Text';
 import StatusHeader from '@components/molecules/StatusHeader';
-import {IEntity} from '@domain/interfaces';
+import {IEntity, IEntityAmount} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import {Formik, FormikProps, FormikValues} from 'formik';
@@ -17,7 +17,10 @@ interface IEntityList {
   data: IEntity[];
   isHorizontal?: boolean;
   cardIndex?: number;
+  onDonate: (entityAmount: IEntityAmount) => void;
 }
+
+let onDonateClick: (entityAmount: IEntityAmount) => void;
 
 const EntityList = (props: IEntityList): React.ReactElement => {
   const {
@@ -25,7 +28,10 @@ const EntityList = (props: IEntityList): React.ReactElement => {
     data,
     isHorizontal = false,
     cardIndex = 0,
+    onDonate,
   } = props;
+
+  onDonateClick = onDonate;
 
   return (
     <FlatList
@@ -58,11 +64,14 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
   const {t} = LocalService;
 
   const entityValue = 0;
+  // added 1 cuz, .lessThan in schema, to make it less than equal to
   const requiredValue = requestedAmount - availedAmount + 1;
 
   const unit = unitType ? unitType : t('Common.unit');
   const progress = availedAmount / requestedAmount;
-  const onDonatePress = (values: FormikValues) => onDonate(values, title);
+
+  const onDonatePress = (values: FormikValues) =>
+    onDonateClick({title, amount: values.entityValue});
 
   return (
     <View style={styles.flexOne}>
@@ -132,10 +141,6 @@ const donateSchema = () => {
       .required(t('Common.entityRequired'))
       .lessThan(yup.ref('requiredValue'), t('Common.entityValueGreater')),
   });
-};
-
-const onDonate = (values: FormikValues, title: string) => {
-  const {entityValue} = values;
 };
 
 export default EntityList;

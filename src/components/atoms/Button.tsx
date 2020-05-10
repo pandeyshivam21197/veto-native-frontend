@@ -11,7 +11,7 @@ import {
 import LoadingSpinner from './LoadingSpinner';
 
 interface IButtonProps {
-  title: string;
+  title?: string;
   iconName?: string;
   isDisabled?: boolean;
   containerStyle?: StyleProp<ViewStyle>;

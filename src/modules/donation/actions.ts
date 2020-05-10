@@ -1,6 +1,12 @@
-import {fetchNearestDonationCampaign} from '@domain/donationRepository';
-import {ICampaignRequest} from '@domain/interfaces';
-import {IFluxStandardAction} from '@modules/interfaces';
+import {
+  fetchNearestDonationCampaign,
+  postDonation,
+} from '@domain/donationRepository';
+import {ICampaignRequest, IEntity, IEntityAmount} from '@domain/interfaces';
+import {IFluxStandardAction, IState} from '@modules/interfaces';
+import {Dispatch} from 'react';
+import {Store} from 'redux';
+import {getUpdatedNearestCampaigns} from './utils';
 
 const donationTypePrefix = 'campaign/';
 
@@ -8,6 +14,7 @@ export const donationTypes = {
   nearestcampaignsLoading: `${donationTypePrefix}NEAREST_CAMPAIGNS_LOADING`,
   nearestcampaignsSuccess: `${donationTypePrefix}NEAREST_CAMPAIGNS_SUCCESS`,
   nearestcampaignsError: `${donationTypePrefix}NEAREST_CAMPAIGNS_ERROR`,
+  patchEntities: `${donationTypePrefix}PATCH_ENTITIES`,
 };
 
 const setNearestCampaignLoading = (
@@ -55,6 +62,50 @@ const getNearestCampaigns = (location: string, distance: number) => async (
 
     dispatch(setNearestCampaignSuccess(getNearestDonationCampaign));
   } catch (e) {
+    // When there is no campaign
+    // TODO: handle error using flash message
+    dispatch(setNearestCampaignSuccess(null));
+    dispatch(setNearestCampaignError(e.message));
+  }
+};
+
+const updateDonatedCampaign = (
+  updatedCampaignRequests: ICampaignRequest[] | null,
+): IFluxStandardAction<ICampaignRequest[] | null> => {
+  return {
+    type: donationTypes.patchEntities,
+    payload: updatedCampaignRequests,
+  };
+};
+
+const patchCampaignDonation = (
+  campaignRequestId: string,
+  entityAmount: IEntityAmount,
+) => async (dispatch: Dispatch<any>, getState: () => IState) => {
+  console.log(entityAmount, 'eA!!', getState().donation);
+  dispatch(setNearestCampaignLoading(true));
+  try {
+    const entities = await postDonation(campaignRequestId, entityAmount);
+
+    const {
+      data: {
+        data: {postCampaignDonation},
+      },
+    } = entities;
+    console.log(postCampaignDonation, 'postCampaignDonation!!!');
+    const nearestCampaigns = getState().donation.nearestCampaigns;
+
+    const updatedNearestCampaigns = getUpdatedNearestCampaigns(
+      nearestCampaigns,
+      campaignRequestId,
+      postCampaignDonation,
+    );
+    console.log(updatedNearestCampaigns, 'updatedNearestCampaigns!!');
+
+    dispatch(updateDonatedCampaign(updatedNearestCampaigns));
+  } catch (e) {
+    // When there is no campaign
+    // TODO: handle error using flash message
     dispatch(setNearestCampaignError(e.message));
   }
 };
@@ -64,6 +115,8 @@ const DonationActions = {
   setNearestCampaignError,
   setNearestCampaignLoading,
   setNearestCampaignSuccess,
+  updateDonatedCampaign,
+  patchCampaignDonation,
 };
 
 export default DonationActions;
