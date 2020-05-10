@@ -42,7 +42,7 @@ const EntityList = (props: IEntityList): React.ReactElement => {
       ItemSeparatorComponent={renderSeperator}
       contentContainerStyle={containerStyle}
       horizontal={isHorizontal}
-      listKey={`entityList-${cardIndex}`}
+      listKey={`entityList-${cardIndex}-${Math.random().toString()}`}
     />
   );
 };

@@ -9,25 +9,26 @@ import {StyleSheet, View} from 'react-native';
 interface IHorizontalCampaign {
   title: string;
   data: ICampaignRequest[] | IDonationHistory[];
+  key: string;
 }
 
 const HorizontalCampaignRail = (
   props: IHorizontalCampaign,
 ): React.ReactElement | null => {
-  const {data, title} = props;
+  const {data, title, key} = props;
 
   if (!data || data.length <= 0) {
     return null;
   }
 
   return (
-    <View style={[styles.flexOne, styles.container]}>
+    <View style={[styles.flexOne, styles.container]} key={key}>
       <Text
         fontWeight="bold"
         containerStyle={[styles.title, styles.horizontalMargin]}>
         {title}
       </Text>
-      <CardList data={data} renderItem={renderCampaign} />
+      <CardList data={data} renderItem={renderCampaign} key={key} />
     </View>
   );
 };

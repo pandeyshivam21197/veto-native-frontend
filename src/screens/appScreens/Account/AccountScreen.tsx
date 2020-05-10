@@ -61,6 +61,7 @@ class AccountScreen extends React.PureComponent<IAccountProps, any> {
       <HorizontalCampaignRail
         data={campaignRequestIds}
         title={t('Account.userCampaigns')}
+        key="userCampaigns"
       />
     );
   };
@@ -70,13 +71,14 @@ class AccountScreen extends React.PureComponent<IAccountProps, any> {
     if (!userData) {
       return null;
     }
-    const {joinedCampaignIds} = userData;
+    const {joinedCampaignIds, _id} = userData;
     const {t} = LocalService;
 
     return (
       <HorizontalCampaignRail
         data={joinedCampaignIds}
         title={t('Account.joinedCampaigns')}
+        key={`${_id}-joinedCampaigns`}
       />
     );
   };
@@ -86,13 +88,14 @@ class AccountScreen extends React.PureComponent<IAccountProps, any> {
     if (!userData) {
       return null;
     }
-    const {donationHistory} = userData;
+    const {donationHistory, _id} = userData;
     const {t} = LocalService;
 
     return (
       <HorizontalCampaignRail
         data={donationHistory}
         title={t('Account.donationHistory')}
+        key={`${_id}-donationHistory`}
       />
     );
   };

@@ -119,6 +119,7 @@ const Card = (props: ICard): React.ReactElement => {
           data={updatedGroupMemberIds}
           title={t('Common.members')}
           onViewAllPress={onMemberViewAll}
+          key={`${cardIndex}`}
         />
       )}
       {displayDoners && donerIds && (
@@ -126,6 +127,7 @@ const Card = (props: ICard): React.ReactElement => {
           data={donerIds}
           title={t('Common.doners')}
           onViewAllPress={onDonerViewAll}
+          key={`${cardIndex}-${new Date().toString()}`}
         />
       )}
       {description ? (

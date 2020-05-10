@@ -13,6 +13,7 @@ interface IConstributoList {
   title?: string;
   onViewAllPress?: () => void;
   containerStyle?: StyleProp<ViewStyle>;
+  key: string;
 }
 const CampaignContributorList = (
   props: IConstributoList,
@@ -23,6 +24,7 @@ const CampaignContributorList = (
     title,
     onViewAllPress,
     containerStyle = {},
+    key,
   } = props;
 
   const {t} = LocalService;
@@ -42,6 +44,7 @@ const CampaignContributorList = (
             ItemSeparatorComponent={
               isHorizontal ? renderHorizontalSeperator : renderVerticalSeperator
             }
+            listKey={`${key}-contributorList-${Math.random().toString()}`}
           />
         </View>
         {isHorizontal && (
@@ -66,22 +69,35 @@ const renderHorizontalSeperator = (): React.ReactElement => (
 
 const renderVerticalSeperator = (): React.ReactElement => <Divider />;
 
-const renderHorizontalItems = ({item}: {item: IUser}): React.ReactElement => {
+const renderHorizontalItems = ({
+  item,
+  index,
+}: {
+  item: IUser;
+  index: number;
+}): React.ReactElement => {
   const {userImage} = item;
   return (
     <Image
       source={userImage ? {uri: userImage} : undefined}
       width={30}
       height={30}
+      key={`${index}`}
     />
   );
 };
 
-const renderVerticalItems = ({item}: {item: IUser}): React.ReactElement => {
+const renderVerticalItems = ({
+  item,
+  index,
+}: {
+  item: IUser;
+  index: number;
+}): React.ReactElement => {
   const {userImage, name} = item;
 
   return (
-    <View style={[styles.verticalItems, styles.flexOne]}>
+    <View style={[styles.verticalItems, styles.flexOne]} key={`${index}`}>
       <Image
         source={userImage ? {uri: userImage} : undefined}
         width={50}

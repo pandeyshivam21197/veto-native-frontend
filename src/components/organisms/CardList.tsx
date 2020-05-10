@@ -14,6 +14,7 @@ interface ICardList {
     item: ICampaignRequest;
     index: number;
   }) => React.ReactElement;
+  key: string;
 }
 
 const CardList = (props: ICardList): React.ReactElement => {
@@ -22,6 +23,7 @@ const CardList = (props: ICardList): React.ReactElement => {
     data,
     isHorizontal = true,
     renderItem,
+    key,
   } = props;
 
   return (
@@ -37,7 +39,7 @@ const CardList = (props: ICardList): React.ReactElement => {
       horizontal={isHorizontal}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      listKey={'cardList'}
+      listKey={`${key}-cardList-${Math.random().toString()}`}
     />
   );
 };
