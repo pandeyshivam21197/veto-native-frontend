@@ -1,8 +1,8 @@
-import Button from './Button';
-import React from 'react';
-import {NavigationScreenProp, NavigationState} from 'react-navigation';
-import {StyleSheet} from 'react-native';
 import {theme} from '@styles/theme';
+import React from 'react';
+import {StyleSheet} from 'react-native';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
+import Button from './Button';
 
 interface IGoBack {
   navigation: NavigationScreenProp<NavigationState>;

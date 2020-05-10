@@ -5,7 +5,7 @@ import {Text} from '@components/atoms/Text';
 import {IUser} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
 import * as React from 'react';
-import {FlatList, StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
+import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 
 interface IConstributoList {
   data: IUser[];

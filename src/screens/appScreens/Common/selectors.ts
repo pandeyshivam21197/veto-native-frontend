@@ -1,6 +1,6 @@
+import {ICampaignRequest} from '@domain/interfaces';
 import {IState} from '@modules/interfaces';
 import RoutesNames from '@navigation/routes';
-import {ICampaignRequest} from '@domain/interfaces';
 
 export const getCampaignById = (
   state: IState,

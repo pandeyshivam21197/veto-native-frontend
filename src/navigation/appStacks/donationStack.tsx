@@ -1,10 +1,10 @@
 import {defaultScreenStyle} from '@navigation/constant';
 import RoutesNames from '@navigation/routes';
 import {createStackNavigator} from '@react-navigation/stack';
+import CampaignContributorScreen from '@screens/appScreens/Common/CampaignContributorScreen';
+import CampaignDescriptionScreen from '@screens/appScreens/Common/CampaignDescriptionScreen';
 import DonationScreen from '@screens/appScreens/Donate/DonationScreen';
 import React from 'react';
-import CampaignDescriptionScreen from '@screens/appScreens/Common/CampaignDescriptionScreen';
-import CampaignContributorScreen from '@screens/appScreens/Common/CampaignContributorScreen';
 
 const Stack = createStackNavigator();
 

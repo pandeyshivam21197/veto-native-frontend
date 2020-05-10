@@ -4,7 +4,7 @@ import {
 } from '@domain/graphQueries';
 import ApiClient from '@network/ApiClient';
 import {baseUrl} from '@network/Constants';
-import {ICampaignRequest, Response, IEntityAmount, IEntity} from './interfaces';
+import {ICampaignRequest, IEntity, IEntityAmount, Response} from './interfaces';
 
 interface IGetNearestDonationCampaign {
   getNearestDonationCampaign: ICampaignRequest[];

@@ -2,10 +2,9 @@ import {
   fetchNearestDonationCampaign,
   postDonation,
 } from '@domain/donationRepository';
-import {ICampaignRequest, IEntity, IEntityAmount} from '@domain/interfaces';
+import {ICampaignRequest, IEntityAmount} from '@domain/interfaces';
 import {IFluxStandardAction, IState} from '@modules/interfaces';
 import {Dispatch} from 'react';
-import {Store} from 'redux';
 import {getUpdatedNearestCampaigns} from './utils';
 
 const donationTypePrefix = 'campaign/';

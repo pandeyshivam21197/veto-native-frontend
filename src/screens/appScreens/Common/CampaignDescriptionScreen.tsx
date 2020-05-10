@@ -1,5 +1,9 @@
+import GoBack from '@components/atoms/GoBack';
 import Card from '@components/molecules/Card';
 import {ICampaignRequest, IEntityAmount, IUser} from '@domain/interfaces';
+import DonationActions from '@modules/donation/actions';
+import {IState} from '@modules/interfaces';
+import RoutesNames from '@navigation/routes';
 import {theme} from '@styles/theme';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -10,13 +14,9 @@ import {
   NavigationState,
   SafeAreaView,
 } from 'react-navigation';
-import GoBack from '@components/atoms/GoBack';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import DonationActions from '@modules/donation/actions';
-import {IState} from '@modules/interfaces';
 import {getCampaignById} from './selectors';
-import RoutesNames from '@navigation/routes';
 
 interface IDescriptionRoute {
   _id: string;
@@ -46,7 +46,6 @@ class CampaignDescriptionScreen extends React.PureComponent<
     if (groupMemberIds) {
       members = [...members, ...groupMemberIds];
     }
-    console.log(members, 'members$$$');
 
     const onMemberViewAll = () => this.onMemberViewAll(members);
 

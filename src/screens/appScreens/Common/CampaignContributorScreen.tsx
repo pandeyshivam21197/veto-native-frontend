@@ -1,14 +1,14 @@
+import GoBack from '@components/atoms/GoBack';
 import CampaignContributorList from '@components/molecules/CampaignContributorList';
+import {IUser} from '@domain/interfaces';
+import {theme} from '@styles/theme';
 import * as React from 'react';
+import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import {
-  NavigationScreenProp,
   NavigationRoute,
+  NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
-import {IUser} from '@domain/interfaces';
-import {SafeAreaView, ScrollView, View, StyleSheet} from 'react-native';
-import GoBack from '@components/atoms/GoBack';
-import {theme} from '@styles/theme';
 
 interface ICampaignContributorRoute {
   data: IUser[];

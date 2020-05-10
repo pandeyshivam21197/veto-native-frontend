@@ -1,3 +1,4 @@
+import Button from '@components/atoms/Button';
 import {Text} from '@components/atoms/Text';
 import Card from '@components/molecules/Card';
 import CardList from '@components/organisms/CardList';
@@ -6,17 +7,16 @@ import {ICampaignRequest} from '@domain/interfaces';
 import DonationActions from '@modules/donation/actions';
 import DonationSelectors from '@modules/donation/selectors';
 import {IState} from '@modules/interfaces';
+import RoutesNames from '@navigation/routes';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 // @ts-ignore
 import Slider from 'react-native-slider';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import Button from '@components/atoms/Button';
-import {NavigationScreenProp, NavigationState} from 'react-navigation';
-import RoutesNames from '@navigation/routes';
 
 interface IDonationScreenProps {
   navigation: NavigationScreenProp<NavigationState>;
@@ -164,6 +164,7 @@ class DonationScreen extends React.PureComponent<
       />
     );
   };
+  // TODO: add nav
 
   public onMemberViewAll = () => {};
   public onDonerViewAll = () => {};

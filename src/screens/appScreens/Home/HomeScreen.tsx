@@ -123,6 +123,8 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
     );
   };
 
+  // TODO: add nav
+
   public onMemberViewAll = () => {};
   public onDonerViewAll = () => {};
 
