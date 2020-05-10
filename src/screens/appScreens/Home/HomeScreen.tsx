@@ -98,7 +98,10 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
 
     const onCampaignPress = () => {
       const {navigation} = this.props;
-      navigation.navigate(RoutesNames.HomeCampaignDescriptionScreen, item);
+      navigation.navigate(RoutesNames.HomeCampaignDescriptionScreen, {
+        _id,
+        screenName: RoutesNames.HomeScreen,
+      });
     };
 
     return (
@@ -114,9 +117,14 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
         groupMemberIds={groupMemberIds}
         cardIndex={index}
         onCardPress={onCampaignPress}
+        onMemberViewAll={this.onMemberViewAll}
+        onDonerViewAll={this.onDonerViewAll}
       />
     );
   };
+
+  public onMemberViewAll = () => {};
+  public onDonerViewAll = () => {};
 
   public onCampaignPress = () => {
     const {navigation} = this.props;

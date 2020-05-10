@@ -57,12 +57,14 @@ const Card = (props: ICard): React.ReactElement => {
     donationAmount,
     onDonationPress = () => null,
   } = props;
-  // TODO: add total progress bar
+
   const displayDoners = !!(donerIds && donerIds.length > 0);
   let updatedGroupMemberIds = [creatorId];
+
   if (groupMemberIds) {
     updatedGroupMemberIds = [...updatedGroupMemberIds, ...groupMemberIds];
   }
+
   const displayTotalProgress = entities && entities.length > 0;
   let totalProgress = 0;
 
@@ -72,6 +74,7 @@ const Card = (props: ICard): React.ReactElement => {
     );
     totalProgress = totalavailedAmount / totalRequestedAmount;
   }
+
   const onDonate = (entityAmount: IEntityAmount) =>
     onDonationPress(_id, entityAmount);
   const {t} = LocalService;
@@ -111,13 +114,13 @@ const Card = (props: ICard): React.ReactElement => {
         </>
       )}
       {thumbnails && <ThumbnailList data={thumbnails} cardIndex={cardIndex} />}
-      {/* {updatedGroupMemberIds && (
+      {updatedGroupMemberIds && (
         <CampaignContributorList
           data={updatedGroupMemberIds}
           title={t('Common.members')}
           onViewAllPress={onMemberViewAll}
         />
-      )} */}
+      )}
       {displayDoners && donerIds && (
         <CampaignContributorList
           data={donerIds}

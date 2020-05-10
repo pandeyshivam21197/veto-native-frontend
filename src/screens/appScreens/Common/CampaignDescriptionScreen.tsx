@@ -1,5 +1,5 @@
 import Card from '@components/molecules/Card';
-import {ICampaignRequest, IEntityAmount} from '@domain/interfaces';
+import {ICampaignRequest, IEntityAmount, IUser} from '@domain/interfaces';
 import {theme} from '@styles/theme';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -14,11 +14,20 @@ import GoBack from '@components/atoms/GoBack';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import DonationActions from '@modules/donation/actions';
+import {IState} from '@modules/interfaces';
+import {getCampaignById} from './selectors';
+import RoutesNames from '@navigation/routes';
+
+interface IDescriptionRoute {
+  _id: string;
+  screenName: string;
+}
 
 interface ICampaignDescriptionProps {
-  navigation: NavigationScreenProp<NavigationState>;
-  route: NavigationRoute<ICampaignRequest>;
+  navigation: NavigationScreenProp<NavigationState, IDescriptionRoute>;
+  route: NavigationRoute<IDescriptionRoute>;
   patchCampaignDonation: (_id: string, donationAmount: IEntityAmount) => void;
+  campaignData: ICampaignRequest | null;
 }
 
 class CampaignDescriptionScreen extends React.PureComponent<
@@ -26,11 +35,22 @@ class CampaignDescriptionScreen extends React.PureComponent<
   any
 > {
   render() {
-    const {params} = this.props.route;
-
-    if (!params) {
+    const {campaignData} = this.props;
+    if (!campaignData) {
       return null;
     }
+
+    const {groupMemberIds, creatorId} = campaignData;
+
+    let members = [creatorId];
+    if (groupMemberIds) {
+      members = [...members, ...groupMemberIds];
+    }
+    console.log(members, 'members$$$');
+
+    const onMemberViewAll = () => this.onMemberViewAll(members);
+
+    const onDonerViewAll = () => this.onDonerViewAll(campaignData.donerIds);
 
     return (
       <SafeAreaView style={[styles.container, styles.flexOne]}>
@@ -41,15 +61,57 @@ class CampaignDescriptionScreen extends React.PureComponent<
           <View style={[styles.flexOne, styles.screenConatiner]}>
             <GoBack navigation={this.props.navigation} />
             <Card
-              {...params}
+              {...campaignData}
               containerStyle={styles.flexOne}
               onDonationPress={this.onDonation}
+              onMemberViewAll={onMemberViewAll}
+              onDonerViewAll={onDonerViewAll}
             />
           </View>
         </ScrollView>
       </SafeAreaView>
     );
   }
+
+  public onMemberViewAll = (members: IUser[] | undefined) => {
+    const {
+      navigation,
+      route: {
+        params: {screenName},
+      },
+    } = this.props;
+
+    if (!members) {
+      return;
+    }
+
+    const routeName =
+      screenName === RoutesNames.HomeScreen
+        ? RoutesNames.HomeCampaignContributorScreen
+        : RoutesNames.DonationCampaignContributorScreen;
+
+    navigation.navigate(routeName, {data: members});
+  };
+
+  public onDonerViewAll = (doners: IUser[] | undefined) => {
+    const {
+      navigation,
+      route: {
+        params: {screenName},
+      },
+    } = this.props;
+
+    if (!doners) {
+      return;
+    }
+
+    const routeName =
+      screenName === RoutesNames.HomeScreen
+        ? RoutesNames.HomeCampaignContributorScreen
+        : RoutesNames.DonationCampaignContributorScreen;
+
+    navigation.navigate(routeName, {data: doners});
+  };
 
   public onDonation = (_id: string, donationAmount: IEntityAmount) => {
     const {patchCampaignDonation} = this.props;
@@ -63,7 +125,25 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({patchCampaignDonation}, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(CampaignDescriptionScreen);
+const mapStateToProps = (
+  state: IState,
+  ownProps: ICampaignDescriptionProps,
+) => {
+  const {
+    route: {
+      params: {_id, screenName},
+    },
+  } = ownProps;
+
+  return {
+    campaignData: getCampaignById(state, _id, screenName),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CampaignDescriptionScreen);
 
 const styles = StyleSheet.create({
   flexOne: {

@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import DonationScreen from '@screens/appScreens/Donate/DonationScreen';
 import React from 'react';
 import CampaignDescriptionScreen from '@screens/appScreens/Common/CampaignDescriptionScreen';
+import CampaignContributorScreen from '@screens/appScreens/Common/CampaignContributorScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,11 @@ const DonationStack = () => (
     <Stack.Screen
       name={RoutesNames.DonationCampaignDescriptionScreen}
       component={CampaignDescriptionScreen}
+      options={{headerShown: false}}
+    />
+    <Stack.Screen
+      name={RoutesNames.DonationCampaignContributorScreen}
+      component={CampaignContributorScreen}
       options={{headerShown: false}}
     />
   </Stack.Navigator>

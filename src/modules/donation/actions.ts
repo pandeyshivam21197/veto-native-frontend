@@ -82,25 +82,24 @@ const patchCampaignDonation = (
   campaignRequestId: string,
   entityAmount: IEntityAmount,
 ) => async (dispatch: Dispatch<any>, getState: () => IState) => {
-  console.log(entityAmount, 'eA!!', getState().donation);
   dispatch(setNearestCampaignLoading(true));
   try {
-    const entities = await postDonation(campaignRequestId, entityAmount);
+    const campaignData = await postDonation(campaignRequestId, entityAmount);
 
     const {
       data: {
-        data: {postCampaignDonation},
+        data: {postCampaignDonation: entities},
       },
-    } = entities;
-    console.log(postCampaignDonation, 'postCampaignDonation!!!');
-    const nearestCampaigns = getState().donation.nearestCampaigns;
+    } = campaignData;
+
+    let nearestCampaigns = getState().donation.nearestCampaigns;
+    nearestCampaigns = nearestCampaigns ? [...nearestCampaigns] : [];
 
     const updatedNearestCampaigns = getUpdatedNearestCampaigns(
       nearestCampaigns,
       campaignRequestId,
-      postCampaignDonation,
+      entities.entities,
     );
-    console.log(updatedNearestCampaigns, 'updatedNearestCampaigns!!');
 
     dispatch(updateDonatedCampaign(updatedNearestCampaigns));
   } catch (e) {

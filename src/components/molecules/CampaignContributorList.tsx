@@ -5,24 +5,32 @@ import {Text} from '@components/atoms/Text';
 import {IUser} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
 import * as React from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
 
 interface IConstributoList {
   data: IUser[];
   isHorizontal?: boolean;
   title?: string;
   onViewAllPress?: () => void;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 const CampaignContributorList = (
   props: IConstributoList,
 ): React.ReactElement => {
-  const {data, isHorizontal = true, title, onViewAllPress} = props;
+  const {
+    data,
+    isHorizontal = true,
+    title,
+    onViewAllPress,
+    containerStyle = {},
+  } = props;
+
   const {t} = LocalService;
 
   return (
     <React.Fragment>
       {title && <Text style={styles.title}>{title}</Text>}
-      <View style={[styles.listContainer, styles.flexOne]}>
+      <View style={[styles.listContainer, styles.flexOne, containerStyle]}>
         <View style={[styles.flexOne]}>
           <FlatList
             data={data}
@@ -74,8 +82,14 @@ const renderVerticalItems = ({item}: {item: IUser}): React.ReactElement => {
 
   return (
     <View style={[styles.verticalItems, styles.flexOne]}>
-      <Image source={{uri: userImage}} width={100} height={100} />
-      <Text fontSize={'medium'}>{name}</Text>
+      <Image
+        source={userImage ? {uri: userImage} : undefined}
+        width={50}
+        height={50}
+      />
+      <Text fontSize={'medium'} containerStyle={styles.text}>
+        {name}
+      </Text>
     </View>
   );
 };
@@ -91,12 +105,16 @@ const styles = StyleSheet.create({
   },
   verticalItems: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   title: {
     marginBottom: 4,
   },
   listContainer: {
     flexDirection: 'row',
+  },
+  text: {
+    marginStart: 40,
+    alignSelf: 'center',
   },
 });

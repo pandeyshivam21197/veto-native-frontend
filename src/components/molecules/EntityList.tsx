@@ -5,7 +5,7 @@ import StatusHeader from '@components/molecules/StatusHeader';
 import {IEntity, IEntityAmount} from '@domain/interfaces';
 import LocalService from '@services/Locale/LocaleService';
 import {theme} from '@styles/theme';
-import {Formik, FormikProps, FormikValues} from 'formik';
+import {Formik, FormikProps, FormikValues, FormikHelpers} from 'formik';
 import React from 'react';
 import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import * as yup from 'yup';
@@ -36,6 +36,7 @@ const EntityList = (props: IEntityList): React.ReactElement => {
   return (
     <FlatList
       data={data}
+      extraData={data}
       keyExtractor={keyExtractor}
       renderItem={renderEntity}
       ItemSeparatorComponent={renderSeperator}
@@ -70,8 +71,13 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
   const unit = unitType ? unitType : t('Common.unit');
   const progress = availedAmount / requestedAmount;
 
-  const onDonatePress = (values: FormikValues) =>
+  const onDonatePress = (
+    values: FormikValues,
+    formikHelpers: FormikHelpers<any>,
+  ) => {
     onDonateClick({title, amount: values.entityValue});
+    formikHelpers.setSubmitting(false);
+  };
 
   return (
     <View style={styles.flexOne}>

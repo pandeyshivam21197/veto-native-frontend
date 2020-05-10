@@ -56,21 +56,13 @@ const donationReducer = (
         },
       };
     case donationTypes.patchEntities:
-      const {nearestCampaigns} = state;
-      let updatedNearestCampaign: ICampaignRequest[] = [];
-
-      if (nearestCampaigns) {
-        updatedNearestCampaign = [...nearestCampaigns];
-      }
-      updatedNearestCampaign = [...updatedNearestCampaign, action.payload];
-
       return {
         ...state,
         ['loading']: {
           ...state.loading,
           ['nearestCampaigns']: false,
         },
-        ['nearestCampaigns']: updatedNearestCampaign,
+        ['nearestCampaigns']: action.payload,
       };
     default:
       return state;

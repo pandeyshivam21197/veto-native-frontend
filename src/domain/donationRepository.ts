@@ -11,7 +11,9 @@ interface IGetNearestDonationCampaign {
 }
 
 interface IPostCampaignDonation {
-  postCampaignDonation: IEntity[];
+  postCampaignDonation: {
+    entities: IEntity[];
+  };
 }
 
 const apiClient = new ApiClient({baseUrl});

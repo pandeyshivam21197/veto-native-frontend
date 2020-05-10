@@ -12,7 +12,10 @@ export const getUpdatedNearestCampaigns = (
       (campaign: ICampaignRequest) => campaign._id === campaignRequestId,
     );
     if (toUpdateCampaignIndex >= 0) {
-      nearestCampaigns[toUpdateCampaignIndex].entities = entities;
+      nearestCampaigns[toUpdateCampaignIndex] = {
+        ...nearestCampaigns[toUpdateCampaignIndex],
+        entities,
+      };
     }
     return nearestCampaigns;
   }

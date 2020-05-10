@@ -140,7 +140,10 @@ class DonationScreen extends React.PureComponent<
 
     const onCampaignPress = () => {
       const {navigation} = this.props;
-      navigation.navigate(RoutesNames.DonationCampaignDescriptionScreen, item);
+      navigation.navigate(RoutesNames.DonationCampaignDescriptionScreen, {
+        _id,
+        screenName: RoutesNames.DonationScreen,
+      });
     };
 
     return (
@@ -156,9 +159,14 @@ class DonationScreen extends React.PureComponent<
         groupMemberIds={groupMemberIds}
         cardIndex={index}
         onCardPress={onCampaignPress}
+        onMemberViewAll={this.onMemberViewAll}
+        onDonerViewAll={this.onDonerViewAll}
       />
     );
   };
+
+  public onMemberViewAll = () => {};
+  public onDonerViewAll = () => {};
 }
 
 const mapStateToProps = (state: IState) => {
