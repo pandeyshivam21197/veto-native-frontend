@@ -28,6 +28,7 @@ export const postLogin = (email: string, password: string): string => {
 const requiredCampaignData = `
 _id
 title
+subTitle
 status
 description
 thumbnails{

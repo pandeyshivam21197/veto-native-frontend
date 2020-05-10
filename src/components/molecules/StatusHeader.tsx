@@ -34,7 +34,11 @@ const StatusHeader = (props: IStatusHeader) => {
           style={styles.icon}
         />
       </View>
-      {subTitle && <Text fontWeight={'medium'}>{subTitle}</Text>}
+      {subTitle ? (
+        <Text fontWeight={'medium'} containerStyle={styles.cardHeader}>
+          {subTitle}
+        </Text>
+      ) : null}
     </React.Fragment>
   );
 };
