@@ -77,6 +77,7 @@ const Card = (props: ICard): React.ReactElement => {
 
   const onDonate = (entityAmount: IEntityAmount) =>
     onDonationPress(_id, entityAmount);
+
   const {t} = LocalService;
 
   return (
@@ -119,7 +120,7 @@ const Card = (props: ICard): React.ReactElement => {
           data={updatedGroupMemberIds}
           title={t('Common.members')}
           onViewAllPress={onMemberViewAll}
-          key={`${cardIndex}`}
+          campaignListkey={`${cardIndex}-${new Date().toString()}`}
         />
       )}
       {displayDoners && donerIds && (
@@ -127,7 +128,7 @@ const Card = (props: ICard): React.ReactElement => {
           data={donerIds}
           title={t('Common.doners')}
           onViewAllPress={onDonerViewAll}
-          key={`${cardIndex}-${new Date().toString()}`}
+          campaignListkey={`${cardIndex}-${new Date().toString()}`}
         />
       )}
       {description ? (

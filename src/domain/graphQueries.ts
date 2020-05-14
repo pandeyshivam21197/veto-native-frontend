@@ -1,4 +1,5 @@
-import {IEntity, IEntityAmount} from './interfaces';
+import {IEntity, IEntityAmount, ICampaignRequest} from './interfaces';
+import {INewCampaignRequest} from '@screens/appScreens/Distributor/DistributorScreen';
 
 // bootstrap screen
 export const getTokenAuth = () => {
@@ -24,7 +25,7 @@ export const postLogin = (email: string, password: string): string => {
 
 // app screen
 
-// home
+// *** home ***
 const requiredCampaignData = `
 _id
 title
@@ -72,7 +73,7 @@ export const getHomeCampaignRequests = (page: number) => {
   return JSON.stringify(payload);
 };
 
-// user
+// *** User ***
 const requiredUserData = `
 _id
       name
@@ -112,7 +113,7 @@ export const getUserData = (): string => {
   return JSON.stringify(payload);
 };
 
-// Account
+// *** Account ***
 
 export interface IPatchUserData {
   name?: string;
@@ -163,7 +164,7 @@ export const patchUserData = (userInput: IPatchUserData): string => {
   return JSON.stringify(payload);
 };
 
-// Distributor
+// ***** Distributor ******
 
 const requiredEntityInfo = `
   title
@@ -180,7 +181,7 @@ export const patchCampaignEntity = (
   entityInput: IEntity[],
 ): string => {
   const payload = {
-    query: `{
+    query: `mutation{
     postCampaignEntity(campaignRequestId: "${campaignRequestId}", entityInput: ${entityInput}) {
       entities{
         ${requiredEntityInfo}
@@ -191,6 +192,33 @@ export const patchCampaignEntity = (
 
   return JSON.stringify(payload);
 };
+
+export const postNewCampaign = (campaignData: INewCampaignRequest): string => {
+  const payload = {
+    query: `{
+      postCampaign(requestInput: ${campaignData}) {
+      ${requiredCampaignData}
+    }
+  }`,
+  };
+
+  return JSON.stringify(payload);
+};
+
+// **** Donation ****
+
+export const nearestDonationCampaign = (location: string, distance: number) => {
+  const payload = {
+    query: `mutation{
+      getNearestDonationCampaign(location: "${location}", distance: ${distance}) {
+        ${requiredCampaignData}
+      }
+  }`,
+  };
+
+  return JSON.stringify(payload);
+};
+
 // posting the entity amount donation
 export const patchCampaignDonation = (
   campaignRequestId: string,
@@ -203,20 +231,6 @@ export const patchCampaignDonation = (
         ${requiredEntityInfo}
       }
     }
-  }`,
-  };
-
-  return JSON.stringify(payload);
-};
-
-// Donation
-
-export const nearestDonationCampaign = (location: string, distance: number) => {
-  const payload = {
-    query: `mutation{
-      getNearestDonationCampaign(location: "${location}", distance: ${distance}) {
-        ${requiredCampaignData}
-      }
   }`,
   };
 

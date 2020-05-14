@@ -78,6 +78,7 @@ class SplashScreen extends React.PureComponent<ISplashProps, ISplashState> {
       // if token is there but not authenticated the redirect to login screen to fetch new token
       flashMessage({message: t('Error.unauthenticatedUser')});
       navigation.navigate(RoutesNames.BootstrapStack);
+      return;
     }
 
     getUserAccountData();

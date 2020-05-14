@@ -72,6 +72,7 @@ class HomeScreen extends React.PureComponent<IHomeProps, IHomeState> {
           data={feeds}
           isHorizontal={false}
           renderItem={this.renderHomeCard}
+          cardListkey="homeCampaigns"
         />
       </View>
     );

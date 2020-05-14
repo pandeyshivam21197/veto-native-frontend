@@ -13,7 +13,7 @@ interface IConstributoList {
   title?: string;
   onViewAllPress?: () => void;
   containerStyle?: StyleProp<ViewStyle>;
-  key: string;
+  campaignListkey: string;
 }
 const CampaignContributorList = (
   props: IConstributoList,
@@ -24,7 +24,7 @@ const CampaignContributorList = (
     title,
     onViewAllPress,
     containerStyle = {},
-    key,
+    campaignListkey,
   } = props;
 
   const {t} = LocalService;
@@ -44,7 +44,7 @@ const CampaignContributorList = (
             ItemSeparatorComponent={
               isHorizontal ? renderHorizontalSeperator : renderVerticalSeperator
             }
-            listKey={`${key}-contributorList-${Math.random().toString()}`}
+            listKey={`${campaignListkey}-contributorList-${Math.random().toString()}`}
           />
         </View>
         {isHorizontal && (

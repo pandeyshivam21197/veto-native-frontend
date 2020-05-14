@@ -29,6 +29,7 @@ interface IFromTextProps extends TextInputProps {
   textInputStyle?: StyleProp<TextStyle>;
   constainerStyle?: StyleProp<ViewStyle>;
   inputType?: SupportedInputType;
+  entityCount?: number;
 }
 
 const FormTextInput = (props: IFromTextProps) => {
@@ -104,8 +105,22 @@ const getInputProps = (props: IFromTextProps): FormikValues => {
 const getError = (
   props: IFromTextProps,
 ): string | string[] | FormikErrors<any> | FormikErrors<any>[] | undefined => {
-  const {formProps, inputName} = props;
+  const {formProps, inputName, entityCount = -1} = props;
   const {errors, touched} = formProps;
+
+  if (entityCount >= 0) {
+    const entityName = inputName.split('.')[1];
+
+    const entityValue =
+      errors.entities &&
+      errors.entities[entityCount] &&
+      errors.entities[entityCount][entityName]
+        ? errors.entities[entityCount][entityName]
+        : null;
+
+    return entityValue ? entityValue : undefined;
+  }
+
   return touched[inputName] && errors[inputName]
     ? errors[inputName]
     : undefined;

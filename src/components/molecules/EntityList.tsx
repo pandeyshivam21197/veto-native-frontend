@@ -11,6 +11,7 @@ import {FlatList, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import * as yup from 'yup';
 import FormSubmitButton from './FormSubmitButton';
 import FormTextInput from './FormTextInput';
+import {flashMessage} from '@utils/ErrorUtil';
 
 interface IEntityList {
   containerStyle?: StyleProp<ViewStyle>;
@@ -75,8 +76,14 @@ const renderEntity = ({item}: {item: IEntity}): React.ReactElement => {
     values: FormikValues,
     formikHelpers: FormikHelpers<any>,
   ) => {
-    onDonateClick({title, amount: values.entityValue});
-    formikHelpers.setSubmitting(false);
+    try {
+      onDonateClick({title, amount: values.entityValue});
+      formikHelpers.setSubmitting(false);
+      formikHelpers.resetForm({});
+    } catch (e) {
+      flashMessage({message: t('Common.donateError')});
+      formikHelpers.resetForm({});
+    }
   };
 
   return (

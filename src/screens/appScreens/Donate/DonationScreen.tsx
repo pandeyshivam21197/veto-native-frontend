@@ -20,7 +20,7 @@ import {bindActionCreators} from 'redux';
 
 interface IDonationScreenProps {
   navigation: NavigationScreenProp<NavigationState>;
-  neearestCampaigns: ICampaignRequest[] | null;
+  nearestCampaigns: ICampaignRequest[] | null;
   isNearestCampaignsLoading: boolean;
   nearestCampaignsError: string;
   getNearestCampaigns: (location: string, distance: number) => void;
@@ -67,20 +67,21 @@ class DonationScreen extends React.PureComponent<
 
   public renderScreen = (): React.ReactNode => {
     const {t} = LocalService;
-    const {neearestCampaigns} = this.props;
+    const {nearestCampaigns} = this.props;
     const {distance} = this.state;
 
     return (
       <View style={[styles.screenConatiner, styles.flexOne]}>
-        {neearestCampaigns ? (
+        {nearestCampaigns ? (
           <>
             <Text fontWeight="bold" containerStyle={styles.title}>
               {t('Donate.campaignNearYou')}
             </Text>
             <CardList
-              data={neearestCampaigns}
+              data={nearestCampaigns}
               isHorizontal={false}
               renderItem={this.renderDonationCard}
+              key={`${Math.random().toString()}`}
             />
           </>
         ) : (
@@ -178,7 +179,7 @@ const mapStateToProps = (state: IState) => {
   } = DonationSelectors;
 
   return {
-    neearestCampaigns: getNearestCampaigns(state),
+    nearestCampaigns: getNearestCampaigns(state),
     isNearestCampaignsLoading: getNearestCampaignsLoading(state),
     nearestCampaignsError: getNearestCampaignsError(state),
   };
